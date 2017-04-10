@@ -61,7 +61,9 @@ CREATE TABLE review
 CREATE TABLE itinerary
 (
 	user_id INTEGER NOT NULL,
-	landmark_id INTEGER NOT NULL
+	landmark_id INTEGER NOT NULL,
+	starting_latitude REAL NOT NULL,
+	starting_longitude REAL NOT NULL,
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
