@@ -23,7 +23,10 @@ CREATE TABLE landmark
 	landmark_rating INTEGER NOT NULL,
 	latitude REAL NOT NULL,
 	longitude REAL NOT NULL,
-	address VARCHAR(64) NOT NULL,
+	state VARCHAR(2) NOT NULL,
+	city VARCHAR(64) NOT NULL,
+	zip_code INTEGER NOT NULL,
+	address VARCHAR(64),
 	description TEXT NOT NULL,
 	
 );
@@ -41,3 +44,5 @@ CREATE TABLE review
 
 INSERT INTO user(user_id, email_address, username, first_name, last_name, home_address, salt, hash, level_of_authority) VALUES('traveler1@yahoo.com', 'traveler1', 'bob', 'jones', '123 street street', 'XRj4/q6qixYZo68P1BA87C8EpcuCZ3A88bY6vZ6y5EOpKWjgEzBAsYPBQVbRREMWNQm8fFwXuaTR5nzYhM7jr9FmERsLMZDlwnREHYOjzeyv6zxFln1AzuBXBn27Shd+jczS9N5dI9Pg8w23Ft4OVP90fl89odyQnufDXsPwsqs=', 'gjSSHt79W6d2twT+HsZvUg==');
 
+
+INSERT INTO landmark(landmark_id, landmark_name, landmark_picture, landmark_rating, latitude, longitude, address, description) VALUES ('Franklin Park Conservatory and Botanical Gardens', 'picture.png', 5, '39.965910', '-82.953862', 'OH', 'Columbus', '43206', '1777 E Broad St, Columbus, OH 43203', 'A park');
