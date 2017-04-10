@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 	public class HomeController {
 		
 		@RequestMapping(path="/", method=RequestMethod.GET)
-		public String showHomePage(Map<String, Object> model) {
+//		public String showHomePage(Map<String, Object> model) {
+			public String showHomePage() {
+
 			//model.put("messages", messageDAO.getPublicMessages(10));
 			return "home";
 		}
