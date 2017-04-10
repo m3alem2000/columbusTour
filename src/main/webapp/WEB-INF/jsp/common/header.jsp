@@ -25,7 +25,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#">
-						<img src="img/Delta_logo.png" alt="Delta Tour" width="120">
+						<img src="img/Delta_logo.png" alt="Delta Tour" width="25%">
 					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -41,7 +41,7 @@
 		
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Big Welcome Message</h1>
+				<h1>Delta Tours are the Best!</h1>
 				<p>Ingenious marketing copy. And some more ingenious marketing copy. <a href="#features" class="btn btn-primary btn-lg">
 					      Learn more <span class="glyphicon glyphicon-download"></span></a></p>
 			</div>
