@@ -10,7 +10,8 @@ CREATE SEQUENCE user_user_id_seq
   NO MINVALUE
   CACHE 1;
 
-CREATE TABLE app_user (
+CREATE TABLE users 
+(
 	user_id INTEGER DEFAULT NEXTVAL('user_user_id_seq'::regclass) NOT NULL,
 	email_address VARCHAR(64)  NOT NULL,
 	username VARCHAR(64) NOT NULL,
@@ -29,7 +30,8 @@ CREATE SEQUENCE landmark_landmark_id_seq
   NO MINVALUE
   CACHE 1;
 
-CREATE TABLE landmark (
+CREATE TABLE landmark 
+(
 	landmark_id INTEGER DEFAULT NEXTVAL('landmark_landmark_id_seq'::regclass) NOT NULL,
 	landmark_name VARCHAR(64) NOT NULL,
 	landmark_picture VARCHAR(64) NOT NULL,
@@ -42,6 +44,7 @@ CREATE TABLE landmark (
 	address VARCHAR(64),
 	description TEXT NOT NULL,
 	CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
+	
 );
 
 
@@ -51,12 +54,16 @@ CREATE TABLE review
 	user_id INTEGER NOT NULL,
 	review TEXT NOT NULL,
 	rating INTEGER NOT NULL
+	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
+	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
 
-CREATE TABLE itenerary
+CREATE TABLE itinerary
 (
 	user_id INTEGER NOT NULL,
 	landmark_id INTEGER NOT NULL
+	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
+	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
 
 COMMIT;
