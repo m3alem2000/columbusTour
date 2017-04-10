@@ -6,8 +6,8 @@ public class Landmark {
 	private String landmarkName;
 	private String landmarkPicture;
 	private Long landmarkRating;
-	private Float latitude;
-	private Float longitude;
+	private double latitude;
+	private double longitude;
 	private String state;
 	private String city;
 	private Long zipCode;
@@ -38,16 +38,16 @@ public class Landmark {
 	public void setLandmarkRating(Long landmarkRating) {
 		this.landmarkRating = landmarkRating;
 	}
-	public Float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(Float latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public Float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(Float longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 	public String getState() {
