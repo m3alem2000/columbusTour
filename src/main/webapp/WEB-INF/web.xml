@@ -12,11 +12,31 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>*.html</url-pattern>
     <url-pattern>*.css</url-pattern>
     <url-pattern>*.js</url-pattern>
     <url-pattern>*.png</url-pattern>
     <url-pattern>*.jpg</url-pattern>
     <url-pattern>*.gif</url-pattern>
   </servlet-mapping>
+  
+    <filter>
+  	<filter-name>authorizationFilter</filter-name>
+  	<filter-class>com.techelevator.capstone.security.AuthorizationFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>authorizationFilter</filter-name>
+  	<servlet-name>springmvc</servlet-name>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>csrfFilter</filter-name>
+  	<filter-class>com.techelevator.capstone.security.CSRFFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>csrfFilter</filter-name>
+  	<servlet-name>springmvc</servlet-name>
+  </filter-mapping>
+  
 </web-app>
