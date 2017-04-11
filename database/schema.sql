@@ -14,7 +14,7 @@ CREATE TABLE users
 (
 	user_id INTEGER DEFAULT NEXTVAL('user_user_id_seq'::regclass) NOT NULL,
 	email_address VARCHAR(64)  NOT NULL,
-	username VARCHAR(64) NOT NULL,
+	username VARCHAR(64),
 	first_name VARCHAR(64),
 	last_name VARCHAR(64),
 	home_address VARCHAR(64),
