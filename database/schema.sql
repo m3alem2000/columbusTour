@@ -20,6 +20,7 @@ CREATE TABLE users
 	home_address VARCHAR(64),
 	salt TEXT NOT NULL,
 	hash VARCHAR(64) NOT NULL,
+	isAdmin BOOLEAN NOT NULL,
 	CONSTRAINT pk_user_user_id PRIMARY KEY (user_id)
 );
 
