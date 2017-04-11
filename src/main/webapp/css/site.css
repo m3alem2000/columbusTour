@@ -43,3 +43,8 @@ footer {
 		height: auto;
 	}
 }
+
+#map {
+	height: 100%;
+}
+
