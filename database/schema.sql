@@ -14,7 +14,7 @@ CREATE TABLE users
 (
 	user_id INTEGER DEFAULT NEXTVAL('user_user_id_seq'::regclass) NOT NULL,
 	email_address VARCHAR(64)  NOT NULL,
-	username VARCHAR(64) NOT NULL,
+	username VARCHAR(64),
 	first_name VARCHAR(64),
 	last_name VARCHAR(64),
 	home_address VARCHAR(64),
@@ -65,6 +65,7 @@ CREATE TABLE itinerary
 	landmark_id INTEGER NOT NULL,
 	starting_latitude REAL NOT NULL,
 	starting_longitude REAL NOT NULL,
+	date_created TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );

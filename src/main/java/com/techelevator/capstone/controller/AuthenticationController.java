@@ -29,6 +29,11 @@ public class AuthenticationController {
 	public String displayLoginForm() {
 		return "login";
 	}
+	
+	@RequestMapping(path="/signup", method=RequestMethod.GET)
+	public String displaySignupForm() {
+		return "signup";
+	}
 
 	@RequestMapping(path="/login", method=RequestMethod.POST)
 	public String login(Map<String, Object> model, 
