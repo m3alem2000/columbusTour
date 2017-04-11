@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-	$("#register form").validate({
+	$("#new-user").validate({
 		rules: {
 			userName: {
 				required: true,
