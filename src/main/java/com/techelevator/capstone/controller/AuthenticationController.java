@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.techelevator.capsone.DAO.AppUserDAO;
+
 @Controller
 @SessionAttributes("currentUser")
 public class AuthenticationController {
 
-//	private UserDAO userDAO;
+//	private AppUserDAO appUserDAO;
 //
 //	@Autowired
-//	public AuthenticationController(UserDAO userDAO) {
-//		this.userDAO = userDAO;
+//	public AuthenticationController(AppUserDAO appUserDAO) {
+//		this.appUserDAO = appUserDAO;
 //	}
-
+//
 	@RequestMapping(path="/login", method=RequestMethod.GET)
 	public String displayLoginForm() {
 		return "login";
@@ -33,8 +35,7 @@ public class AuthenticationController {
 //						@RequestParam String password,
 //						@RequestParam(required=false) String destination,
 //						HttpSession session) {
-//		
-//		if(userDAO.searchForUsernameAndPassword(userName, password)) {
+//		if(appUserDAO.readAppUserById(userName, password)) {
 //			session.invalidate();
 //			model.put("currentUser", userName);
 //			if(isValidRedirect(destination)) {

@@ -7,9 +7,9 @@ import com.techelevator.capstone.model.Review;
 public class ReviewJdbcDao implements ReviewDAO{
 
 	@Override
-	public boolean createReview(Review review) {
-		// TODO Auto-generated method stub
-		return false;
+	public void createReview(Review review) {
+		String sqlCreateReview = "INSERT INTO review (landmark_id, user_id, review, rating) VALUES ( ?, ?, ?, ?)";
+		
 	}
 
 	@Override
@@ -25,14 +25,12 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
-	public boolean updateReview(Review review) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateReview(Review review) {
+		
 	}
 
 	@Override
 	public boolean deleteReview(long reviewId) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
