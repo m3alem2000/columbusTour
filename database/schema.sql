@@ -65,6 +65,7 @@ CREATE TABLE itinerary
 	landmark_id INTEGER NOT NULL,
 	starting_latitude REAL NOT NULL,
 	starting_longitude REAL NOT NULL,
+	date_created TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
