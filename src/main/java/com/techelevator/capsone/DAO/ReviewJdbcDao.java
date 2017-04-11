@@ -8,8 +8,8 @@ public class ReviewJdbcDao implements ReviewDAO{
 
 	@Override
 	public void createReview(Review review) {
-		// TODO Auto-generated method stub
-		return false;
+		String sqlCreateReview = "INSERT INTO review (landmark_id, user_id, review, rating) VALUES ( ?, ?, ?, ?)";
+		
 	}
 
 	@Override
@@ -26,13 +26,11 @@ public class ReviewJdbcDao implements ReviewDAO{
 
 	@Override
 	public void updateReview(Review review) {
-		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
-	public void deleteReview(long reviewId) {
-		// TODO Auto-generated method stub
+	public boolean deleteReview(long reviewId) {
 		return false;
 	}
 
