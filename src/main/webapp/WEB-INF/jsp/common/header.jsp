@@ -31,8 +31,9 @@
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
+						<c:url var="loginHref" value="/login"/>
 						<li><a href="#welcome">Home</a></li>
-						<li><a href="#features">Log In</a></li>
+						<li><a href="${loginHref}">Log In</a></li>
 						<li><a href="#impact">Take me on a tour</a></li>
 						<li><a href="#signup">Sign Up</a></li>
 					</ul>

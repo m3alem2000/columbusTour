@@ -42,4 +42,8 @@ footer {
 	.row.content {
 		height: auto;
 	}
+	
+.form-control{
+	width:200px;
+	}
 }
