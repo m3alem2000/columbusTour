@@ -19,7 +19,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	}
 
 	@Override
-	public boolean updateLmandmarkById(int landmarkId, Landmark landmark) {
+	public boolean updateLmandmarkById(Landmark landmark) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -12,7 +12,7 @@ public interface LandmarkDAO {
 	//get the top x=however many landmarks with highest rating
 	public List<Landmark> getTopXLandmarks(int X);
 	
-	public boolean updateLmandmarkById(int landmarkId, Landmark landmark);
+	public boolean updateLmandmarkById(Landmark landmark);
 	
 	public boolean deleteLandmarkById(int landmarkId);
 }
