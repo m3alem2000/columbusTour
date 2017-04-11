@@ -10,8 +10,6 @@ public interface ItineraryDAO {
 	
 	public Itinerary readItineraryById(long itineraryId);
 	public List<Itinerary> itineraryByUser(long userId);
-	
-	public boolean updateItinerary(long itineraryId, Itinerary itinerary);
-	
-	public boolean deleteItineraryById(long itineraryId);
+		
+	public void deleteItineraryByUserId(long userId);
 }

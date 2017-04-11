@@ -14,10 +14,8 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 
 	@Override
 	public void createItinerary(Itinerary itinerary) {
-		Long id = getNextId();
-		String sqlCreateItinerary = "INSERT INTO itinerary(itinerary_id, user_id, landmark_ids, starting_latitude, starting_longitude) VALUES (?,?,?,?,?)";
-		jdbcTemplate.update(sqlCreateItinerary, itinerary.getItineraryId(), itinerary.getUserId(), itinerary.getLandmarkIds(), itinerary.getStartingLatitude(), itinerary.getStartingLongitude());
-		itinerary.setItineraryId(id);
+		String sqlCreateItinerary = "INSERT INTO itinerary(user_id, landmark_id, starting_latitude, starting_longitude, date_created) VALUES (?,?,?,?,?)";
+		jdbcTemplate.update(sqlCreateItinerary, itinerary.getUserId(), itinerary.getlandmarkId(), itinerary.getStartingLatitude(), itinerary.getStartingLongitude());
 	}
 
 	@Override
@@ -42,8 +40,8 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectItineraryByUser, userId);
 		while(results.next()) {
 			Itinerary itinerary = new Itinerary();
-			itinerary.setItineraryId(results.getLong("itinerary_id"));
 			itinerary.setUserId(results.getLong("user_id"));
+			itinerary.setLandmarkId(results.getLong("landmark_id"));
 			itinerary.setStartingLatitude(results.getDouble("starting_Latitude"));
 			itinerary.setStartingLongitude(results.getDouble("starting_Longitude"));
 			itinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
@@ -53,28 +51,10 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	}
 
 	@Override
-	public boolean updateItinerary(long itineraryId, Itinerary itinerary) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteItineraryById(long itineraryId) {
-		
-		return false;
-	}
-	
-
-	private Long getNextId() {
-		String sqlSelectNextId = "SELECT NEXTVAL('seq_itinerary_id')";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
-		Long id = null;
-		if(results.next()) {
-			id = results.getLong(1);
-		} else {
-			throw new RuntimeException("Unable to select next itinerary id from sequence");
-		}
-		return id;
+	public void deleteItineraryByUserId(long userId) {
+		String sqlDeleteItinerary = "DELETE FROM itinerary "+
+			     "WHERE user_id = ?";
+		jdbcTemplate.update(sqlDeleteItinerary, userId);
 	}
 	
 	private Itinerary mapRowToItinerary(SqlRowSet results) {

@@ -5,21 +5,13 @@ import java.util.List;
 
 public class Itinerary {
 	
-	private Long itineraryId;
 	private Long userId;
-	private List<Long> landmarkIds;
+	private Long landmarkId;
 	private double startingLatitude;
 	private double startingLongitude;
 	private LocalDateTime dateCreated;
 
 
-	public Long getItineraryId() {
-		return itineraryId;
-	}
-
-	public void setItineraryId(Long userId) {
-		this.itineraryId = itineraryId;
-	}
 	public Long getUserId() {
 		return userId;
 	}
@@ -27,13 +19,13 @@ public class Itinerary {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
-	public List<Long> getLandmarkIds() {
-		return landmarkIds;
+	
+	public Long getlandmarkId() {
+		return landmarkId;
 	}
 
-	public void setLandmarkIds(List<Long> landmarkIds) {
-		this.landmarkIds = landmarkIds;
+	public void setLandmarkId(Long landmarkId) {
+		landmarkId = landmarkId;
 	}
 
 	public double getStartingLatitude() {
