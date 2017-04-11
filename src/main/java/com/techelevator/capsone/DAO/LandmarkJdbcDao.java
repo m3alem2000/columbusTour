@@ -1,5 +1,7 @@
 package com.techelevator.capsone.DAO;
 
+import java.util.List;
+
 import com.techelevator.capstone.model.Landmark;
 
 public class LandmarkJdbcDao implements LandmarkDAO{
@@ -26,6 +28,12 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	public boolean deleteLandmarkById(int landmarkId) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<Landmark> getTopXLandmarks(int X) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
