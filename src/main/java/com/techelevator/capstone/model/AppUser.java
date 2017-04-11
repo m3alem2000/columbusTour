@@ -7,15 +7,15 @@ public class AppUser {
 	private String firstName;
 	private String lastName;
 	private String address;
-//	private boolean isAdmin;
+	private boolean isAdmin;
 
-//	public boolean isAdmin() {
-//		return isAdmin;
-//	}
-//
-//	public void setAdmin(boolean isAdmin) {
-//		this.isAdmin = isAdmin;
-//	}
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
 	public long getUserId() {
 		return userId;

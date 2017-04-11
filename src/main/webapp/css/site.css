@@ -14,7 +14,8 @@
 	color: black;
 	background-color: black;
 }
-.jumbotron p{
+
+.jumbotron p {
 	color: white;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
@@ -36,6 +37,12 @@ footer {
 	padding: 15px;
 }
 
+#map {
+		position: relative;
+		overflow: hidden;
+		height: 300px;
+	}
+
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
 	.sidenav {
@@ -45,17 +52,7 @@ footer {
 	.row.content {
 		height: auto;
 	}
-<<<<<<< HEAD
-	
-.form-control{
-	width:200px;
+	.form-control {
+		width: 200px;
 	}
 }
-=======
-}
-
-#map {
-	height: 100%;
-}
-
->>>>>>> fe8a75a65122515dafcd7c225fa4a4169c271d61

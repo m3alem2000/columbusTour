@@ -5,12 +5,12 @@ import java.util.List;
 import com.techelevator.capstone.model.Review;
 
 public interface ReviewDAO {
-	public void createReview(Review review);
+	public boolean createReview(Review review);
 	
-	public Review getReviewById(long reviewId);
+	public Review getReviewById(Review review);
 	public List<Review> allLandmarksReviews(long landmarkId);
 	
-	public void updateReview(Review review);//?????
+	public boolean updateReview(Review review);//?????
 	
-	public boolean deleteReview(long reviewId);
+	public boolean deleteReview(Review review);
 }

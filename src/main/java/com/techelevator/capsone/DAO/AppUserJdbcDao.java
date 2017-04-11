@@ -27,13 +27,13 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public void createAppUser(AppUser appUser, String password) {
-		String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, first_name, last_name, home_address, salt, hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		Long id = getNextId();
-		//ALTER TABLE user ADD salt text;
-		byte[] salt = passwordHasher.generateRandomSalt();
-		String hashedPassword = passwordHasher.computeHash(password, salt);
-		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update(sqlSaveUser, id, appUser.getEmail(), appUser.getUsername(), appUser.getFirstName(), appUser.getLastName(), appUser.getAddress(), hashedPassword, saltString);
+	String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, first_name, last_name, home_address, salt, hash, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	Long id = getNextId();
+	   //ALTER TABLE user ADD salt text;
+    byte[] salt = passwordHasher.generateRandomSalt();
+    String hashedPassword = passwordHasher.computeHash(password, salt);
+    String saltString = new String(Base64.encode(salt));
+	jdbcTemplate.update(sqlSaveUser, id, appUser.getEmail(), appUser.getUsername(), appUser.getFirstName(), appUser.getLastName(), appUser.getAddress(), hashedPassword, saltString, appUser.isAdmin());
 	}
 
 //	@Override
@@ -55,7 +55,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public void deleteAppUser(long appUserId) {
-		String sqlDeleteUser = "DELETE FROM users WHERE userId = ?";
+		String sqlDeleteUser = "DELETE FROM users WHERE user_id = ?";
 		jdbcTemplate.update(sqlDeleteUser, appUserId);
 	}
 
