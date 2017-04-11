@@ -19,7 +19,7 @@ CREATE TABLE users
 	last_name VARCHAR(64),
 	home_address VARCHAR(64),
 	salt TEXT NOT NULL,
-	hash VARCHAR(64) NOT NULL,
+	hash VARCHAR(512) NOT NULL,
 	is_admin BOOLEAN NOT NULL,
 	CONSTRAINT pk_user_user_id PRIMARY KEY (user_id)
 );

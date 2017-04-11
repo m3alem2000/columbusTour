@@ -14,26 +14,55 @@ import com.techelevator.capstone.model.AppUser;
 import com.techelevator.security.PasswordHasher;
 @Component
 public class AppUserJdbcDao implements AppUserDAO{
-
-
+	
 	private PasswordHasher passwordHasher;
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	public AppUserJdbcDao(DataSource dataSource) {
+	public AppUserJdbcDao(DataSource dataSource, PasswordHasher passwordHasher) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.passwordHasher = passwordHasher;
 	}
 
 
 	@Override
-	public void createAppUser(AppUser appUser, String password) {
-		String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, first_name, last_name, home_address, salt, hash, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	public AppUser createAppUser(String userName,String email, String password) {
+		String sqlSaveUser = "INSERT INTO users (user_id, username,email_address, salt, hash, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
 		Long id = getNextId();
 		//ALTER TABLE user ADD salt text;
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update(sqlSaveUser, id, appUser.getEmail(), appUser.getUsername(), appUser.getFirstName(), appUser.getLastName(), appUser.getAddress(), hashedPassword, saltString, appUser.isAdmin());
+		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, email, saltString, hashedPassword, false);
+		if(rowsAffected != 1) {
+			return null;
+		} else {
+			AppUser user = new AppUser();
+			user.setUserId(id);
+			user.setUsername(userName);
+			user.setAdmin(false);
+			return user;
+		}
+	}
+	
+	@Override
+	public AppUser createAdmin(String userName, String password) {
+		String sqlSaveUser = "INSERT INTO users (user_id, username, salt, hash, is_admin) VALUES (?, ?, ?, ?, ?)";
+		Long id = getNextId();
+		//ALTER TABLE user ADD salt text;
+		byte[] salt = passwordHasher.generateRandomSalt();
+		String hashedPassword = passwordHasher.computeHash(password, salt);
+		String saltString = new String(Base64.encode(salt));
+		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, hashedPassword, saltString, true);
+		if(rowsAffected != 1) {
+			return null;
+		} else {
+			AppUser user = new AppUser();
+			user.setUserId(id);
+			user.setUsername(userName);
+			user.setAdmin(false);
+			return user;
+		}
 	}
 
 	//	@Override
@@ -61,6 +90,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	private AppUser mapRowToUser(SqlRowSet row) {
 		AppUser user = new AppUser();
+		user.setUserId(row.getInt("user_id"));
 		user.setAddress(row.getString("home_address"));
 		user.setEmail(row.getString("email_address"));
 		user.setFirstName(row.getString("first_name"));
@@ -93,9 +123,9 @@ public class AppUserJdbcDao implements AppUserDAO{
 	//		return appUser;
 	//	}
 	@Override
-	public boolean searchForUsernameAndPassword(String userName, String password) {
-		String sqlSearchForUser = "SELECT * FROM users WHERE username = ? ";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
+	public boolean matchUsernameAndPassword(String email, String password) {
+		String sqlSearchForUser = "SELECT * FROM users WHERE email_address = ? ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, email);
 		if (results.next()){
 			String storedSalt = results.getString("salt");
 			String storedPassword = results.getString("hash");

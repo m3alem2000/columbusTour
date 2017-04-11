@@ -1,12 +1,12 @@
 package com.techelevator.capsone.DAO;
 
-import java.util.List;
-
 import com.techelevator.capstone.model.AppUser;
 
 public interface AppUserDAO {
 	//CRUD
-	public void createAppUser(AppUser appUser, String password);
+	public AppUser createAppUser(String userName, String email, String password);
+	public AppUser createAdmin(String userName, String password);
+
 	//DONE
 //	public AppUser readAppUserById(long appUserId, String password);
 //	public List<AppUser> readAppUserById(long appUserId);
@@ -15,7 +15,7 @@ public interface AppUserDAO {
 	//DONE
 	public void deleteAppUser(long appUserId);
 	//DONE
-	boolean searchForUsernameAndPassword(String userName, String password);
+	public boolean matchUsernameAndPassword(String email, String password);
 
 	//NOTES: The reason I made these void was due to not actually 
 	//returning any values, but simply creating them in the database

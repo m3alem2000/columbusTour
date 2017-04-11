@@ -12,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.techelevator.capstone.model.AppUser;
+
 public class AuthorizationFilter implements Filter {
 
 	@Override
@@ -26,7 +28,7 @@ public class AuthorizationFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 		HttpServletResponse httpResponse = (HttpServletResponse)response;
 		
-		String sessionUser = getUserFromSession(httpRequest);
+		AppUser sessionUser = getUserFromSession(httpRequest);
 		String requestUser = getUserFromRequest(httpRequest);
 		
 		if(requestUser != null && requestUser.equals(sessionUser) == false) {
@@ -52,8 +54,8 @@ public class AuthorizationFilter implements Filter {
 		httpResponse.sendRedirect(context+"/login?destination="+URLEncoder.encode(originalRequest, "UTF-8"));
 	}
 
-	private String getUserFromSession(HttpServletRequest httpRequest) {
-		return (String)httpRequest.getSession().getAttribute("currentUser");
+	private AppUser getUserFromSession(HttpServletRequest httpRequest) {
+		return (AppUser) httpRequest.getSession().getAttribute("currentUser");
 	}
 
 	private String getUserFromRequest(HttpServletRequest httpRequest) {
