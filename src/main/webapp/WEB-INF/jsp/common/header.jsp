@@ -26,7 +26,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#">
-						<img src="img/Delta_logo.png" alt="Delta Tour" width="25%">
+						<img src="img/delta_logo.gif" alt="Delta Tour" width="25%">
 					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
