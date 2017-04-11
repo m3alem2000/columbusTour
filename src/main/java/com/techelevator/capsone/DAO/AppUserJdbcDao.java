@@ -54,7 +54,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public void deleteAppUser(long appUserId) {
-		String sqlDeleteUser = "DELETE FROM users WHERE userId = ?";
+		String sqlDeleteUser = "DELETE FROM users WHERE user_id = ?";
 		jdbcTemplate.update(sqlDeleteUser, appUserId);
 	}
 	
