@@ -48,7 +48,6 @@ public class AppUserJdbcDAOIntegrationTest extends DAOIntegrationTest {
 		Assert.assertEquals(expected.getLastName(), actual.getLastName());
 		Assert.assertEquals(expected.getUsername(), actual.getUsername());
 		Assert.assertEquals(expected.getUserId(), actual.getUserId());
-		
 	}
 	
 	
