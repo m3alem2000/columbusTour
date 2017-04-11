@@ -26,7 +26,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public void createAppUser(AppUser appUser, String password) {
-	String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, first_name, last_name, home_address, salt, hash)";
+	String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, first_name, last_name, home_address, salt, hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	Long id = getNextId();
 	   //ALTER TABLE user ADD salt text;
     byte[] salt = passwordHasher.generateRandomSalt();
