@@ -11,8 +11,11 @@
 .jumbotron {
 	background-image: url("../img/columbus.jpg");
 	background-size: cover;
-	color: white;
+	color: black;
 	background-color: black;
+}
+.jumbotron p{
+	color: white;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
@@ -42,8 +45,17 @@ footer {
 	.row.content {
 		height: auto;
 	}
+<<<<<<< HEAD
 	
 .form-control{
 	width:200px;
 	}
 }
+=======
+}
+
+#map {
+	height: 100%;
+}
+
+>>>>>>> fe8a75a65122515dafcd7c225fa4a4169c271d61

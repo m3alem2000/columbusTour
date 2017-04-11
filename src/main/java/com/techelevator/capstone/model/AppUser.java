@@ -1,14 +1,12 @@
 package com.techelevator.capstone.model;
 
-public class Users {
+public class AppUser {
 	private long userId;
 	private String email;
 	private String username;
 	private String firstName;
 	private String lastName;
 	private String address;
-	private String salt;
-	private String hash;
 
 	public long getUserId() {
 		return userId;
@@ -56,22 +54,6 @@ public class Users {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
-	public String getHash() {
-		return hash;
-	}
-
-	public void setHash(String hash) {
-		this.hash = hash;
 	}
 
 }
