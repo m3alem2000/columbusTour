@@ -43,7 +43,8 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Delta Tours are the Best!</h1>
-				<p>Ingenious marketing copy. And some more ingenious marketing copy. <a href="#features" class="btn btn-primary btn-lg">
-					      Learn more <span class="glyphicon glyphicon-download"></span></a></p>
+				<p><a href="#features" class="btn btn-primary btn-lg">
+					      See top 5 landmarks on map! <span class="glyphicon glyphicon-location"></span></a><br>
+				Ingenious marketing copy. And some more ingenious marketing copy. </p>
 			</div>
 		</div>

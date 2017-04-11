@@ -11,8 +11,11 @@
 .jumbotron {
 	background-image: url("../img/columbus.jpg");
 	background-size: cover;
-	color: white;
+	color: black;
 	background-color: black;
+}
+.jumbotron p{
+	color: white;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
