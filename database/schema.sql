@@ -20,7 +20,7 @@ CREATE TABLE users
 	home_address VARCHAR(64),
 	salt TEXT NOT NULL,
 	hash VARCHAR(64) NOT NULL,
-	isAdmin BOOLEAN NOT NULL,
+	is_admin BOOLEAN NOT NULL,
 	CONSTRAINT pk_user_user_id PRIMARY KEY (user_id)
 );
 
@@ -54,7 +54,7 @@ CREATE TABLE review
 	landmark_id INTEGER NOT NULL,
 	user_id INTEGER NOT NULL,
 	review TEXT NOT NULL,
-	rating INTEGER NOT NULL
+	rating INTEGER NOT NULL,
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
