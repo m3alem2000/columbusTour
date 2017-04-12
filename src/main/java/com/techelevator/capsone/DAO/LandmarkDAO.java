@@ -13,6 +13,6 @@ public interface LandmarkDAO {
 	public List<Landmark> getTopXLandmarks(int X);
 	
 	public void updateLandmarkById(Landmark landmark);
-	
+	public List<Landmark> getTopFiveLandMarks();
 	public void deleteLandmarkById(int landmarkId);
 }

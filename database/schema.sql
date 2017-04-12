@@ -14,10 +14,10 @@ CREATE TABLE users
 (
 	user_id INTEGER DEFAULT NEXTVAL('user_user_id_seq'::regclass) NOT NULL,
 	email_address VARCHAR(64)  NOT NULL,
-	state VARCHAR(2) NOT NULL,
-	city VARCHAR(64) NOT NULL,
-	zip_code INTEGER NOT NULL,
-	phone_number VARCHAR(10) NOT NULL,
+	state VARCHAR(2),
+	city VARCHAR(64),
+	zip_code INTEGER,
+	phone_number VARCHAR(10),
 	username VARCHAR(64),
 	first_name VARCHAR(64),
 	last_name VARCHAR(64),
@@ -39,7 +39,7 @@ CREATE TABLE landmark
 (
 	landmark_id INTEGER DEFAULT NEXTVAL('landmark_landmark_id_seq'::regclass) NOT NULL,
 	landmark_name VARCHAR(64) NOT NULL,
-	landmark_picture VARCHAR(64) NOT NULL,
+	landmark_picture VARCHAR(64),
 	landmark_rating INTEGER NOT NULL,
 	latitude REAL NOT NULL,
 	longitude REAL NOT NULL,

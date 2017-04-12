@@ -30,14 +30,14 @@ public class UserController {
 	public String displaySignupForm() {
 		return "signup";
 	}
-	
+
 	@RequestMapping(path="/profile", method=RequestMethod.GET)
 	public String displayProfileForm() {
 		return "profile";
 	}
-	
+
 	@RequestMapping(path="/signup", method=RequestMethod.POST)
-	public String createUser(@RequestParam String userName,@RequestParam String email, @RequestParam String password, ModelMap model) {
+	public String createUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password, ModelMap model) {
 		AppUser user = appUserDao.createAppUser(userName,email, password);
 		model.put("currentUser", user);
 		return "redirect:/profile";

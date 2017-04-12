@@ -19,9 +19,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 	private PasswordHasher passwordHasher;
 	private JdbcTemplate jdbcTemplate;
 
-	private byte[] salt;
-	private String hashedPassword;
-	private String saltString;
+
 
 	@Autowired
 	public AppUserJdbcDao(DataSource dataSource, PasswordHasher passwordHasher) {
@@ -32,10 +30,12 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public AppUser createAppUser(String userName,String email, String password) {
-		String sqlSaveUser = "INSERT INTO users (user_id, username, email_address, hash, salt, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
+		String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, salt, hash, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
 		Long id = getNextId();
-		saltNHash(password);
-		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, email, hashedPassword, saltString, false);
+		byte[] salt = passwordHasher.generateRandomSalt();
+		String hashedPassword = passwordHasher.computeHash(password, salt);
+		String saltString = new String(Base64.encode(salt));
+		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, email, userName, saltString, hashedPassword, false);
 		if(rowsAffected != 1) {
 			return null;
 		} else {
@@ -51,7 +51,9 @@ public class AppUserJdbcDao implements AppUserDAO{
 	public AppUser createAdmin(String userName, String password) {
 		String sqlSaveUser = "INSERT INTO users (user_id, username, hash, salt, is_admin) VALUES (?, ?, ?, ?, ?)";
 		Long id = getNextId();
-		saltNHash(password);
+		byte[] salt = passwordHasher.generateRandomSalt();
+		String hashedPassword = passwordHasher.computeHash(password, salt);
+		String saltString = new String(Base64.encode(salt));
 		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, hashedPassword, saltString, true);
 		if(rowsAffected != 1) {
 			return null;
@@ -80,7 +82,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 	public AppUser readUserByEmail(String appUserEmail) {
 		AppUser user = new AppUser();
 		String sqlGetUserID = "SELECT * FROM users "+
-				"WHERE user_email = ? ";
+				"WHERE email_address = ? ";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetUserID, appUserEmail);
 		if(result.next()) {
 			user = mapRowToUser(result);
@@ -137,7 +139,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 		user.setFirstName(row.getString("first_name"));
 		user.setLastName(row.getString("last_name"));
 		user.setUsername(row.getString("username"));
-		user.setAdmin(row.getBoolean("isAdmin"));
+		user.setAdmin(row.getBoolean("is_admin"));
 		return user;
 	}
 
@@ -149,12 +151,6 @@ public class AppUserJdbcDao implements AppUserDAO{
 		} else {
 			throw new RuntimeException("Something went wrong while getting the next user id");
 		}
-	}
-
-	private void saltNHash(String password){
-		salt = passwordHasher.generateRandomSalt();
-		hashedPassword = passwordHasher.computeHash(password, salt);
-		saltString = new String(Base64.encode(salt));
 	}
 
 	@Override
