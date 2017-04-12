@@ -5,10 +5,10 @@
 BEGIN;
 
 
-INSERT INTO users (email_address, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
-('traveler1@yahoo.com', 'traveler1', 'bob', 'jones', '123 street street', 'XRj4/q6qixYZo68P1BA87C8EpcuCZ3A88bY6vZ6y5EOpKWjgEzBAsYPBQVbRREMWNQm8fFwXuaTR5nzYhM7jr9FmERsLMZDlwnREHYOjzeyv6zxFln1AzuBXBn27Shd+jczS9N5dI9Pg8w23Ft4OVP90fl89odyQnufDXsPwsqs=', 'gjSSHt79W6d2twT+HsZvUg==', false);
-INSERT INTO users (email_address, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
-('admin@yahoo.com', 'admin', 'Alice', 'jones', '123 street street', 'XRj4/q6qixYZo68P1BA87C8EpcuCZ3A88bY6vZ6y5EOpKWjgEzBAsYPBQVbRREMWNQm8fFwXuaTR5nzYhM7jr9FmERsLMZDlwnREHYOjzeyv6zxFln1AzuBXBn27Shd+jczS9N5dI9Pg8w23Ft4OVP90fl89odyQnufDXsPwsqs=', 'gjSSHt79W6d2twT+HsZvUg==', true);
+INSERT INTO users (email_address, state, city, zip_code, phone_number, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
+('traveler1@yahoo.com', 'OH', 'Columbus', '43064', '6141234567', 'traveler1', 'bob', 'jones', '123 street street', 'XRj4/q6qixYZo68P1BA87C8EpcuCZ3A88bY6vZ6y5EOpKWjgEzBAsYPBQVbRREMWNQm8fFwXuaTR5nzYhM7jr9FmERsLMZDlwnREHYOjzeyv6zxFln1AzuBXBn27Shd+jczS9N5dI9Pg8w23Ft4OVP90fl89odyQnufDXsPwsqs=', 'gjSSHt79W6d2twT+HsZvUg==', false);
+INSERT INTO users (email_address, state, city, zip_code, phone_number, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
+('admin@yahoo.com',  'OH', 'Columbus', '43210', '6141234567', 'admin', 'Alice',  'jones', '123 street street', 'XRj4/q6qixYZo68P1BA87C8EpcuCZ3A88bY6vZ6y5EOpKWjgEzBAsYPBQVbRREMWNQm8fFwXuaTR5nzYhM7jr9FmERsLMZDlwnREHYOjzeyv6zxFln1AzuBXBn27Shd+jczS9N5dI9Pg8w23Ft4OVP90fl89odyQnufDXsPwsqs=', 'gjSSHt79W6d2twT+HsZvUg==', true);
 
 
 

@@ -14,16 +14,16 @@ CREATE TABLE users
 (
 	user_id INTEGER DEFAULT NEXTVAL('user_user_id_seq'::regclass) NOT NULL,
 	email_address VARCHAR(64)  NOT NULL,
-	state VARCHAR(2) NOT NULL,
-	city VARCHAR(64) NOT NULL,
-	zip_code INTEGER NOT NULL,
-	phone_number VARCHAR(10) NOT NULL,
+	state VARCHAR(2),
+	city VARCHAR(64),
+	zip_code INTEGER,
+	phone_number VARCHAR(10),
 	username VARCHAR(64),
 	first_name VARCHAR(64),
 	last_name VARCHAR(64),
 	home_address VARCHAR(64),
-	salt VARCHAR(1028) NOT NULL,
-	hash VARCHAR(1028) NOT NULL,
+	salt TEXT NOT NULL,
+	hash VARCHAR(512) NOT NULL,
 	is_admin BOOLEAN NOT NULL,
 	CONSTRAINT pk_user_user_id PRIMARY KEY (user_id)
 );
@@ -39,7 +39,7 @@ CREATE TABLE landmark
 (
 	landmark_id INTEGER DEFAULT NEXTVAL('landmark_landmark_id_seq'::regclass) NOT NULL,
 	landmark_name VARCHAR(64) NOT NULL,
-	landmark_picture VARCHAR(64) NOT NULL,
+	landmark_picture VARCHAR(64),
 	landmark_rating INTEGER NOT NULL,
 	latitude REAL NOT NULL,
 	longitude REAL NOT NULL,
