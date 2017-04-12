@@ -14,6 +14,10 @@ CREATE TABLE users
 (
 	user_id INTEGER DEFAULT NEXTVAL('user_user_id_seq'::regclass) NOT NULL,
 	email_address VARCHAR(64)  NOT NULL,
+	state VARCHAR(2) NOT NULL,
+	city VARCHAR(64) NOT NULL,
+	zip_code INTEGER NOT NULL,
+	phone_number VARCHAR(10) NOT NULL,
 	username VARCHAR(64),
 	first_name VARCHAR(64),
 	last_name VARCHAR(64),
@@ -44,7 +48,6 @@ CREATE TABLE landmark
 	zip_code INTEGER NOT NULL,
 	address VARCHAR(64),
 	description TEXT NOT NULL,
-	top_pick BOOLEAN,
 	CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
 	
 );
@@ -93,11 +96,11 @@ CREATE TABLE itinerary
 (
 	itinerary_id INTEGER DEFAULT NEXTVAL('itinerary_itinerary_id_seq'::regclass) NOT NULL,
 	user_id INTEGER NOT NULL,
-	start_point_id INTEGER NOT NULL,
+	landmark_id INTEGER NOT NULL,
 	date_created TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id),
-	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
-	
+	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
+	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
 
 CREATE TABLE itinerary_landmark
@@ -122,7 +125,6 @@ CREATE TABLE user_starting_point
 	full_address VARCHAR(100) NOT NULL,
 	starting_latitude REAL NOT NULL,
 	starting_longitude REAL NOT NULL,
-	CONSTRAINT pk_starting_id PRIMARY KEY (starting_id),
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 

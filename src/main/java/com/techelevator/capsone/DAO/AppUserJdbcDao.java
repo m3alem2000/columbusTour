@@ -102,9 +102,10 @@ public class AppUserJdbcDao implements AppUserDAO{
 	}
 
 	@Override
-	public void updateAppUser(AppUser appUser) {
-		String sqlUpdateUserInfo = "UPDATE users SET email_address = ?, username = ?, first_name = ?, last_name = ?, home_address = ? WHERE user_id = ?";
-		jdbcTemplate.update(sqlUpdateUserInfo, appUser.getEmail(), appUser.getUsername(), appUser.getFirstName(), appUser.getLastName(), appUser.getAddress(), appUser.getUserId());
+	public void updateAppUserProfile(String email, String state, String city, 
+			String zipCode, String phoneNumber, String username, String firstName, String lastName, String address) {
+		String sqlUpdateUserInfo = "UPDATE users SET email_address = ?, state = ?, city = ?, zip_code = ?, phone_number = ?, username = ?, first_name = ?, last_name = ?, home_address = ? WHERE user_id = ?";
+		jdbcTemplate.update(sqlUpdateUserInfo, email, state, city, zipCode, phoneNumber, username, firstName, lastName, address);
 	}
 
 	@Override
