@@ -107,9 +107,16 @@ CREATE TABLE itinerary_landmark
 	CONSTRAINT fk_itinerary_id FOREIGN KEY (itinerary_id) REFERENCES itinerary (itinerary_id)
 );
 
+CREATE SEQUENCE user_starting_point_starting_id_seq
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
 
 CREATE TABLE user_starting_point
 (
+	starting_id INTEGER DEFAULT NEXTVAL('user_starting_point_starting_id_seq'::regclass) NOT NULL,
 	user_id INTEGER NOT NULL,
 	full_address VARCHAR(100) NOT NULL,
 	starting_latitude REAL NOT NULL,
