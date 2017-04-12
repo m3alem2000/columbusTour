@@ -48,6 +48,22 @@ CREATE TABLE landmark
 	
 );
 
+CREATE SEQUENCE landmark_picture_id_seq
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+  
+CREATE TABLE landmark_picture
+(
+	landmark_picture_id INTEGER DEFAULT NEXTVAL('landmark_picture_id_seq'::regclass) NOT NULL,
+	landmark_id INTEGER NOT NULL,
+	landmark_picture VARCHAR(1028) NOT NULL,
+	CONSTRAINT pk_landmark_picture_id PRIMARY KEY (landmark_picture_id),
+	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
+	
+);
+  
 CREATE SEQUENCE review_review_id_seq
   INCREMENT BY 1
   NO MAXVALUE
