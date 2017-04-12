@@ -19,13 +19,8 @@
     <!-- body of the homepage -->
     <div class="col-sm-8 text-left"> 
         <div id="map"></div>
-	    <script>
-	      function initMap()
-	    </script>
-	
-	    <script async defer
-	        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
-	    	console.log("banana");
+	    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
+	 	   function initMap()
 	    </script>
     </div>
     <!-- end of body of the homepage -->

@@ -56,10 +56,10 @@ public class AuthenticationController {
 				//TODO: get the secure version if the redirect
 				return "redirect:"+destination;
 			} else {
-				return "redirect:/users/"+email;
+				return "redirect:/"+email;
 			}
 		} else {
-			return "redirect:/home";
+			return "redirect:/";
 		}
 	}
 	//	@RequestMapping(path="/login", method=RequestMethod.POST)
