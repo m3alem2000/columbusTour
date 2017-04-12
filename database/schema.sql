@@ -93,8 +93,6 @@ CREATE TABLE itinerary
 	itinerary_id INTEGER DEFAULT NEXTVAL('itinerary_itinerary_id_seq'::regclass) NOT NULL,
 	user_id INTEGER NOT NULL,
 	landmark_id INTEGER NOT NULL,
-	starting_latitude REAL NOT NULL,
-	starting_longitude REAL NOT NULL,
 	date_created TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id),
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
@@ -107,6 +105,15 @@ CREATE TABLE itinerary_landmark
 	itinerary_id INTEGER NOT NULL,
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id),
 	CONSTRAINT fk_itinerary_id FOREIGN KEY (itinerary_id) REFERENCES itinerary (itinerary_id)
+);
+
+
+CREATE TABLE user_starting_point
+(
+	user_id INTEGER NOT NULL,
+	starting_latitude REAL NOT NULL,
+	starting_longitude REAL NOT NULL,
+	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 COMMIT;
