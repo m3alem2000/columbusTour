@@ -19,6 +19,8 @@ public interface AppUserDAO {
 	public void deleteAppUser(long appUserId);
 	//DONE
 	public boolean matchUsernameAndPassword(String email, String password);
+	public AppUser createUserProfile(String firstName, String lastName, String address, String city, String state,
+			String zipCode, String phoneNumber);
 
 	//NOTES: The reason I made these void was due to not actually 
 	//returning any values, but simply creating them in the database
