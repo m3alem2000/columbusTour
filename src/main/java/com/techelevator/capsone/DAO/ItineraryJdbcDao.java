@@ -3,6 +3,8 @@ package com.techelevator.capsone.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Component;
 import com.techelevator.capstone.model.Itinerary;
 import com.techelevator.capstone.model.Landmark;
 
-//@Component
+@Component
 public class ItineraryJdbcDao implements ItineraryDAO{
 
 	private JdbcTemplate jdbcTemplate;
@@ -19,8 +21,8 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 
 
 	@Autowired
-	public ItineraryJdbcDao(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	public ItineraryJdbcDao(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@Override
