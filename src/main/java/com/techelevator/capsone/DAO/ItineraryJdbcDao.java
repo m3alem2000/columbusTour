@@ -3,6 +3,8 @@ package com.techelevator.capsone.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Component;
 import com.techelevator.capstone.model.Itinerary;
 import com.techelevator.capstone.model.Landmark;
 
-//@Component
+@Component
 public class ItineraryJdbcDao implements ItineraryDAO{
 
 	private JdbcTemplate jdbcTemplate;
@@ -19,8 +21,8 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 
 
 	@Autowired
-	public ItineraryJdbcDao(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	public ItineraryJdbcDao(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@Override
@@ -84,12 +86,29 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllLandmarks, itineraryId);
 		while(results.next()){
 			Landmark landmark = new Landmark();
+			landmark = mapRowToLandmarks(results);
 			// TODO fill in all of the data
 			landmarksList.add(landmark);
 		}
 		return landmarksList;
 	}
+	//*****TODO: copied from the landmarkjdbcdao!!!! DRY violation!!!!!!**********
+	private Landmark mapRowToLandmarks(SqlRowSet results) {
+		Landmark theLandmark;
+		theLandmark = new Landmark();
+		theLandmark.setLandmarkId(results.getLong("landmark_id"));
+		theLandmark.setLandmarkName(results.getString("landmark_Name"));
+		theLandmark.setLandmarkPicture(results.getString("landmark_picture"));
+		theLandmark.setLatitude(results.getDouble("latitude"));
+		theLandmark.setLongitude(results.getDouble("longitude"));
+		theLandmark.setState(results.getString("state"));
+		theLandmark.setCity(results.getString("city"));
+		theLandmark.setZipCode(results.getLong("zipCode"));
+		theLandmark.setAddress(results.getString("address"));
+		theLandmark.setDescription(results.getString("description"));
 
+		return theLandmark;
+	}
 	private Itinerary mapRowToItinerary(SqlRowSet results) {
 		Itinerary theItinerary;
 		theItinerary = new Itinerary();

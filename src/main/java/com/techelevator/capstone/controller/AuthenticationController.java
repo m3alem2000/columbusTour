@@ -46,20 +46,14 @@ public class AuthenticationController {
 	public String login(Map<String, Object> model, 
 			@RequestParam String email, 
 			@RequestParam String password,
-			@RequestParam(required=false) String destination,
 			HttpSession session) {
 		if(appUserDao.matchUsernameAndPassword(email, password)) {
 			session.invalidate();
 			AppUser user = appUserDao.readUserByEmail(email);
 			model.put("currentUser", user);
-			if(isValidRedirect(destination)) {
-				//TODO: get the secure version if the redirect
-				return "redirect:"+destination;
-			} else {
-				return "redirect:/users/"+email;
-			}
+			return "redirect:/registeredUser";
 		} else {
-			return "redirect:/home";
+			return "redirect:/";
 		}
 	}
 	//	@RequestMapping(path="/login", method=RequestMethod.POST)
