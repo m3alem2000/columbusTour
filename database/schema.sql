@@ -111,6 +111,7 @@ CREATE TABLE itinerary_landmark
 CREATE TABLE user_starting_point
 (
 	user_id INTEGER NOT NULL,
+	full_address VARCHAR(100) NOT NULL,
 	starting_latitude REAL NOT NULL,
 	starting_longitude REAL NOT NULL,
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
