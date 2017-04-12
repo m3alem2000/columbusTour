@@ -28,19 +28,19 @@ public class AuthenticationController {
 		this.appUserDao = appUserDao;
 	}
 
-//	String sqlSearchForUser = "SELECT * "+
-//			"FROM app_user "+
-//			"WHERE UPPER(user_name) = ?";
-//
-//	SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
-//	if(results.next()) {
-//		String storedSalt = results.getString("salt");
-//		String storedPassword = results.getString("password");
-//		String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
-//		return storedPassword.equals(hashedPassword);
-//	} else {
-//		return false;
-//	}
+	//	String sqlSearchForUser = "SELECT * "+
+	//			"FROM app_user "+
+	//			"WHERE UPPER(user_name) = ?";
+	//
+	//	SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
+	//	if(results.next()) {
+	//		String storedSalt = results.getString("salt");
+	//		String storedPassword = results.getString("password");
+	//		String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
+	//		return storedPassword.equals(hashedPassword);
+	//	} else {
+	//		return false;
+	//	}
 
 	@RequestMapping(path="/login", method=RequestMethod.POST)
 	public String login(Map<String, Object> model, 
@@ -50,8 +50,10 @@ public class AuthenticationController {
 			HttpSession session) {
 		if(appUserDao.matchUsernameAndPassword(email, password)) {
 			session.invalidate();
-			model.put("currentUser", email);
+			AppUser user = appUserDao.readUserByEmail(email);
+			model.put("currentUser", user);
 			if(isValidRedirect(destination)) {
+				//TODO: get the secure version if the redirect
 				return "redirect:"+destination;
 			} else {
 				return "redirect:/users/"+email;
@@ -60,7 +62,14 @@ public class AuthenticationController {
 			return "redirect:/home";
 		}
 	}
-
+	//	@RequestMapping(path="/login", method=RequestMethod.POST)
+	//	public String logUser(@RequestParam String email, @RequestParam String password, ModelMap model) {
+	//		if (appUserDao.matchUsernameAndPassword(email, password)) {
+	//			
+	//			model.put("currentUser", user);
+	//		}
+	//		return "redirect:/user-profile";
+	//	}
 	private boolean isValidRedirect(String destination) {
 		return destination != null && destination.startsWith("http://localhost");
 	}
