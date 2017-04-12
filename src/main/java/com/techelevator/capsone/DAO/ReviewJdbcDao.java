@@ -8,11 +8,11 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
-import com.techelevator.capstone.model.AppUser;
-import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
 
+@Component
 public class ReviewJdbcDao implements ReviewDAO{
 
 	private JdbcTemplate jdbcTemplate;
@@ -21,18 +21,22 @@ public class ReviewJdbcDao implements ReviewDAO{
 	public ReviewJdbcDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+
 	@Override
 	public boolean createReview(Review review) {
-		String sqlCreateReview = "INSERT INTO review (landmark_id, user_id, review, rating) VALUES ( ?, ?, ?, ?)";
-		int result = jdbcTemplate.update(sqlCreateReview, review.getLandmarkId(), review.getUserId(), review.getReview(), review.getRating());
+		Long reviewId = getNextId();
+		String sqlCreateReview = "INSERT INTO review "
+				+ "(review_id, landmark_id, user_id, review, rating) VALUES "
+				+ "(?, ?, ?, ?, ?)";
+		int result = jdbcTemplate.update(sqlCreateReview, 
+				reviewId, review.getLandmarkId(), review.getUserId(), review.getReview(), review.getRating());
 		return result==1;
 	}
 
 	@Override
-	public Review getReviewById(Review review) {
-		String sqlReviewById = "SELECT * FROM review WHERE landmark_id = ? AND user_id = ?";
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlReviewById, review.getLandmarkId(), review.getUserId());
+	public Review getReviewById(Long reviewId) {
+		String sqlReviewById = "SELECT * FROM review WHERE review_id = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlReviewById, reviewId);
 		Review requested = mapRowToReview(result);
 		return requested;
 	}
@@ -40,8 +44,9 @@ public class ReviewJdbcDao implements ReviewDAO{
 	@Override
 	public List<Review> allLandmarksReviews(long landmarkId) {
 		List<Review> reviews = new ArrayList<>();
-		String sqlReviewById = "SELECT * FROM review";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReviewById);
+		String sqlReviewById = "SELECT * FROM review "+
+				"WHERE landmark_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReviewById, landmarkId);
 		while(results.next()) {
 			reviews.add(mapRowToReview(results));
 		}
@@ -56,20 +61,33 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
-	public boolean deleteReview(Review review) {
-		String sqlDeleteUser = "DELETE FROM review WHERE user_id = ? OR landmark_id = ?";
-		int result = jdbcTemplate.update(sqlDeleteUser, review.getUserId(), review.getLandmarkId());
+	public boolean deleteReview(Review review) {//should CTUAALLY BE THE ID ALONE
+		String sqlDeleteUser = "DELETE FROM review WHERE review_id = ?";
+		int result = jdbcTemplate.update(sqlDeleteUser, review.getReviewId());
 		return result==1;
 	}
-	
+
 	private Review mapRowToReview(SqlRowSet row) {
 		Review review = new Review();
+		review.setReviewId(row.getLong("review_id"));
 		review.setLandmarkId(row.getLong("landmark_id"));
 		review.setUserId(row.getLong("user_id"));
 		review.setReview(row.getString("review"));
 		review.setRating(row.getLong("rating"));
 		return review;
 	}
-	
+
+	private Long getNextId() {
+		String sqlSelectNextId = "SELECT NEXTVAL('seq_review_id')";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
+		Long id = null;
+		if(results.next()) {
+			id = results.getLong(1);
+		} else {
+			throw new RuntimeException("Unable to select next landmark id from sequence");
+		}
+		return id;
+	}
+
 
 }

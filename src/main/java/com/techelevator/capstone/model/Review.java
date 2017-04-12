@@ -2,10 +2,19 @@ package com.techelevator.capstone.model;
 
 public class Review {
 
+	private long reviewId;
 	private long landmarkId;
 	private long userId;
 	private String review;
 	private long rating;
+
+	public long getReviewId() {
+		return reviewId;
+	}
+
+	public void setReviewId(long reviewId) {
+		this.reviewId = reviewId;
+	}
 
 	public long getLandmarkId() {
 		return landmarkId;

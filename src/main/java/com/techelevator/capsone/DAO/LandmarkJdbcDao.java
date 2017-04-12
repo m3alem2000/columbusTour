@@ -8,17 +8,20 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.capstone.model.Landmark;
 
+@Component
 public class LandmarkJdbcDao implements LandmarkDAO{
-	
+
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	public LandmarkJdbcDao(DataSource dataSource) {
-	    this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+
 	@Override
 	public void createLandmark(Landmark landmark) {
 		Long id = getNextId();
@@ -60,8 +63,8 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 			limitToX= "limit "+ Integer.toString(x);
 		}
 		String sqlGetTopXLandmarks = "select * from landmark l " +
-		"join review r on l.landmark_id = r.landmark_id" +
-		"order by rating desc" + limitToX;
+				"join review r on l.landmark_id = r.landmark_id" +
+				"order by rating desc" + limitToX;
 		ArrayList<Landmark> landmarkTopX = new ArrayList<Landmark>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetTopXLandmarks);
 		while(results.next()) {
@@ -70,7 +73,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		}
 		return landmarkTopX;
 	}
-	
+
 	private Long getNextId() {
 		String sqlSelectNextId = "SELECT NEXTVAL('seq_landmark_id')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
@@ -82,6 +85,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		}
 		return id;
 	}
+
 	private Landmark mapRowToLandmarks(SqlRowSet results) {
 		Landmark theLandmark;
 		theLandmark = new Landmark();

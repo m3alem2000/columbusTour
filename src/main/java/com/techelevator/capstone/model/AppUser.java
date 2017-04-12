@@ -1,6 +1,7 @@
 package com.techelevator.capstone.model;
 
 public class AppUser {
+
 	private long userId;
 	private String email;
 	private String username;
@@ -9,13 +10,6 @@ public class AppUser {
 	private String address;
 	private boolean isAdmin;
 
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 
 	public long getUserId() {
 		return userId;
@@ -63,6 +57,14 @@ public class AppUser {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 }
