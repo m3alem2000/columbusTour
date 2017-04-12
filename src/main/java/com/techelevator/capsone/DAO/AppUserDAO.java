@@ -14,13 +14,12 @@ public interface AppUserDAO {
 	public AppUser readUserByEmail(String appUserEmail);
 	public List<AppUser> readAllAppUsers();
 	//DONE
-	public void updateAppUser(AppUser appUser);
-	//DONE
 	public void deleteAppUser(long appUserId);
 	//DONE
 	public boolean matchUsernameAndPassword(String email, String password);
-	public AppUser createUserProfile(String firstName, String lastName, String address, String city, String state,
-			String zipCode, String phoneNumber);
+	public void updateAppUserProfile(String email, String state, String city, String zipCode, String phoneNumber,
+			String username, String firstName, String lastName, String address);
+	
 
 	//NOTES: The reason I made these void was due to not actually 
 	//returning any values, but simply creating them in the database
