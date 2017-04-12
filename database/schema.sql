@@ -48,6 +48,7 @@ CREATE TABLE landmark
 	zip_code INTEGER NOT NULL,
 	address VARCHAR(64),
 	description TEXT NOT NULL,
+	top_pick BOOLEAN,
 	CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
 	
 );
