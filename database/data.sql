@@ -22,8 +22,8 @@ INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description) VALUES ('Nationwide Arena', 'NWA.jpg', 5, '39.969351', '-83.006385', 'OH', 'Columbus', '43215', '200 W. Nationwide Blvd., Columbus, OH 43215', 'Nationwide Arena is a large multi-purpose arena, in Columbus, Ohio.');
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description) VALUES ('Ohio Statehouse', 'OSH.jpg', 5, '39.961633', '-82.998954', 'OH', 'Columbus', '43215', '1 Capitol Square, Columbus, OH 43215', 'The Ohio Statehouse, located in Columbus, Ohio, is the house of government for the state of Ohio. ');
 
-INSERT INTO itinerary (user_id, landmark_id, starting_latitude, starting_longitude) VALUES (1, 1, '39.961149', '39.961149');
-INSERT INTO itinerary (user_id, landmark_id, starting_latitude, starting_longitude) VALUES (1, 1, '50.961149', '50.961149');
+INSERT INTO itinerary (user_id, landmark_id) VALUES (1, 1);
+INSERT INTO itinerary (user_id, landmark_id) VALUES (1, 1);
 
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'What a nice park', 5);
