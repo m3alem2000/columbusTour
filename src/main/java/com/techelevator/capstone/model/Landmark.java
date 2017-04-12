@@ -5,7 +5,7 @@ public class Landmark {
 	private Long landmarkId;
 	private String landmarkName;
 	private String landmarkPicture;
-	private Long landmarkRating;
+	private int landmarkRating;
 	private double latitude;
 	private double longitude;
 	private String state;
@@ -32,10 +32,10 @@ public class Landmark {
 	public void setLandmarkPicture(String landmarkPicture) {
 		this.landmarkPicture = landmarkPicture;
 	}
-	public Long getLandmarkRating() {
+	public int getLandmarkRating() {
 		return landmarkRating;
 	}
-	public void setLandmarkRating(Long landmarkRating) {
+	public void setLandmarkRating(int landmarkRating) {
 		this.landmarkRating = landmarkRating;
 	}
 	public double getLatitude() {
