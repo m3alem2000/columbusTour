@@ -102,10 +102,27 @@ public class AppUserJdbcDao implements AppUserDAO{
 	}
 
 	@Override
-	public void updateAppUserProfile(String email, String state, String city, 
-			String zipCode, String phoneNumber, String username, String firstName, String lastName, String address) {
+	public AppUser updateAppUserProfile(String email, String state, String city, String zipCode, String phoneNumber, String username, String firstName, String lastName, String address) {
+		AppUser user = new AppUser();
 		String sqlUpdateUserInfo = "UPDATE users SET email_address = ?, state = ?, city = ?, zip_code = ?, phone_number = ?, username = ?, first_name = ?, last_name = ?, home_address = ? WHERE user_id = ?";
-		jdbcTemplate.update(sqlUpdateUserInfo, email, state, city, zipCode, phoneNumber, username, firstName, lastName, address);
+
+		int result = jdbcTemplate.update(sqlUpdateUserInfo, email, state, city, zipCode, phoneNumber, username, firstName, lastName, address);
+		if(result == 1){
+			user.setUsername(username);
+			user.setEmail(email);
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setAddress(address);
+			user.setCity(city);
+			user.setState(state);
+			user.setZipCode(zipCode);
+			user.setPhoneNumber(phoneNumber);
+			return user;
+
+		} else {
+			return null;
+		}
+
 	}
 
 	@Override
@@ -149,4 +166,5 @@ public class AppUserJdbcDao implements AppUserDAO{
 			return false;
 		}
 	}
+
 }

@@ -17,13 +17,7 @@ public interface AppUserDAO {
 	public void deleteAppUser(long appUserId);
 	//DONE
 	public boolean matchUsernameAndPassword(String email, String password);
-	
-	public void updateAppUserProfile(String email, String state, String city, String zipCode, String phoneNumber,
+	public AppUser updateAppUserProfile(String email, String state, String city, String zipCode, String phoneNumber,
 			String username, String firstName, String lastName, String address);
-	
-
-	//NOTES: The reason I made these void was due to not actually 
-	//returning any values, but simply creating them in the database
-	//with the exception of readAppUserById
 
 }

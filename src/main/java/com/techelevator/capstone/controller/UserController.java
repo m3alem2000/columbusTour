@@ -30,12 +30,12 @@ public class UserController {
 	public String displaySignupForm() {
 		return "signup";
 	}
-	
+
 	@RequestMapping(path="/profile", method=RequestMethod.GET)
 	public String displayProfileForm() {
 		return "profile";
 	}
-	
+
 	@RequestMapping(path="/signup", method=RequestMethod.POST)
 	public String createUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password, ModelMap model) {
 		AppUser user = appUserDao.createAppUser(userName,email, password);
@@ -44,9 +44,9 @@ public class UserController {
 	}
 
 	@RequestMapping(path="/profile", method=RequestMethod.POST)
-	public String createProfile(@RequestParam String firstName,@RequestParam String lastName, @RequestParam String address, @RequestParam String city, @RequestParam String state, @RequestParam String zipCode, @RequestParam String phoneNumber, ModelMap model) {
-//		AppUser user = appUserDao.createUserProfile(firstName, lastName, address, city, state, zipCode, phoneNumber);
-//		model.put("currentUser", user);
+	public String createProfile(@RequestParam String email, @RequestParam String state, @RequestParam String city, @RequestParam String zipCode, @RequestParam String phoneNumber, @RequestParam String username, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String address,  ModelMap model) {
+		AppUser user = appUserDao.updateAppUserProfile(email, state, city, zipCode, phoneNumber, username, firstName, lastName, address);
+		model.put("currentUser", user);
 		return "redirect:/profile";
 	}
 }
