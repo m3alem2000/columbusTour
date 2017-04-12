@@ -12,5 +12,5 @@ public interface ReviewDAO {
 
 	public boolean updateReview(Review review);//?????
 
-	public boolean deleteReview(Review review);
+	public boolean deleteReviewById(long reviewId);
 }

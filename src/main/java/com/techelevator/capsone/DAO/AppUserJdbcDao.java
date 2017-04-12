@@ -12,11 +12,16 @@ import org.springframework.stereotype.Component;
 
 import com.techelevator.capstone.model.AppUser;
 import com.techelevator.security.PasswordHasher;
+
 @Component
 public class AppUserJdbcDao implements AppUserDAO{
-	
+
 	private PasswordHasher passwordHasher;
 	private JdbcTemplate jdbcTemplate;
+
+	private byte[] salt;
+	private String hashedPassword;
+	private String saltString;
 
 	@Autowired
 	public AppUserJdbcDao(DataSource dataSource, PasswordHasher passwordHasher) {
@@ -27,13 +32,10 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public AppUser createAppUser(String userName,String email, String password) {
-		String sqlSaveUser = "INSERT INTO users (user_id, username,email_address, salt, hash, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
+		String sqlSaveUser = "INSERT INTO users (user_id, username, email_address, hash, salt, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
 		Long id = getNextId();
-		//ALTER TABLE user ADD salt text;
-		byte[] salt = passwordHasher.generateRandomSalt();
-		String hashedPassword = passwordHasher.computeHash(password, salt);
-		String saltString = new String(Base64.encode(salt));
-		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, email, saltString, hashedPassword, false);
+		saltNHash(password);
+		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, email, hashedPassword, saltString, false);
 		if(rowsAffected != 1) {
 			return null;
 		} else {
@@ -44,15 +46,12 @@ public class AppUserJdbcDao implements AppUserDAO{
 			return user;
 		}
 	}
-	
+
 	@Override
 	public AppUser createAdmin(String userName, String password) {
-		String sqlSaveUser = "INSERT INTO users (user_id, username, salt, hash, is_admin) VALUES (?, ?, ?, ?, ?)";
+		String sqlSaveUser = "INSERT INTO users (user_id, username, hash, salt, is_admin) VALUES (?, ?, ?, ?, ?)";
 		Long id = getNextId();
-		//ALTER TABLE user ADD salt text;
-		byte[] salt = passwordHasher.generateRandomSalt();
-		String hashedPassword = passwordHasher.computeHash(password, salt);
-		String saltString = new String(Base64.encode(salt));
+		saltNHash(password);
 		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, hashedPassword, saltString, true);
 		if(rowsAffected != 1) {
 			return null;
@@ -65,16 +64,40 @@ public class AppUserJdbcDao implements AppUserDAO{
 		}
 	}
 
-	//	@Override
-	//	public List<AppUser> readAppUserById(long appUserId) {
-	//		List<AppUser> users = new ArrayList<>();
-	//		String sqlGetUserID = "SELECT * FROM users WHERE user_id = ?";
-	//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUserID, appUserId);
-	//		while(results.next()) {
-	//			users.add(mapRowToUser(results));
-	//		}
-	//		return users;
-	//	}
+	@Override
+	public AppUser readUserById(long appUserId) {
+		AppUser user = new AppUser();
+		String sqlGetUserID = "SELECT * FROM users "+
+				"WHERE user_id = ? ";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetUserID, appUserId);
+		if(result.next()) {
+			user = mapRowToUser(result);
+		}
+		return user;
+	}
+
+	@Override
+	public AppUser readUserByEmail(String appUserEmail) {
+		AppUser user = new AppUser();
+		String sqlGetUserID = "SELECT * FROM users "+
+				"WHERE user_email = ? ";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetUserID, appUserEmail);
+		if(result.next()) {
+			user = mapRowToUser(result);
+		}
+		return user;
+	}
+
+	@Override
+	public List<AppUser> readAllAppUsers() {
+		List<AppUser> users = new ArrayList<AppUser>();
+		String sqlGetUserID = "SELECT * FROM users";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUserID);
+		while(results.next()) {
+			users.add(mapRowToUser(results));
+		}
+		return users;
+	}
 
 	@Override
 	public void updateAppUser(AppUser appUser) {
@@ -110,18 +133,12 @@ public class AppUserJdbcDao implements AppUserDAO{
 		}
 	}
 
+	private void saltNHash(String password){
+		salt = passwordHasher.generateRandomSalt();
+		hashedPassword = passwordHasher.computeHash(password, salt);
+		saltString = new String(Base64.encode(salt));
+	}
 
-	//	@Override
-	//	public AppUser readAppUserById(long appUserId, String password) {
-	//		AppUser appUser = new AppUser();
-	//		String sqlGetUserID = "SELECT * FROM users WHERE user_id = ? AND user_password = ?";
-	//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUserID, appUserId, password);
-	//		if(results.next()) {
-	//			appUser=(mapRowToUser(results));
-	//		}
-	//		// TODO Auto-generated method stub
-	//		return appUser;
-	//	}
 	@Override
 	public boolean matchUsernameAndPassword(String email, String password) {
 		String sqlSearchForUser = "SELECT * FROM users WHERE email_address = ? ";
