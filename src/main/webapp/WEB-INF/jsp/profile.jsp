@@ -17,6 +17,7 @@
   
   	 <!-- body of the homepage -->
   <div class="col-sm-8 text-left"> 
+  <h2>Complete your user profile:</h2>
 		<c:url var="formAction" value="/profile" />
    		<form id="user-profile" method="POST" action="${formAction}">
   			<div class="form-group">
