@@ -35,7 +35,8 @@
 					<ul class="nav navbar-nav">
 						<c:url var="loginHref" value="/login"/>
 						<c:url var="signupHref" value="/signup"/>
-						<li><a href="#welcome">Home</a></li>
+						<c:url var="homeHref" value="/"/>
+						<li><a href="${homeHref}">Home</a></li>
 						<li><a href="${loginHref}">Log In</a></li>
 						<li><a href="#impact">Take me on a tour</a></li>
 						<li><a href="${signupHref}">Sign Up</a></li>
