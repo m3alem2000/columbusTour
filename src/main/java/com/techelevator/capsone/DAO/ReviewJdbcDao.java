@@ -61,7 +61,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
-	public boolean deleteReviewById(long reviewId) {//should CTUAALLY BE THE ID ALONE
+	public boolean deleteReviewById(long reviewId) {
 		String sqlDeleteUser = "DELETE FROM review WHERE review_id = ?";
 		int result = jdbcTemplate.update(sqlDeleteUser, reviewId);
 		return result==1;

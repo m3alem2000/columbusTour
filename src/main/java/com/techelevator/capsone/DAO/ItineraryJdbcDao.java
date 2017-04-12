@@ -86,12 +86,29 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllLandmarks, itineraryId);
 		while(results.next()){
 			Landmark landmark = new Landmark();
+			landmark = mapRowToLandmarks(results);
 			// TODO fill in all of the data
 			landmarksList.add(landmark);
 		}
 		return landmarksList;
 	}
+	//*****TODO: copied from the landmarkjdbcdao!!!! DRY violation!!!!!!**********
+	private Landmark mapRowToLandmarks(SqlRowSet results) {
+		Landmark theLandmark;
+		theLandmark = new Landmark();
+		theLandmark.setLandmarkId(results.getLong("landmark_id"));
+		theLandmark.setLandmarkName(results.getString("landmark_Name"));
+		theLandmark.setLandmarkPicture(results.getString("landmark_picture"));
+		theLandmark.setLatitude(results.getDouble("latitude"));
+		theLandmark.setLongitude(results.getDouble("longitude"));
+		theLandmark.setState(results.getString("state"));
+		theLandmark.setCity(results.getString("city"));
+		theLandmark.setZipCode(results.getLong("zipCode"));
+		theLandmark.setAddress(results.getString("address"));
+		theLandmark.setDescription(results.getString("description"));
 
+		return theLandmark;
+	}
 	private Itinerary mapRowToItinerary(SqlRowSet results) {
 		Itinerary theItinerary;
 		theItinerary = new Itinerary();
