@@ -1,9 +1,11 @@
 package com.techelevator.capstone.model;
 
+import java.util.List;
+
 public class Itinerary {
 
 	private Long userId;
-	private Long landmarkId;
+	private List<Long> landmarkIds;
 	private double startingLatitude;
 	private double startingLongitude;
 
@@ -15,12 +17,12 @@ public class Itinerary {
 		this.userId = userId;
 	}
 
-	public Long getLandmarkId() {
-		return landmarkId;
+	public List<Long> getLandmarkId() {
+		return landmarkIds;
 	}
 
-	public void setLandmarkId(Long landmarkId) {
-		this.landmarkId = landmarkId;
+	public void setLandmarkId(List<Long> landmarkIds) {
+		this.landmarkIds = landmarkIds;
 	}
 
 	public double getStartingLatitude() {
