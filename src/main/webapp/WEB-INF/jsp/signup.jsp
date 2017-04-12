@@ -34,7 +34,7 @@
 			</div>
 			<div class="form-group">
 				<label for="password">Confirm password: </label>
-				<input type="password" id="confirmPassword" name="password" placeHolder="Confirm Password" class="form-control" />
+				<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Confirm Password" class="form-control" />
 			</div>
 			<button type="submit" class="btn btn-default">Sign up</button>
 		</form>
