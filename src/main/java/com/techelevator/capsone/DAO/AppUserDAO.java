@@ -7,7 +7,7 @@ import com.techelevator.capstone.model.AppUser;
 public interface AppUserDAO {
 	//CRUD
 	public AppUser createAppUser(String userName, String email, String password);
-	public AppUser createAdmin(String userName, String password);
+	public AppUser createAdmin(String userName, String email, String password);
 
 	//DONE
 	public AppUser readUserById(long appUserId);
@@ -17,7 +17,6 @@ public interface AppUserDAO {
 	public void deleteAppUser(long appUserId);
 	//DONE
 	public boolean matchUsernameAndPassword(String email, String password);
-	public AppUser updateAppUserProfile(String email, String state, String city, String zipCode, String phoneNumber,
-			String username, String firstName, String lastName, String address);
+	public boolean updateAppUserProfile(AppUser user);
 
 }

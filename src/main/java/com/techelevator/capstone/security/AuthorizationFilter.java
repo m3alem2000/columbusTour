@@ -31,13 +31,12 @@ public class AuthorizationFilter implements Filter {
 		AppUser sessionUser = getUserFromSession(httpRequest);
 		String requestUser = getUserFromRequest(httpRequest);
 		
-		if(requestUser != null && requestUser.equals(sessionUser) == false) {
-			if(sessionUser == null) {
-				redirectToLoginPage(httpRequest, httpResponse);
-			} else {
-				httpResponse.sendError(403);
-			}
+		if(requestUser != null && sessionUser == null) {
+			redirectToLoginPage(httpRequest, httpResponse);
+		} else if(requestUser != null && !requestUser.equals(sessionUser.getUsername())) {
+			httpResponse.sendError(403);
 		}
+
 		chain.doFilter(request, response);
 	}
 

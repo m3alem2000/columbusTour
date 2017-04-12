@@ -29,7 +29,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 
 	@Override
-	public AppUser createAppUser(String userName,String email, String password) {
+	public AppUser createAppUser(String userName, String email, String password) {
 		String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, salt, hash, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
 		Long id = getNextId();
 		byte[] salt = passwordHasher.generateRandomSalt();
@@ -42,13 +42,14 @@ public class AppUserJdbcDao implements AppUserDAO{
 			AppUser user = new AppUser();
 			user.setUserId(id);
 			user.setUsername(userName);
+			user.setEmail(email);
 			user.setAdmin(false);
 			return user;
 		}
 	}
 
 	@Override
-	public AppUser createAdmin(String userName, String password) {
+	public AppUser createAdmin(String userName, String email, String password) {
 		String sqlSaveUser = "INSERT INTO users (user_id, username, hash, salt, is_admin) VALUES (?, ?, ?, ?, ?)";
 		Long id = getNextId();
 		byte[] salt = passwordHasher.generateRandomSalt();
@@ -61,6 +62,7 @@ public class AppUserJdbcDao implements AppUserDAO{
 			AppUser user = new AppUser();
 			user.setUserId(id);
 			user.setUsername(userName);
+			user.setEmail(email);
 			user.setAdmin(false);
 			return user;
 		}
@@ -102,27 +104,10 @@ public class AppUserJdbcDao implements AppUserDAO{
 	}
 
 	@Override
-	public AppUser updateAppUserProfile(String email, String state, String city, String zipCode, String phoneNumber, String username, String firstName, String lastName, String address) {
-		AppUser user = new AppUser();
-		String sqlUpdateUserInfo = "UPDATE users SET email_address = ?, state = ?, city = ?, zip_code = ?, phone_number = ?, username = ?, first_name = ?, last_name = ?, home_address = ? WHERE user_id = ?";
-
-		int result = jdbcTemplate.update(sqlUpdateUserInfo, email, state, city, zipCode, phoneNumber, username, firstName, lastName, address);
-		if(result == 1){
-			user.setUsername(username);
-			user.setEmail(email);
-			user.setFirstName(firstName);
-			user.setLastName(lastName);
-			user.setAddress(address);
-			user.setCity(city);
-			user.setState(state);
-			user.setZipCode(zipCode);
-			user.setPhoneNumber(phoneNumber);
-			return user;
-
-		} else {
-			return null;
-		}
-
+	public boolean updateAppUserProfile(AppUser user) {
+		String sqlUpdateUserInfo = "UPDATE users SET (email_address,state,city,zip_code,phone_number,username,first_name,last_name,home_address)=(?,?,?,?,?,?,?,?,?) WHERE user_id = ?";
+		int result = jdbcTemplate.update(sqlUpdateUserInfo, user.getEmail(), user.getState(), user.getCity(), user.getZipCode(), user.getPhoneNumber(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getUserId());
+		return result == 1;
 	}
 
 	@Override
