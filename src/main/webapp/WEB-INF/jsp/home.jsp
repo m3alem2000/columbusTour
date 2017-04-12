@@ -18,11 +18,11 @@
 			</p>
 		</div>
 		<!-- end links on the left of the homepage -->
-		<input type="hidden" name="landmarkName" value="${landmarks.landmarkName}">
+		<input type="hidden" name="landmarkName" value="${landmarks.landmark_name}">
 		<input type="hidden" name="landmarkName" value="${landmarks.latitude}">
 		<input type="hidden" name="landmarkName" value="${landmarks.longitude}">
-		<input type="hidden" name="landmarkName" value="${landmarks.landmarkRating}">
-		<input type="hidden" name="landmarkName" value="${landmarks.landmarkPicture}">
+		<input type="hidden" name="landmarkName" value="${landmarks.landmark_rating}">
+		<input type="hidden" name="landmarkName" value="${landmarks.landmark_picture}">
 		
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">

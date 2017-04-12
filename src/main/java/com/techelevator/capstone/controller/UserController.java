@@ -45,8 +45,8 @@ public class UserController {
 
 	@RequestMapping(path="/profile", method=RequestMethod.POST)
 	public String createProfile(@RequestParam String firstName,@RequestParam String lastName, @RequestParam String address, @RequestParam String city, @RequestParam String state, @RequestParam String zipCode, @RequestParam String phoneNumber, ModelMap model) {
-		AppUser user = appUserDao.createUserProfile(firstName, lastName, address, city, state, zipCode, phoneNumber);
-		model.put("currentUser", user);
+//		AppUser user = appUserDao.createUserProfile(firstName, lastName, address, city, state, zipCode, phoneNumber);
+//		model.put("currentUser", user);
 		return "redirect:/profile";
 	}
 }

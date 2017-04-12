@@ -90,16 +90,16 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		Landmark theLandmark;
 		theLandmark = new Landmark();
 		theLandmark.setLandmarkId(results.getLong("landmark_id"));
-		theLandmark.setLandmarkName(results.getString("landmark_Name"));
+		theLandmark.setLandmarkName(results.getString("landmark_name"));
 		theLandmark.setLandmarkPicture(results.getString("landmark_picture"));
+		theLandmark.setLandmarkRating(results.getInt("landmark_rating"));
 		theLandmark.setLatitude(results.getDouble("latitude"));
 		theLandmark.setLongitude(results.getDouble("longitude"));
 		theLandmark.setState(results.getString("state"));
 		theLandmark.setCity(results.getString("city"));
-		theLandmark.setZipCode(results.getLong("zipCode"));
+		theLandmark.setZipCode(results.getLong("zip_code"));
 		theLandmark.setAddress(results.getString("address"));
 		theLandmark.setDescription(results.getString("description"));
-
 		return theLandmark;
 	}
 
