@@ -82,6 +82,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		}
 		return id;
 	}
+	
 	private Landmark mapRowToLandmarks(SqlRowSet results) {
 		Landmark theLandmark;
 		theLandmark = new Landmark();
