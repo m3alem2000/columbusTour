@@ -152,4 +152,12 @@ public class AppUserJdbcDao implements AppUserDAO{
 			return false;
 		}
 	}
+
+
+	@Override
+	public AppUser createUserProfile(String firstName, String lastName, String address, String city, String state,
+			String zipCode, String phoneNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
