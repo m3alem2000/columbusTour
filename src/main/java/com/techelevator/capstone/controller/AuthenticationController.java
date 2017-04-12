@@ -64,9 +64,9 @@ public class AuthenticationController {
 	//		}
 	//		return "redirect:/user-profile";
 	//	}
-	private boolean isValidRedirect(String destination) {
-		return destination != null && destination.startsWith("http://localhost");
-	}
+	//	private boolean isValidRedirect(String destination) {
+	//		return destination != null && destination.startsWith("http://localhost");
+	//	}
 
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
 	public String logout(Map<String, Object> model, HttpSession session) {
