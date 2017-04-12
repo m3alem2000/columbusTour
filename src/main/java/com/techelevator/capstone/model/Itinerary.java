@@ -5,11 +5,19 @@ import java.time.LocalDateTime;
 
 public class Itinerary {
 
+	private Long itineraryId;
 	private Long userId;
 	private List<Long> landmarkIds;
 	private double startingLatitude;
 	private double startingLongitude;
 	private LocalDateTime dateCreated;
+
+	public Long getItineraryId() {
+		return itineraryId;
+	}
+	public void setItineraryId(Long itineraryId) {
+		this.itineraryId = itineraryId;
+	}
 	public Long getUserId() {
 		return userId;
 	}

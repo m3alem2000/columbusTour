@@ -3,6 +3,7 @@ package com.techelevator.capsone.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -12,10 +13,20 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 
 	private JdbcTemplate jdbcTemplate;
 
+
+
+	@Autowired
+	public ItineraryJdbcDao(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	@Override
 	public void createItinerary(Itinerary itinerary) {
-		String sqlCreateItinerary = "INSERT INTO itinerary(user_id, landmark_id, starting_latitude, starting_longitude, date_created) VALUES (?,?,?,?,?)";
-		jdbcTemplate.update(sqlCreateItinerary, itinerary.getUserId(), itinerary.getLandmarkIds(), itinerary.getStartingLatitude(), itinerary.getStartingLongitude());
+		Long itineraryId = getNextId();
+		String sqlCreateItinerary = "INSERT INTO itinerary"
+				+ "(user_id, landmark_id, starting_latitude, starting_longitude, date_created) "
+				+ "VALUES (?,?,?,?,?,?)";
+		jdbcTemplate.update(sqlCreateItinerary, itineraryId, itinerary.getUserId(), itinerary.getLandmarkIds(), itinerary.getStartingLatitude(), itinerary.getStartingLongitude());
 	}
 
 	@Override
@@ -79,4 +90,14 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 
 		return theItinerary;
 	}	
+
+	private Long getNextId() {
+		String sqlSelectNextId = "SELECT NEXTVAL('itinerary_itinerary_id_seq')";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectNextId);
+		if(result.next()) {
+			return result.getLong(1);
+		} else {
+			throw new RuntimeException("Something went wrong while getting the next user id");
+		}
+	}
 }
