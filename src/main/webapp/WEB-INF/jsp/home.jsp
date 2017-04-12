@@ -18,17 +18,30 @@
 			</p>
 		</div>
 		<!-- end links on the left of the homepage -->
-		<input type="hidden" name="landmarkName" value="${landmarks.landmark_name}">
-		<input type="hidden" name="landmarkName" value="${landmarks.latitude}">
-		<input type="hidden" name="landmarkName" value="${landmarks.longitude}">
-		<input type="hidden" name="landmarkName" value="${landmarks.landmark_rating}">
-		<input type="hidden" name="landmarkName" value="${landmarks.landmark_picture}">
 		
+		<c:forEach var="landmarks" items="${landmarks}">
+		<input type="hidden" name="name${landmarks.landmarkId}" value="${landmarks.landmarkName}"/>
+		<input type="hidden" name="latitude${landmarks.landmarkId}" value="${landmarks.latitude}"/>
+		<input type="hidden" name="longitude${landmarks.landmarkId}" value="${landmarks.longitude}"/>
+		<input type="hidden" name="landmarkRating${landmarks.landmarkId}" value="${landmarks.landmarkRating}"/>
+		<input type="hidden" name="landmarkPicture${landmarks.landmarkId}" value="${landmarks.landmarkPicture}"/>
+			</c:forEach>
+
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 			<div id="map"></div>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
+			      var marker;
+			        marker = new google.maps.Marker({
+			            map: map,
+			            draggable: true,
+			            animation: google.maps.Animation.DROP,
+			            position: {
+			            		lat: parseFloat($('[name=latitude1]').val()),
+			            		lng: parseFloat($('[name=longitude1]').val())
+			            	}
+			        });
         </script>
 		</div>
 		<!-- end of body of the homepage -->
