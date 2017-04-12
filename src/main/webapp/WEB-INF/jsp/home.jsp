@@ -18,12 +18,6 @@
     
     <!-- body of the homepage -->
     <div class="col-sm-8 text-left"> 
-	     <h1>Welcome</h1>
-	     <p>afasdfsadf</p>
-	     <hr>
-	     <h3>Test</h3>
-	     <p>adfadsf...</p>
-      
         <div id="map"></div>
 	    <script>
 	      var map;
