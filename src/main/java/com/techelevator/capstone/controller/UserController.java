@@ -15,28 +15,28 @@ import com.techelevator.capstone.model.AppUser;
 @SessionAttributes({"currentUser"})
 public class UserController {
 	private AppUserDAO appUserDao;
-	
+
 	@Autowired
 	public UserController(AppUserDAO appUserDao) {
 		this.appUserDao = appUserDao;
 	}
-	
+
 	@RequestMapping(path="/login", method=RequestMethod.GET)
 	public String displayLoginForm() {
 		return "login";
 	}
-	
+
 	@RequestMapping(path="/signup", method=RequestMethod.GET)
 	public String displaySignupForm() {
 		return "signup";
 	}
-	
+
 	@RequestMapping(path="/signup", method=RequestMethod.POST)
 	public String createUser(@RequestParam String userName,@RequestParam String email, @RequestParam String password, ModelMap model) {
 		AppUser user = appUserDao.createAppUser(userName,email, password);
 		model.put("currentUser", user);
 		return "redirect:/login";
 	}
-	
-	
+
+
 }

@@ -1,5 +1,7 @@
 package com.techelevator.capsone.DAO;
 
+import java.util.List;
+
 import com.techelevator.capstone.model.AppUser;
 
 public interface AppUserDAO {
@@ -8,8 +10,9 @@ public interface AppUserDAO {
 	public AppUser createAdmin(String userName, String password);
 
 	//DONE
-//	public AppUser readAppUserById(long appUserId, String password);
-//	public List<AppUser> readAppUserById(long appUserId);
+	public AppUser readUserById(long appUserId);
+	public AppUser readUserByEmail(String appUserEmail);
+	public List<AppUser> readAllAppUsers();
 	//DONE
 	public void updateAppUser(AppUser appUser);
 	//DONE
@@ -20,5 +23,5 @@ public interface AppUserDAO {
 	//NOTES: The reason I made these void was due to not actually 
 	//returning any values, but simply creating them in the database
 	//with the exception of readAppUserById
-	
+
 }

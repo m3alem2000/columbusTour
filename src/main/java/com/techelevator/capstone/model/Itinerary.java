@@ -7,7 +7,7 @@ public class Itinerary {
 
 	private Long itineraryId;
 	private Long userId;
-	private List<Long> landmarkIds;
+	private List<Landmark> landmarkList;// List<Landmarks> 
 	private double startingLatitude;
 	private double startingLongitude;
 	private LocalDateTime dateCreated;
@@ -24,11 +24,11 @@ public class Itinerary {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public List<Long> getLandmarkIds() {
-		return landmarkIds;
+	public List<Landmark> getLandmarkList() {
+		return landmarkList;
 	}
-	public void setLandmarkIds(List<Long> landmarkIds) {
-		this.landmarkIds = landmarkIds;
+	public void setLandmarkIds(List<Landmark> landmarkList) {
+		this.landmarkList = landmarkList;
 	}
 	public double getStartingLatitude() {
 		return startingLatitude;

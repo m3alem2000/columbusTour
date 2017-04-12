@@ -9,12 +9,13 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.capstone.model.Itinerary;
+import com.techelevator.capstone.model.Landmark;
 
-@Component
+//@Component
 public class ItineraryJdbcDao implements ItineraryDAO{
 
 	private JdbcTemplate jdbcTemplate;
-
+	//	private Itinerary itinerary;
 
 
 	@Autowired
@@ -26,9 +27,11 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	public void createItinerary(Itinerary itinerary) {
 		Long itineraryId = getNextId();
 		String sqlCreateItinerary = "INSERT INTO itinerary"
-				+ "(user_id, landmark_id, starting_latitude, starting_longitude, date_created) "
+				+ "(itinerary_id, user_id, starting_latitude, starting_longitude) "
 				+ "VALUES (?,?,?,?,?,?)";
-		jdbcTemplate.update(sqlCreateItinerary, itineraryId, itinerary.getUserId(), itinerary.getLandmarkIds(), itinerary.getStartingLatitude(), itinerary.getStartingLongitude());
+		jdbcTemplate.update(sqlCreateItinerary, itineraryId, itinerary.getUserId(), itinerary.getStartingLatitude(), itinerary.getStartingLongitude());
+
+		// TODO: Add all landmarks into the itinerary landmark join table
 	}
 
 	@Override
@@ -45,40 +48,44 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	@Override
 	public List<Itinerary> itineraryByUser(long userId) {
 		List<Itinerary> userItineraries = new ArrayList<>();
-		String sqlSelectItineraryByUser = "SELECT itinerary.landmark_id " +
-				"FROM itinerary " +
-				"JOIN users ON itinerary.user_id = users.user_id " +
-				"WHERE users.user_id = ? "+
+		String sqlSelectItineraryByUser = "SELECT itinerary_id "+
+				"FROM itinerary "+
+				"WHERE user_id = ? "+ 
 				"ORDER BY date_created DESC ";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectItineraryByUser, userId);
 		while(results.next()) {
 			Itinerary itinerary = new Itinerary();
-			itinerary.setUserId(results.getLong("user_id"));
-			List<Long> landmarksList = new ArrayList<Long>();
-			landmarksList = getLandmarksIdsByItinerary(results.getLong("landmark_id"));
-			itinerary.setLandmarkIds(landmarksList);
+			itinerary.setItineraryId(results.getLong("itinerary_id"));
+			itinerary.setUserId(userId);
 			itinerary.setStartingLatitude(results.getDouble("starting_Latitude"));
 			itinerary.setStartingLongitude(results.getDouble("starting_Longitude"));
 			itinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
+
+			List<Landmark> landmarksList = getLandmarksByItinerary(itinerary.getItineraryId());
+			itinerary.setLandmarkIds(landmarksList);
 			userItineraries.add(itinerary);
 		}
 		return userItineraries;
 	}
 
 	@Override
-	public void deleteItineraryByUserId(long userId) {
+	public void deleteItineraryByItineraryId(long itineraryId) {
 		String sqlDeleteItinerary = "DELETE FROM itinerary "+
-				"WHERE user_id = ?";
-		jdbcTemplate.update(sqlDeleteItinerary, userId);
+				"WHERE itinerary_id = ?";
+		jdbcTemplate.update(sqlDeleteItinerary, itineraryId);
 	}
 
-	private List<Long> getLandmarksIdsByItinerary(long itineraryId){
-		List<Long> landmarksList = new ArrayList<Long>();
-		String sqlGetAllLandmarks = "SELECT landmark_id FROM itinerary_landmark" +
-				"itinerary_id = ? ";
+	private List<Landmark> getLandmarksByItinerary(long itineraryId){
+		List<Landmark> landmarksList = new ArrayList<Landmark>();
+		// TODO: This should be a JOIN on Landmark
+		String sqlGetAllLandmarks = "SELECT * FROM landmark " +
+				"JOIN landmark_itinerary ON landmark.landmark_id = landmark_itinerary.landmark_id " +
+				"WHERE landmark_itinerary.itinerary_id = ? ";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllLandmarks, itineraryId);
 		while(results.next()){
-			landmarksList.add(results.getLong("landmark_id"));
+			Landmark landmark = new Landmark();
+			// TODO fill in all of the data
+			landmarksList.add(landmark);
 		}
 		return landmarksList;
 	}
