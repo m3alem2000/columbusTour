@@ -27,7 +27,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="/"><img style="width:60px" src="img/delta_logo.gif" alt="Delta Tour" width="25%"></a>
+      <a class="navbar-brand" href="/">
+      	<c:url var="logoHref" value="/img/delta_logo.gif"/>
+      	<img style="width:60px" src="${logoHref}" alt="Delta Tour" width="25%">
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -38,17 +41,27 @@
         <li><a href="#">Suggest a Landmark</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<c:url var="loginHref" value="/login"/>
-		<c:url var="signupHref" value="/signup"/>
-		<li><a href="${signupHref}"><span class="glyphicon"></span> Signup</a></li>
-        <li><a href="${loginHref}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
+		<c:if test="${empty currentUser}">
+			<c:url var="loginHref" value="/login"/>
+			<c:url var="signupHref" value="/signup"/>
+			<li><a href="${signupHref}"><span class="glyphicon"></span> Signup</a></li>
+        	<li><a href="${loginHref}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		</c:if>
+		<c:if test="${not empty currentUser}">
+			<c:url var="registeredUserProfileHref" value="/users/${currentUser.username}/profile"/>
+			<li><a href="${registeredUserProfileHref}"><span class="glyphicon"></span>Profile</a></li>
+			<c:url var="registeredUserHref" value="/users/${currentUser.username}/registeredUser"/>
+			<li><a href="${registeredUserHref}"><span class="glyphicon"></span>${currentUser.username}</a></li>
+			<c:url var="logOutHref" value="/logout"/>
+        	<li><a href="${logOutHref}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+		</c:if>
       </ul>
     </div>
   </div>
 </nav>
 		<div class="jumbotron">
 			<div class="container">
-				<h1><img style="width:80px" src="img/delta_logo.gif" alt="Delta Tour" width="25%">Delta Tours are the Best!</h1>
+				<h1><img style="width:80px" src="${logoHref}" alt="Delta Tour" width="25%">Delta Tours are the Best!</h1>
 			</div>
 		</div>

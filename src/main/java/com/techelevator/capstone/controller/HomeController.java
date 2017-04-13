@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.capsone.DAO.LandmarkDAO;
+import com.techelevator.capsone.DAO.UserStartingPointDAO;
 import com.techelevator.capstone.model.Landmark;
+import com.techelevator.capstone.model.UserStartingPoint;
 
 
 	@Controller
 	public class HomeController {
 		@Autowired
 		private LandmarkDAO landmarkDao;
+		private UserStartingPointDAO uspDao;
 		
 		@RequestMapping(path="/", method=RequestMethod.GET)
 			public String showHomePage(HttpServletRequest request) {
@@ -27,9 +30,18 @@ import com.techelevator.capstone.model.Landmark;
 			return "home";
 		}
 		
+
 		@RequestMapping(path="/landmarkDetail", method=RequestMethod.GET)
 		public String viewLandmarkDetail(HttpServletRequest request, @RequestParam Long landmarkId, ModelMap map) {
 				request.setAttribute("landmarks", landmarkDao.readLandmarkById(landmarkId));
 			return "landmarkDetail";
 		}
+
+		@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
+		public String showlandmarkSearchPage(HttpServletRequest request) {
+		UserStartingPoint usps = uspDao.createStartingPoint(1l, "AAA", 39.9969, 83.0093);
+		request.setAttribute("userStartingPoint", usps);
+		return "landmarkSearchPage";
+		}
+		
 }

@@ -24,10 +24,39 @@ public class UserController {
 	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.GET)
 	public String displayProfileForm(AppUser formUser, ModelMap model) {
 		AppUser sessionUser = (AppUser)model.get("currentUser");
-		formUser.setUsername(sessionUser.getUsername());
-		formUser.setEmail(sessionUser.getEmail());
+		sessionUser = appUserDao.readUserByEmail(sessionUser.getEmail());
+		getValuesForForm(formUser, sessionUser);
 		model.put("currentUser", formUser);
 		return "profile";
+	}
+	
+	private AppUser getValuesForForm(AppUser formUser, AppUser sessionUser){
+		//		long userId;
+		//		boolean isAdmin;
+		if (formUser.getFirstName()==null || formUser.getFirstName().isEmpty()){
+			formUser.setFirstName(sessionUser.getFirstName());
+		}
+		if (formUser.getLastName()==null || formUser.getLastName().isEmpty()){
+			formUser.setLastName(sessionUser.getLastName());
+		}	
+		if (formUser.getAddress()==null || formUser.getAddress().isEmpty()){
+			formUser.setAddress(sessionUser.getAddress());
+		}
+		if (formUser.getCity()==null || formUser.getCity().isEmpty()){
+			formUser.setCity(sessionUser.getCity());
+		}
+		if (formUser.getState()==null || formUser.getState().isEmpty()){
+			formUser.setState(sessionUser.getState());
+		}
+		if (formUser.getZipCode()==null || formUser.getZipCode().isEmpty()){
+			formUser.setZipCode(sessionUser.getZipCode());
+		}
+		if (formUser.getPhoneNumber()==null || formUser.getPhoneNumber().isEmpty()){
+			formUser.setPhoneNumber(sessionUser.getPhoneNumber());
+		}
+		formUser.setUsername(sessionUser.getUsername());
+		formUser.setEmail(sessionUser.getEmail());
+		return formUser;
 	}
 
 	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.POST)

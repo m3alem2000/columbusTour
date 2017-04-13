@@ -13,6 +13,7 @@
 	background-size: cover;
 	color: black;
 	background-color: black;
+	margin-bottom:0px;
 }
 
 .jumbotron p {
@@ -38,6 +39,12 @@ footer {
 }
 
 #map {
+	position: relative;
+	overflow: hidden;
+	height: 600px;
+}
+
+#user_map {
 	position: relative;
 	overflow: hidden;
 	height: 400px;
