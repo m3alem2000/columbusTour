@@ -43,6 +43,12 @@ footer {
 	height: 400px;
 }
 
+#user_map {
+	position: relative;
+	overflow: hidden;
+	height: 400px;
+}
+
 #left-menu {
 	text-align: left;
 }
