@@ -28,7 +28,7 @@ var location = {
             center: startingPoint,
             radius: $(document).ready(function(){
         	    $("button").click(function(){
-        	        alert("Radius: " + $("#mile_radius").val());
+        	        $("#mile_radius").val();
         	    });
         	})
           });

@@ -7,8 +7,10 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
+		<c:forEach var="userStartingPoint" items="${userStartingPoint}">
 				<input type="hidden" id="user_latitude${userStartingPoint.startingId}" value="${userStartingPoint.latitude}"/>
 				<input type="hidden" id="user_longitude${userStartingPoint.startingId}" value="${userStartingPoint.longitude}"/>
+		</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
 
