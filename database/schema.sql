@@ -16,7 +16,7 @@ CREATE TABLE users
 	email_address VARCHAR(64)  NOT NULL,
 	state VARCHAR(2),
 	city VARCHAR(64),
-	zip_code INTEGER,
+	zip_code VARCHAR(5),
 	phone_number VARCHAR(10),
 	username VARCHAR(64),
 	first_name VARCHAR(64),

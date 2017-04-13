@@ -12,7 +12,7 @@ import com.techelevator.capsone.DAO.AppUserDAO;
 import com.techelevator.capstone.model.AppUser;
 
 @Controller
-@SessionAttributes({"currentUser"})
+@SessionAttributes("currentUser")
 public class UserController {
 	private AppUserDAO appUserDao;
 
@@ -31,22 +31,29 @@ public class UserController {
 		return "signup";
 	}
 
-	@RequestMapping(path="/profile", method=RequestMethod.GET)
+	@RequestMapping(path="/signup", method=RequestMethod.POST)
+	public String createUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password, ModelMap model) {
+		AppUser user = appUserDao.createAppUser(userName, email, password);
+		model.put("currentUser", user);
+		return "redirect:/users/"+user.getUsername()+"/profile";
+	}
+	
+	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.GET)
 	public String displayProfileForm() {
 		return "profile";
 	}
 
-	@RequestMapping(path="/signup", method=RequestMethod.POST)
-	public String createUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password, ModelMap model) {
-		AppUser user = appUserDao.createAppUser(userName,email, password);
-		model.put("currentUser", user);
-		return "redirect:/profile";
-	}
-
-	@RequestMapping(path="/profile", method=RequestMethod.POST)
-	public String createProfile(@RequestParam String email, @RequestParam String state, @RequestParam String city, @RequestParam String zipCode, @RequestParam String phoneNumber, @RequestParam String username, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String address,  ModelMap model) {
-		AppUser user = appUserDao.updateAppUserProfile(email, state, city, zipCode, phoneNumber, username, firstName, lastName, address);
-		model.put("currentUser", user);
-		return "redirect:/profile";
+	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.POST)
+	public String createProfile(AppUser formUser, ModelMap model) {
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		sessionUser.setFirstName(formUser.getFirstName());
+		sessionUser.setLastName(formUser.getLastName());
+		sessionUser.setAddress(formUser.getAddress());
+		sessionUser.setCity(formUser.getCity());
+		sessionUser.setState(formUser.getState());
+		sessionUser.setZipCode(formUser.getZipCode());
+		sessionUser.setPhoneNumber(formUser.getPhoneNumber());
+		appUserDao.updateAppUserProfile(sessionUser);
+		return "redirect:/registeredUser";
 	}
 }
