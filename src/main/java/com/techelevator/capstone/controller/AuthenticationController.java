@@ -71,7 +71,7 @@ public class AuthenticationController {
 	}
 
 
-	@RequestMapping(path="/logout", method=RequestMethod.POST)
+	@RequestMapping(path="/logout", method=RequestMethod.GET)
 	public String logout(Map<String, Object> model, HttpSession session) {
 		model.remove("currentUser");
 		session.removeAttribute("currentUser");

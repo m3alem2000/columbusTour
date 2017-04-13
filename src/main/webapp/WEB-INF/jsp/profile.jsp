@@ -22,7 +22,6 @@
 		<div class="col-sm-8 text-left">
 			<h2>Complete your user profile:</h2>
 			<c:url var="formAction" value="/users/${currentUser.username}/profile"/>
-			<%-- <c:url var="formAction" value="profile"/> --%>
 			<form id="user-profile" method="POST" action="${formAction}">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
