@@ -87,7 +87,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	}
 
 	@Override
-	public List<Landmark> getTopFiveLandMarks() {
+	public List<Landmark> getTopPickLandMarksByFlag() {
 		String sqlGetTopFiveLandmarks = "select * from landmark where top_pick is true";
 		List<Landmark> topLandmarkList = new ArrayList<Landmark>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetTopFiveLandmarks);

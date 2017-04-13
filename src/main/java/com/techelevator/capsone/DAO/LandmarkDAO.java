@@ -11,9 +11,9 @@ public interface LandmarkDAO {
 	public Landmark readLandmarkById(long landmarkId);
 	//get the top x=however many landmarks with highest rating
 	public List<Landmark> getTopXLandmarks(int X);
-	
+	public List<Landmark> getTopPickLandMarksByFlag();
+
 	public void updateLandmarkById(Landmark landmark);
-	public List<Landmark> getTopFiveLandMarks();
 	public void deleteLandmarkById(long landmarkId);
 
 }

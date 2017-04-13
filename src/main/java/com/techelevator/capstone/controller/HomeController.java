@@ -25,7 +25,7 @@ import com.techelevator.capstone.model.UserStartingPoint;
 		
 		@RequestMapping(path="/", method=RequestMethod.GET)
 			public String showHomePage(HttpServletRequest request) {
-			List<Landmark> landmark = landmarkDao.getTopFiveLandMarks();
+			List<Landmark> landmark = landmarkDao.getTopPickLandMarksByFlag();
 			request.setAttribute("landmarks", landmark);
 			return "home";
 		}
