@@ -16,8 +16,7 @@
     <div class="col-sm-8 text-left"> 
 		<c:url var="formAction" value="/signup" />
 		<form id="new-user" method="POST" action="${formAction}">
-			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
-			<input type="hidden" name="destination" value="${param.destination}" />
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 			<div class="form-group">
 				<label for="userName">User Name: </label>
 				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control"/>

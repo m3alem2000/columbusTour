@@ -13,15 +13,15 @@ CREATE SEQUENCE user_user_id_seq
 CREATE TABLE users 
 (
 	user_id INTEGER DEFAULT NEXTVAL('user_user_id_seq'::regclass) NOT NULL,
-	email_address VARCHAR(64)  NOT NULL,
-	state VARCHAR(2),
-	city VARCHAR(64),
-	zip_code VARCHAR(5),
-	phone_number VARCHAR(10),
-	username VARCHAR(64),
-	first_name VARCHAR(64),
-	last_name VARCHAR(64),
-	home_address VARCHAR(64),
+	email_address VARCHAR(128)  NOT NULL,
+	state VARCHAR(128),
+	city VARCHAR(128),
+	zip_code VARCHAR(32),
+	phone_number VARCHAR(32),
+	username VARCHAR(128),
+	first_name VARCHAR(128),
+	last_name VARCHAR(128),
+	home_address VARCHAR(128),
 	salt TEXT NOT NULL,
 	hash VARCHAR(512) NOT NULL,
 	is_admin BOOLEAN NOT NULL,
@@ -38,15 +38,15 @@ CREATE SEQUENCE landmark_landmark_id_seq
 CREATE TABLE landmark 
 (
 	landmark_id INTEGER DEFAULT NEXTVAL('landmark_landmark_id_seq'::regclass) NOT NULL,
-	landmark_name VARCHAR(64) NOT NULL,
-	landmark_picture VARCHAR(64),
+	landmark_name VARCHAR(128) NOT NULL,
+	landmark_picture VARCHAR(256),
 	landmark_rating INTEGER NOT NULL,
 	latitude REAL NOT NULL,
 	longitude REAL NOT NULL,
-	state VARCHAR(2) NOT NULL,
-	city VARCHAR(64) NOT NULL,
+	state VARCHAR(128) NOT NULL,
+	city VARCHAR(128) NOT NULL,
 	zip_code INTEGER NOT NULL,
-	address VARCHAR(64),
+	address VARCHAR(256),
 	description TEXT NOT NULL,
 	top_pick BOOLEAN,
 	CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
@@ -122,11 +122,11 @@ CREATE SEQUENCE user_starting_point_starting_id_seq
 CREATE TABLE user_starting_point
 (
 	starting_id INTEGER DEFAULT NEXTVAL('user_starting_point_starting_id_seq'::regclass) NOT NULL,
-	user_id INTEGER NOT NULL,
-	full_address VARCHAR(100) NOT NULL,
+	itinerary_id INTEGER NOT NULL,
+	full_address VARCHAR(256) NOT NULL,
 	starting_latitude REAL NOT NULL,
 	starting_longitude REAL NOT NULL,
-	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
+	CONSTRAINT fk_itinerary_id FOREIGN KEY (itinerary_id) REFERENCES itinerary (itinerary_id)
 );
 
 COMMIT;

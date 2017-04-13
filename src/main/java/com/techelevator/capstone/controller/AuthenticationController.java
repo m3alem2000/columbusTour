@@ -8,6 +8,7 @@ import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,45 +29,47 @@ public class AuthenticationController {
 		this.appUserDao = appUserDao;
 	}
 
-	//	String sqlSearchForUser = "SELECT * "+
-	//			"FROM app_user "+
-	//			"WHERE UPPER(user_name) = ?";
-	//
-	//	SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
-	//	if(results.next()) {
-	//		String storedSalt = results.getString("salt");
-	//		String storedPassword = results.getString("password");
-	//		String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
-	//		return storedPassword.equals(hashedPassword);
-	//	} else {
-	//		return false;
-	//	}
+	@RequestMapping(path="/signup", method=RequestMethod.GET)
+	public String displaySignupForm() {
+		return "signup";
+	}
 
+	@RequestMapping(path="/signup", method=RequestMethod.POST)
+	public String createUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password, ModelMap model) {
+		AppUser user = appUserDao.createAppUser(userName, email, password);
+		model.put("currentUser", user);
+		return "redirect:/users/"+user.getUsername()+"/profile";
+	}
+	
+	@RequestMapping(path="/login", method=RequestMethod.GET)
+	public String displayLoginForm() {
+		return "login";
+	}
+	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
 	public String login(Map<String, Object> model, 
 			@RequestParam String email, 
 			@RequestParam String password,
+			@RequestParam(required=false) String destination,
 			HttpSession session) {
 		if(appUserDao.matchUsernameAndPassword(email, password)) {
 			session.invalidate();
 			AppUser user = appUserDao.readUserByEmail(email);
 			model.put("currentUser", user);
-			return "redirect:/registeredUser";
+			if(isValidRedirect(destination)){
+				return "redirect:"+destination;
+			} else {
+				return "redirect:/users/"+user.getUsername()+"/registeredUser";
+			}
 		} else {
-			return "redirect:/";
+			return "redirect:/login";
 		}
 	}
-	//	@RequestMapping(path="/login", method=RequestMethod.POST)
-	//	public String logUser(@RequestParam String email, @RequestParam String password, ModelMap model) {
-	//		if (appUserDao.matchUsernameAndPassword(email, password)) {
-	//			
-	//			model.put("currentUser", user);
-	//		}
-	//		return "redirect:/user-profile";
-	//	}
-	//	private boolean isValidRedirect(String destination) {
-	//		return destination != null && destination.startsWith("http://localhost");
-	//	}
+	
+	private boolean isValidRedirect(String destination) {
+		return destination != null && destination.startsWith("http://localhost");
+	}
+
 
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
 	public String logout(Map<String, Object> model, HttpSession session) {
