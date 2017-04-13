@@ -120,11 +120,16 @@ public class AppUserJdbcDao implements AppUserDAO{
 	private AppUser mapRowToUser(SqlRowSet row) {
 		AppUser user = new AppUser();
 		user.setUserId(row.getInt("user_id"));
-		user.setAddress(row.getString("home_address"));
 		user.setEmail(row.getString("email_address"));
+		user.setState(row.getString("state"));
+		user.setCity(row.getString("city"));
+		user.setZipCode(row.getString("zip_code"));
+		user.setPhoneNumber(row.getString("phone_number"));
+		user.setAddress(row.getString("home_address"));
+		user.setUsername(row.getString("username"));
 		user.setFirstName(row.getString("first_name"));
 		user.setLastName(row.getString("last_name"));
-		user.setUsername(row.getString("username"));
+		user.setEmail(row.getString("email_address"));
 		user.setAdmin(row.getBoolean("is_admin"));
 		return user;
 	}
