@@ -14,6 +14,10 @@
     
     <!-- body of the homepage -->
     <div class="col-sm-8 text-left"> 
+		<c:if test="${not empty messageLog}">
+			<c:out value="${messageLog}"/>
+		</c:if>
+    	
 		<c:url var="formAction" value="/signup" />
 		<form id="new-user" method="POST" action="${formAction}">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">

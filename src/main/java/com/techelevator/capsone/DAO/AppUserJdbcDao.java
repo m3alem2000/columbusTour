@@ -88,8 +88,9 @@ public class AppUserJdbcDao implements AppUserDAO{
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetUserID, appUserEmail);
 		if(result.next()) {
 			user = mapRowToUser(result);
+			return user;
 		}
-		return user;
+		return null;
 	}
 
 	@Override

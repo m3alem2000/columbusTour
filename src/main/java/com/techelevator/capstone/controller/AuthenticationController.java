@@ -2,6 +2,7 @@ package com.techelevator.capstone.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.bouncycastle.util.encoders.Base64;
@@ -35,10 +36,19 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(path="/signup", method=RequestMethod.POST)
-	public String createUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password, ModelMap model) {
-		AppUser user = appUserDao.createAppUser(userName, email, password);
-		model.put("currentUser", user);
-		return "redirect:/users/"+user.getUsername()+"/profile";
+	public String createUser(HttpServletRequest request,
+							 @RequestParam String userName, 
+							 @RequestParam String email, 
+							 @RequestParam String password, 
+							 ModelMap model ) {
+		if (appUserDao.readUserByEmail(email) == null) {
+			AppUser user = appUserDao.createAppUser(userName, email, password);
+			model.put("currentUser", user);
+			return "redirect:/users/"+user.getUsername()+"/profile";
+		} else {
+			request.setAttribute("messageLog", "Email exist, please login or signup with a different email!");
+			return "signup";
+		}
 	}
 	
 	@RequestMapping(path="/login", method=RequestMethod.GET)
