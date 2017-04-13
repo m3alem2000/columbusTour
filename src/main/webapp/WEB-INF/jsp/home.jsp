@@ -7,6 +7,8 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
+		
+			<c:set var="count" value="1" scope="page" />
 			<c:forEach var="landmarks" items="${landmarks}">
 				<input type="hidden" name="name${landmarks.landmarkId}" value="${landmarks.landmarkName}"/>
 				<input type="hidden" name="latitude${landmarks.landmarkId}" value="${landmarks.latitude}"/>
@@ -14,9 +16,14 @@
 				<input type="hidden" name="landmarkRating${landmarks.landmarkId}" value="${landmarks.landmarkRating}"/>
 				<input type="hidden" name="landmarkPicture${landmarks.landmarkId}" value="${landmarks.landmarkPicture}"/>
 				<input type="hidden" name="description${landmarks.landmarkId}" value="${landmarks.description}"/>
-			<a href="javascript:show_detail()">${landmarks.landmarkName}<br>
-			<img src="img/${landmarks.landmarkPicture}" class="photo_image" style="width: 100px">				
-			</a><hr>
+				<a href="javascript:show_detail(${count})">${landmarks.landmarkSubName}
+<!-- 				<script type="text/javascript">
+					text_truncate('${landmarks.landmarkName}', 20);
+					document.getElementById("landmarkTitle").innerHTML = "asdff";
+				</script> --><br>
+				<c:set var="count" value="${count + 1}" scope="page"/>
+				<img src="img/${landmarks.landmarkPicture}" class="photo_image" style="width: 100px">				
+				</a><hr>
 			</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
