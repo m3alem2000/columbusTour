@@ -4,6 +4,7 @@ public class Landmark {
 
 	private Long landmarkId;
 	private String landmarkName;
+	private String landmarkSubName;
 	private String landmarkPicture;
 	private int landmarkRating;
 	private double latitude;
@@ -25,6 +26,18 @@ public class Landmark {
 	}
 	public void setLandmarkName(String landmarkName) {
 		this.landmarkName = landmarkName;
+	}
+	public String getLandmarkSubName() {
+		return landmarkSubName;
+	}
+	public void setLandmarkSubName(String landmarkSubName) {
+		this.landmarkSubName = landmarkSubName;
+	}
+	public String getLandmarkSubName(String landmarkName) {
+		if(landmarkName.length()>30){
+			landmarkName = landmarkName.substring(0,26)+"...";
+		}
+		return landmarkName;
 	}
 	public String getLandmarkPicture() {
 		return landmarkPicture;
