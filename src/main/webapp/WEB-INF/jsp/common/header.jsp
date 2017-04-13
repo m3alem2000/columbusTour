@@ -49,7 +49,8 @@
         	<li><a href="${loginHref}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		</c:if>
 		<c:if test="${not empty currentUser}">
-			<c:url var="registeredUserHref" value="/registeredUser"/>
+			
+			<c:url var="registeredUserHref" value="/users/${currentUser.username}/registeredUser"/>
 			<li><a href="${registeredUserHref}"><span class="glyphicon"></span>${currentUser.username}</a></li>
 			<c:url var="logOutHref" value="/logout"/>
         	<li><a href="${logOutHref}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
