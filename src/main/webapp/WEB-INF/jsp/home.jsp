@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
 
-	<div class="row content">
+	<div style="background-color: #f1f1f1; height:100%" class="row content">
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
@@ -14,32 +14,26 @@
 				<input type="hidden" name="landmarkRating${landmarks.landmarkId}" value="${landmarks.landmarkRating}"/>
 				<input type="hidden" name="landmarkPicture${landmarks.landmarkId}" value="${landmarks.landmarkPicture}"/>
 				<input type="hidden" name="description${landmarks.landmarkId}" value="${landmarks.description}"/>
-				
 			<a href="javascript:show_detail()">${landmarks.landmarkName}<br>
 			<img src="img/${landmarks.landmarkPicture}" class="photo_image" style="width: 100px">				
 			</a><hr>
 			</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
-<<<<<<< HEAD
-=======
-
 		
 		<c:forEach var="landmarks" items="${landmarks}">
-		<input type="hidden" name="name${landmarks.landmarkId}" value="${landmarks.landmarkName}"/>
-		<input type="hidden" name="latitude${landmarks.landmarkId}" value="${landmarks.latitude}"/>
-		<input type="hidden" name="longitude${landmarks.landmarkId}" value="${landmarks.longitude}"/>
-		<input type="hidden" name="landmarkRating${landmarks.landmarkId}" value="${landmarks.landmarkRating}"/>
-		<input type="hidden" name="landmarkPicture${landmarks.landmarkId}" value="${landmarks.landmarkPicture}"/>
-			</c:forEach>
->>>>>>> 8fe1cd8b5a592b62f7ff2e979012156f2dda4b95
+			<input type="hidden" name="name${landmarks.landmarkId}" value="${landmarks.landmarkName}"/>
+			<input type="hidden" name="latitude${landmarks.landmarkId}" value="${landmarks.latitude}"/>
+			<input type="hidden" name="longitude${landmarks.landmarkId}" value="${landmarks.longitude}"/>
+			<input type="hidden" name="landmarkRating${landmarks.landmarkId}" value="${landmarks.landmarkRating}"/>
+			<input type="hidden" name="landmarkPicture${landmarks.landmarkId}" value="${landmarks.landmarkPicture}"/>
+		</c:forEach>
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
-		<input id="input-3" name="input-3" value="4" class="rating-loading">
+		<!--  <input id="input-3" name="input-3" value="4" class="rating-loading">-->
 			<div id="map"></div>
 			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
-
         	</script>
 		</div>
 		<!-- end of body of the homepage -->
