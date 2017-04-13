@@ -44,16 +44,16 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	@Override
 	public void updateLandmarkById(Landmark landmark) {
 		String sqlUpdateLandmarkById = "Update * from landmark where landmark_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlUpdateLandmarkById, landmark);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlUpdateLandmarkById, landmark.getLandmarkId());
 		if(results.next()){
 			landmark = mapRowToLandmarks(results);
 		}
 	}
 
 	@Override
-	public void deleteLandmarkById(int landmarkId) {
+	public void deleteLandmarkById(long landmarkId) {
 		String sqlDeleteLandmarkById = "Delete from landmark where landmark_id = ?";
-		jdbcTemplate.update(sqlDeleteLandmarkById);
+		jdbcTemplate.update(sqlDeleteLandmarkById, landmarkId);
 	}
 
 	@Override

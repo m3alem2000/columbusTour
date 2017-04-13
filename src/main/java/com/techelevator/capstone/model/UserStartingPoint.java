@@ -2,7 +2,7 @@ package com.techelevator.capstone.model;
 
 public class UserStartingPoint {
 	private long startingId;
-	private long userId;
+	private long itineraryId;
 	private String fullAddress;
 	private double latitude;
 	private double longitude;
@@ -14,13 +14,13 @@ public class UserStartingPoint {
 	public void setStartingId(long startingId) {
 		this.startingId = startingId;
 	}
-
-	public long getUserId() {
-		return userId;
+	
+	public long getItineraryId() {
+		return itineraryId;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setItineraryId(long itineraryId) {
+		this.itineraryId = itineraryId;
 	}
 
 	public String getFullAddress() {
