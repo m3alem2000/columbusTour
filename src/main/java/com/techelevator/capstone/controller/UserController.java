@@ -22,10 +22,10 @@ public class UserController {
 	}
 
 	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.GET)
-	public String displayProfileForm(AppUser formUser, ModelMap model) {
+	public String displayProfileForm(ModelMap model) {
 		AppUser sessionUser = (AppUser)model.get("currentUser");
-		sessionUser = appUserDao.readUserByEmail(sessionUser.getEmail());
-		getValuesForForm(formUser, sessionUser);
+		AppUser formUser = appUserDao.readUserByEmail(sessionUser.getEmail());
+		//formUser = getValuesForForm(formUser, sessionUser);
 		model.put("currentUser", formUser);
 		return "profile";
 	}
