@@ -33,6 +33,8 @@ public class UserController {
 	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.POST)
 	public String createProfile(AppUser formUser, ModelMap model) {
 		AppUser sessionUser = (AppUser)model.get("currentUser");
+		long sessionUserId = (appUserDao.readUserByEmail(sessionUser.getEmail())).getUserId();
+		sessionUser.setUserId(sessionUserId);
 		sessionUser.setFirstName(formUser.getFirstName());
 		sessionUser.setLastName(formUser.getLastName());
 		sessionUser.setAddress(formUser.getAddress());
