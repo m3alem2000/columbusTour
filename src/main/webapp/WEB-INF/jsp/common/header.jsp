@@ -41,11 +41,19 @@
         <li><a href="#">Suggest a Landmark</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<c:url var="loginHref" value="/login"/>
-		<c:url var="signupHref" value="/signup"/>
-		<li><a href="${signupHref}"><span class="glyphicon"></span> Signup</a></li>
-        <li><a href="${loginHref}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
+		<c:if test="${empty currentUser}">
+			<c:url var="loginHref" value="/login"/>
+			<c:url var="signupHref" value="/signup"/>
+			<li><a href="${signupHref}"><span class="glyphicon"></span> Signup</a></li>
+        	<li><a href="${loginHref}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		</c:if>
+		<c:if test="${not empty currentUser}">
+			<c:url var="registeredUserHref" value="/registeredUser"/>
+			<li><a href="${registeredUserHref}"><span class="glyphicon"></span>${currentUser.username}</a></li>
+			<c:url var="logOutHref" value="/logout"/>
+        	<li><a href="${logOutHref}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+		</c:if>
       </ul>
     </div>
   </div>
