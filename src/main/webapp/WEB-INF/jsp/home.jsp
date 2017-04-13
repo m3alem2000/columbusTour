@@ -21,6 +21,18 @@
 			</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
+<<<<<<< HEAD
+=======
+
+		
+		<c:forEach var="landmarks" items="${landmarks}">
+		<input type="hidden" name="name${landmarks.landmarkId}" value="${landmarks.landmarkName}"/>
+		<input type="hidden" name="latitude${landmarks.landmarkId}" value="${landmarks.latitude}"/>
+		<input type="hidden" name="longitude${landmarks.landmarkId}" value="${landmarks.longitude}"/>
+		<input type="hidden" name="landmarkRating${landmarks.landmarkId}" value="${landmarks.landmarkRating}"/>
+		<input type="hidden" name="landmarkPicture${landmarks.landmarkId}" value="${landmarks.landmarkPicture}"/>
+			</c:forEach>
+>>>>>>> 8fe1cd8b5a592b62f7ff2e979012156f2dda4b95
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
