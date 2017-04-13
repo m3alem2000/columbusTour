@@ -1,5 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
+
 
 <div class="container-fluid">
 
@@ -45,5 +46,8 @@
 		<!--end of Ads on the right of the homepage  -->
 	</div>
 </div>
+
+
+
 
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />
