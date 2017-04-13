@@ -58,6 +58,7 @@
 </div>
 
 
-
-
+<%--  link for landmarkSearchPage <c:url value="/landmarkDetail" var="landmarkDetailUrl">
+ --%> 
+ 
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />
