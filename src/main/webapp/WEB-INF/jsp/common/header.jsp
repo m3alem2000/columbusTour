@@ -27,7 +27,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="/"><img style="width:60px" src="img/delta_logo.gif" alt="Delta Tour" width="25%"></a>
+      <a class="navbar-brand" href="/">
+      	<c:url var="logoHref" value="/img/delta_logo.gif"/>
+      	<img style="width:60px" src="${logoHref}" alt="Delta Tour" width="25%">
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -49,6 +52,6 @@
 </nav>
 		<div class="jumbotron">
 			<div class="container">
-				<h1><img style="width:80px" src="img/delta_logo.gif" alt="Delta Tour" width="25%">Delta Tours are the Best!</h1>
+				<h1><img style="width:80px" src="${logoHref}" alt="Delta Tour" width="25%">Delta Tours are the Best!</h1>
 			</div>
 		</div>
