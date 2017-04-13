@@ -14,6 +14,6 @@ public interface LandmarkDAO {
 	
 	public void updateLandmarkById(Landmark landmark);
 	public List<Landmark> getTopFiveLandMarks();
-	public void deleteLandmarkById(int landmarkId);
+	public void deleteLandmarkById(long landmarkId);
 
 }
