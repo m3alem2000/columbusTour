@@ -14,8 +14,10 @@
     
     <!-- body of the homepage -->
     <div class="col-sm-8 text-left"> 
-		<c:url var="formAction" value="/login" />
-		<form id="new-user" method="POST" action="${formAction}">
+<%-- 		<c:url var="formAction" value="/users/${currentUser.username}/login" />
+ --%>		
+ 			<c:url var="formAction" value="/login"/>
+ 			<form id="new-user" method="POST" action="${formAction}">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 			<input type="hidden" name="destination" value="${param.destination}" />
 			<div class="form-group">

@@ -21,31 +21,20 @@ public class UserController {
 		this.appUserDao = appUserDao;
 	}
 
-	@RequestMapping(path="/login", method=RequestMethod.GET)
-	public String displayLoginForm() {
-		return "login";
-	}
-
-	@RequestMapping(path="/signup", method=RequestMethod.GET)
-	public String displaySignupForm() {
-		return "signup";
-	}
-
-	@RequestMapping(path="/signup", method=RequestMethod.POST)
-	public String createUser(@RequestParam String userName, @RequestParam String email, @RequestParam String password, ModelMap model) {
-		AppUser user = appUserDao.createAppUser(userName, email, password);
-		model.put("currentUser", user);
-		return "redirect:/users/"+user.getUsername()+"/profile";
-	}
-	
 	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.GET)
-	public String displayProfileForm() {
+	public String displayProfileForm(AppUser formUser, ModelMap model) {
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		formUser.setUsername(sessionUser.getUsername());
+		formUser.setEmail(sessionUser.getEmail());
+		model.put("currentUser", formUser);
 		return "profile";
 	}
 
 	@RequestMapping(path="/users/{userName}/profile", method=RequestMethod.POST)
 	public String createProfile(AppUser formUser, ModelMap model) {
 		AppUser sessionUser = (AppUser)model.get("currentUser");
+		long sessionUserId = (appUserDao.readUserByEmail(sessionUser.getEmail())).getUserId();
+		sessionUser.setUserId(sessionUserId);
 		sessionUser.setFirstName(formUser.getFirstName());
 		sessionUser.setLastName(formUser.getLastName());
 		sessionUser.setAddress(formUser.getAddress());
@@ -54,6 +43,18 @@ public class UserController {
 		sessionUser.setZipCode(formUser.getZipCode());
 		sessionUser.setPhoneNumber(formUser.getPhoneNumber());
 		appUserDao.updateAppUserProfile(sessionUser);
-		return "redirect:/registeredUser";
+		model.put("currentUser", sessionUser);
+		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+	}
+
+	@RequestMapping(path="/users/{userName}/registeredUser", method=RequestMethod.GET)
+	public String goToUserPage(AppUser appUser, ModelMap model) {
+		// sesion user has userName eamil
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		appUser.setUsername(sessionUser.getUsername());
+		appUser.setEmail(sessionUser.getEmail());
+		// appUser has the rest of the data
+		model.put("currentUser", appUser);
+		return "registeredUser";
 	}
 }
