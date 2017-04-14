@@ -35,13 +35,14 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       	<c:url var="homeHref" value="/"/>
+      	<c:url var="itineraryHref" value="/itinerary"/>
         <li class="active"><a href="${homeHref}">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Search Landmark</a></li>
+        <li><a href="${itineraryHref}">Itinerary</a></li>
         <li><a href="#">Suggest a Landmark</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
 		<c:if test="${empty currentUser}">
 			<c:url var="loginHref" value="/login"/>
 			<c:url var="signupHref" value="/signup"/>
