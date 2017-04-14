@@ -1,5 +1,7 @@
 package com.techelevator.capstone.model;
 
+import java.time.LocalDateTime;
+
 public class Review {
 
 	private long reviewId;
@@ -7,6 +9,8 @@ public class Review {
 	private long userId;
 	private String review;
 	private long rating;
+	private LocalDateTime dateCreated;
+
 
 	public long getReviewId() {
 		return reviewId;
@@ -48,4 +52,11 @@ public class Review {
 		this.rating = rating;
 	}
 
+	public LocalDateTime getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(LocalDateTime dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 }

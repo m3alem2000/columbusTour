@@ -82,6 +82,13 @@ public class AdminController {
 		model.put("currentUser", sessionUser);
 		return "manageReviews";
 	}
+	
+	@RequestMapping(path="/adminReviews", method=RequestMethod.GET)
+	public String displaySignupForm() {
+		
+		
+		return "adminReviews";
+	}
 
 
 }
