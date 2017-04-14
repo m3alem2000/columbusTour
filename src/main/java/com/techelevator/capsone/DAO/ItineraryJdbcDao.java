@@ -50,10 +50,12 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	@Override
 	public List<Itinerary> itineraryByUser(long userId) {
 		List<Itinerary> userItineraries = new ArrayList<>();
-		String sqlSelectItineraryByUser = "SELECT itinerary_id "+
-				"FROM itinerary "+
-				"WHERE user_id = ? "+ 
-				"ORDER BY date_created DESC ";
+		String sqlSelectItineraryByUser = "select * from itinerary"+
+		"join itinerary_landmark on itinerary_landmark.itinerary_id = itinerary.itinerary_id"+
+		"join landmark on itinerary_landmark.landmark_id = landmark.landmark_id"+
+		"join user_starting_point on user_starting_point.starting_id = itinerary.user_starting_point_id"+
+		"where itinerary.user_id = '1'";
+		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectItineraryByUser, userId);
 		while(results.next()) {
 			Itinerary itinerary = new Itinerary();
@@ -61,10 +63,10 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 			itinerary.setUserId(userId);
 			itinerary.setStartingLatitude(results.getDouble("starting_Latitude"));
 			itinerary.setStartingLongitude(results.getDouble("starting_Longitude"));
+			itinerary.setDestinationLatitude(results.getDouble("Longitude"));
+			itinerary.setDestinationLatitude(results.getDouble("Latitude"));
 			itinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
 
-			List<Landmark> landmarksList = getLandmarksByItinerary(itinerary.getItineraryId());
-			itinerary.setLandmarkIds(landmarksList);
 			userItineraries.add(itinerary);
 		}
 		return userItineraries;
