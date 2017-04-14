@@ -73,14 +73,15 @@ hr {
 /* landmarkDetail */	
  
  .rating {
-	width: 40px;
+	width: 60px;
 } 
 
-.landmark-image{
+.landmark-detail{
+	width: 100%;
 	
 }
 #pic{
-	width: 90%; 
+	width: 100%; 
     height:auto;
 	
 	 
