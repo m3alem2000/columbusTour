@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<label for="userName">User Name: </label> 
 						<input type="text" id="userName"
-							name="userName" placeHolder="userName" class="form-control" />
+							name="username" placeHolder="userName" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="email">E-mail: </label> <input type="text" id="email"

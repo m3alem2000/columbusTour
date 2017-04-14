@@ -18,7 +18,7 @@
 				</p>
 				<p>
 					<c:url var="cAllUsrs"
-						value="/users/${currentUser.username}/cAllusrs" />
+						value="/users/${currentUser.username}/cAllUsers" />
 					<a href="${cAllUsrs}">See all users</a>
 				</p>
 				<p>

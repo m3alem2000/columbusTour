@@ -39,57 +39,57 @@
 
 					<div class="form-group">
 						<label for="landmarkPicture">Picture Path: </label> <input
-							type="text" value="${currentUser.landmarkPicture}"
+							type="text" value="${landMark.landmarkPicture}"
 							id="landmarkPicture" name="landmarkPicture"
 							placeHolder="Picture Path" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="landmarkRating">Landmark Rating: </label> <input
-							type="text" value="${currentUser.landmarkRating}"
+							type="text" value="${landMark.landmarkRating}"
 							id="landmarkRating" name="landmarkRating"
 							placeHolder="Landmark Rating" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="latitude">Latitude: </label> <input type="text"
-							value="${currentUser.latitude}" id="latitude" name="latitude"
+							value="${landMark.latitude}" id="latitude" name="latitude"
 							placeHolder="Latitude" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="longitude">Longitude: </label> <input type="text"
-							value="${currentUser.longitude}" id="longitude" name="longitude"
+							value="${landMark.longitude}" id="longitude" name="longitude"
 							placeHolder="Longitude" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="state">State: </label> <input type="text"
-							value="${currentUser.state}" id="state" name="state"
+							value="${landMark.state}" id="state" name="state"
 							placeHolder="State" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="city">City: </label> <input type="text"
-							value="${currentUser.city}" id="city" name="city"
+							value="${landMark.city}" id="city" name="city"
 							placeHolder="City" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="zipCode">Zip Code: </label> <input type="text"
-							value="${currentUser.zipCode}" id="zipCode" name="zipCode"
+							value="${landMark.zipCode}" id="zipCode" name="zipCode"
 							placeHolder="Zip Code" class="form-control" />
 					</div>
 
 					<div class="form-group">
-						<label for="address">Address: </label> <input type="text"
-							value="${currentUser.address}" id="address" name="address"
+						<label for="address">Address: </label>
+						<input type="text" value="${landMark.address}" id="address" name="address"
 							placeHolder="Address" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="description">Description: </label> <input type="text"
-							value="${currentUser.description}" id="description"
+							value="${landMark.description}" id="description"
 							name="description" placeHolder="Description" class="form-control" />
 					</div>
 

@@ -10,7 +10,7 @@
 	    <script src="./js/jquery.min.js"></script>
 	    <script src="./js/jquery.validate.min.js"></script>
 	    <script src="./js/additional-methods.min.js "></script>
-	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
+	    <!-- <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script> -->
 	    <script src="./js/bootstrap.min.js"></script>
 	    <!--  <script src="./js/validation.js"></script>-->
 	    
