@@ -30,7 +30,8 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public AppUser createAppUser(String userName, String email, String password) {
-		String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, salt, hash, is_admin) VALUES (?, ?, ?, ?, ?, ?)";
+		String sqlSaveUser = "INSERT INTO users (user_id, email_address, username, salt, hash, is_admin) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		Long id = getNextId();
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
@@ -49,22 +50,44 @@ public class AppUserJdbcDao implements AppUserDAO{
 	}
 
 	@Override
-	public AppUser createAdmin(String userName, String email, String password) {
-		String sqlSaveUser = "INSERT INTO users (user_id, username, hash, salt, is_admin) VALUES (?, ?, ?, ?, ?)";
+	public AppUser createAdmin(AppUser admin, String password) {
 		Long id = getNextId();
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		int rowsAffected = jdbcTemplate.update(sqlSaveUser, id, userName, hashedPassword, saltString, true);
+		String sqlSaveUser = "INSERT INTO users ("
+				+ "user_id, "
+				+ "email_address, "
+				+ "state, "
+				+ "city, "
+				+ "zip_code, "
+				+ "phone_number, "
+				+ "username, "
+				+ "first_name, "
+				+ "last_name, "
+				+ "home_address, "
+				+ "salt, "
+				+ "hash, "
+				+ "is_admin) "
+				+ "VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?)";
+		int rowsAffected = jdbcTemplate.update(sqlSaveUser, 
+				id, 
+				admin.getEmail(),
+				admin.getState(),
+				admin.getCity(),
+				admin.getZipCode(),
+				admin.getPhoneNumber(),
+				admin.getUsername(), 
+				admin.getFirstName(),
+				admin.getLastName(),
+				admin.getAddress(),
+				saltString, 
+				hashedPassword, 
+				true);
 		if(rowsAffected != 1) {
 			return null;
 		} else {
-			AppUser user = new AppUser();
-			user.setUserId(id);
-			user.setUsername(userName);
-			user.setEmail(email);
-			user.setAdmin(false);
-			return user;
+			return admin;
 		}
 	}
 
@@ -106,8 +129,12 @@ public class AppUserJdbcDao implements AppUserDAO{
 
 	@Override
 	public boolean updateAppUserProfile(AppUser user) {
-		String sqlUpdateUserInfo = "UPDATE users SET (email_address,state,city,zip_code,phone_number,username,first_name,last_name,home_address)=(?,?,?,?,?,?,?,?,?) WHERE user_id = ?";
-		int result = jdbcTemplate.update(sqlUpdateUserInfo, user.getEmail(), user.getState(), user.getCity(), user.getZipCode(), user.getPhoneNumber(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getUserId());
+		String sqlUpdateUserInfo = "UPDATE users SET "
+				+ "(email_address,state,city,zip_code,phone_number,username,first_name,last_name,home_address)"
+				+ "=(?,?,?,?,?,?,?,?,?) WHERE user_id = ?";
+		int result = jdbcTemplate.update(sqlUpdateUserInfo, user.getEmail(), user.getState(), 
+				user.getCity(), user.getZipCode(), user.getPhoneNumber(), user.getUsername(), 
+				user.getFirstName(), user.getLastName(), user.getAddress(), user.getUserId());
 		return result == 1;
 	}
 

@@ -1,11 +1,28 @@
 	      var map;
-	      var infoWindows = [];
+	      var markers = [];
+	      function show_detail(index) {
+	    	  	markers[index].infoWindow.open(map, markers[index]);
+	      }
 	      function initMap() {
 	        // Constructor creates a new map - only center and zoom are required.
 	        map = new google.maps.Map(document.getElementById('map'), {
 	          center: {lat: 39.993788, lng: -83.000574},
 	          zoom: 11
 	        });
+	        
+	      function text_truncate(str, length, ending) {
+	            if (length == null) {
+	              length = 100;
+	            }
+	            if (ending == null) {
+	              ending = '...';
+	            }
+	            if (str.length > length) {
+	              return str.substring(0, length - ending.length) + ending;
+	            } else {
+	              return str;
+	            }
+	          };
 	        
 	        for (i = 0; i < 6; i++) { 
 		        var marker = new google.maps.Marker({
@@ -32,6 +49,7 @@
 		        marker.addListener('click', function() {
 		        		this.infoWindow.open(map, this);
 		        });
-		      
+		        
+		        markers[i] = marker;
 	        }
 	      }

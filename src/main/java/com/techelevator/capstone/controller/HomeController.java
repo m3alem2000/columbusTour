@@ -20,11 +20,12 @@ import com.techelevator.capstone.model.UserStartingPoint;
 	public class HomeController {
 		@Autowired
 		private LandmarkDAO landmarkDao;
+		@Autowired
 		private UserStartingPointDAO uspDao;
 		
 		@RequestMapping(path="/", method=RequestMethod.GET)
 			public String showHomePage(HttpServletRequest request) {
-			List<Landmark> landmark = landmarkDao.getTopFiveLandMarks();
+			List<Landmark> landmark = landmarkDao.getTopPickLandMarksByFlag();
 			request.setAttribute("landmarks", landmark);
 			return "home";
 		}
@@ -37,9 +38,9 @@ import com.techelevator.capstone.model.UserStartingPoint;
 		}
 
 		@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
-		public String showlandmarkSearchPage(HttpServletRequest request) {
-		UserStartingPoint usps = uspDao.createStartingPoint(1l, "AAA", 39.9969, 83.0093);
-		request.setAttribute("userStartingPoint", usps);
+		public String showlandmarkSearchPage(HttpServletRequest request, @RequestParam long itineraryId, @RequestParam String address, @RequestParam double latitude , @RequestParam double longitude) {
+		UserStartingPoint usps = uspDao.createStartingPoint(itineraryId, address, latitude, longitude);
+			request.setAttribute("userStartingPoint", usps);
 		return "landmarkSearchPage";
 		}
 		

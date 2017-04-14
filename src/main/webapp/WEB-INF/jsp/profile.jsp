@@ -48,26 +48,26 @@
 				</div>
 
 				<div class="form-group">
-					<label for="address">City: </label> 
+					<label for="city">City: </label> 
 					<input type="text" id="city" value="${currentUser.city}"
 						name="city" placeHolder="city" class="form-control" />
 				</div>
 
 				<div class="form-group">
-					<label for="address">State: </label> 
+					<label for="state">State: </label> 
 					<input type="text" id="state" value="${currentUser.state}"
 						name="state" placeHolder="State" class="form-control" />
 				</div>
 
 				<div class="form-group">
-					<label for="address">Zip Code: </label> 
+					<label for="zipCode">Zip Code: </label> 
 					<input type="text" value="${currentUser.zipCode}"
 						id="zipCode" name="zipCode" placeHolder="Zip Code"
 						class="form-control" />
 				</div>
 
 				<div class="form-group">
-					<label for="address">Phone Number: </label> 
+					<label for="phone">Phone Number: </label> 
 					<input type="text" value="${currentUser.phoneNumber}"
 						id="phone" name="phoneNumber" placeHolder="Cell Phone"
 						class="form-control" />

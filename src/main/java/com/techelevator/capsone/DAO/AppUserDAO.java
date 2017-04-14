@@ -7,7 +7,7 @@ import com.techelevator.capstone.model.AppUser;
 public interface AppUserDAO {
 	//CRUD
 	public AppUser createAppUser(String userName, String email, String password);
-	public AppUser createAdmin(String userName, String email, String password);
+	public AppUser createAdmin(AppUser admin, String password);
 
 	//DONE
 	public AppUser readUserById(long appUserId);

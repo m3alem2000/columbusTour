@@ -1,3 +1,4 @@
+
 -- *************************************************************************************************
 -- This script creates all of the database objects (tables, sequences, etc) for the database
 -- *************************************************************************************************
@@ -87,31 +88,6 @@ CREATE TABLE review
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
 
-CREATE SEQUENCE itinerary_itinerary_id_seq
-  INCREMENT BY 1
-  NO MAXVALUE
-  NO MINVALUE
-  CACHE 1;
-
-CREATE TABLE itinerary
-(
-	itinerary_id INTEGER DEFAULT NEXTVAL('itinerary_itinerary_id_seq'::regclass) NOT NULL,
-	user_id INTEGER NOT NULL,
-	landmark_id INTEGER NOT NULL,
-	date_created TIMESTAMP DEFAULT NOW(),
-	CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id),
-	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
-	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
-);
-
-CREATE TABLE itinerary_landmark
-(
-	landmark_id INTEGER NOT NULL,
-	itinerary_id INTEGER NOT NULL,
-	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id),
-	CONSTRAINT fk_itinerary_id FOREIGN KEY (itinerary_id) REFERENCES itinerary (itinerary_id)
-);
-
 CREATE SEQUENCE user_starting_point_starting_id_seq
   INCREMENT BY 1
   NO MAXVALUE
@@ -122,11 +98,37 @@ CREATE SEQUENCE user_starting_point_starting_id_seq
 CREATE TABLE user_starting_point
 (
 	starting_id INTEGER DEFAULT NEXTVAL('user_starting_point_starting_id_seq'::regclass) NOT NULL,
-	itinerary_id INTEGER NOT NULL,
 	full_address VARCHAR(256) NOT NULL,
 	starting_latitude REAL NOT NULL,
 	starting_longitude REAL NOT NULL,
+	CONSTRAINT pk_starting_id PRIMARY KEY (starting_id)
+);
+
+CREATE SEQUENCE itinerary_itinerary_id_seq
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
+CREATE TABLE itinerary
+(
+	itinerary_id INTEGER DEFAULT NEXTVAL('itinerary_itinerary_id_seq'::regclass) NOT NULL,
+	user_id INTEGER NOT NULL,
+	user_starting_point_id INTEGER NOT NULL,
+	date_created TIMESTAMP DEFAULT NOW(),
+	CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id),
+	CONSTRAINT fk_user_starting_point_id FOREIGN KEY (user_starting_point_id) REFERENCES user_starting_point (starting_id)
+
+);
+
+CREATE TABLE itinerary_landmark
+(
+	landmark_id INTEGER NOT NULL,
+	itinerary_id INTEGER NOT NULL,
+	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id),
 	CONSTRAINT fk_itinerary_id FOREIGN KEY (itinerary_id) REFERENCES itinerary (itinerary_id)
 );
+
+
 
 COMMIT;
