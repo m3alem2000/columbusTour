@@ -1,5 +1,13 @@
 package com.techelevator.capstone.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,15 +16,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.capsone.DAO.AppUserDAO;
+import com.techelevator.capsone.DAO.ReviewDAO;
 import com.techelevator.capstone.model.AppUser;
+import com.techelevator.capstone.model.Review;
 
 @Controller
-@SessionAttributes("currentUser")
+@SessionAttributes({"currentUser","reviews"})
 public class AdminController {
 	private AppUserDAO appUserDao;
+	
+	@Autowired
+	private ReviewDAO reviewDao;
 
+	
 	public AdminController(AppUserDAO appUserDao) {
 		this.appUserDao = appUserDao;
+		
 	}
 
 	@RequestMapping(path="/users/{userName}/adminHomePage", method=RequestMethod.GET)
@@ -80,15 +95,36 @@ public class AdminController {
 			return "null";
 		}
 		model.put("currentUser", sessionUser);
+		List<Review> reviews = reviewDao.getAllLandmarksReviews();
+		Set<Long> landmarkIds = new HashSet<Long>();
+		for(Review review : reviews){
+			long lmId = review.getLandmarkId();
+			if (!landmarkIds.contains(lmId)){
+				landmarkIds.add(lmId);
+			}
+		}
+		model.put("reviews", reviews);
 		return "manageReviews";
 	}
-	
-	@RequestMapping(path="/adminReviews", method=RequestMethod.GET)
-	public String displaySignupForm() {
-		
-		
-		return "adminReviews";
+
+	@RequestMapping(path="/users/{userName}/manageReviews", method=RequestMethod.POST)
+	public String deleteReviews(@RequestParam long reviewId, ModelMap model) {
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		sessionUser = appUserDao.readUserByEmail(sessionUser.getEmail());
+		if(!sessionUser.isAdmin()){
+			return "null";
+		}
+		model.put("currentUser", sessionUser);
+		reviewDao.deleteReviewById(reviewId);
+		List<Review> reviews = reviewDao.getAllLandmarksReviews();
+		Set<Long> landmarkIds = new HashSet<Long>();
+		for(Review review : reviews){
+			long lmId = review.getLandmarkId();
+			if (!landmarkIds.contains(lmId)){
+				landmarkIds.add(lmId);
+			}
+		}
+		model.put("reviews", reviews);
+		return "manageReviews";
 	}
-
-
 }
