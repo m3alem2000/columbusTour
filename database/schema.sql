@@ -126,7 +126,6 @@ CREATE TABLE user_starting_point
 	full_address VARCHAR(256) NOT NULL,
 	starting_latitude REAL NOT NULL,
 	starting_longitude REAL NOT NULL,
-	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 	CONSTRAINT fk_itinerary_id FOREIGN KEY (itinerary_id) REFERENCES itinerary (itinerary_id)
 );
 
