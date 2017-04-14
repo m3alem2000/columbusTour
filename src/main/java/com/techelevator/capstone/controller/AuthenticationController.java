@@ -66,6 +66,9 @@ public class AuthenticationController {
 			session.invalidate();
 			AppUser user = appUserDao.readUserByEmail(email);
 			model.put("currentUser", user);
+			if(user.isAdmin()){
+				return "adminHomePage";
+			}
 			if(isValidRedirect(destination)){
 				return "redirect:"+destination;
 			} else {
