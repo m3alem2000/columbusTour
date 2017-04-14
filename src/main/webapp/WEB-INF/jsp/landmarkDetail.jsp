@@ -24,10 +24,33 @@
 	<div class="landmark-detail">
 		<div class="landmark-image">
 			<c:set value="${landmarks.landmarkId}" var="landmarkId" />
-			<img class="land-image" src="./img/${landmarks.landmarkPicture}" />
+			<img id= "pic" class="land-image" src="./img/${landmarks.landmarkPicture}" />
 		</div>
-		<p id="landmark-rating">
+		
+	<%-- 	<p id="landmark-rating">
 			<c:out value="${landmarks.landmarkRating}" />
+			<div class="prw_rup prw_common_bubble_rating" data-prwidget-name="common_bubble_rating" data-prwidget-init="">
+			<span class="ui_bubble_rating bubble_45" style="font-size:14px;" alt="4.5 of 5 bubbles"></span>
+			<div class="rating_div"> --%>
+	<c:choose>
+		<c:when test="${landmarks.landmarkRating == 5}">
+			<img style="width:20px" src="img/5-star.png">
+		</c:when>
+		<c:when test="${landmarks.landmarkRating >4}">
+			<img class="rating" src="img/4-star.png">
+		</c:when>
+		<c:when test="${landmarks.landmarkRating >3}">
+			<img class="rating" src="img/3-star.png">
+		</c:when>
+		<c:when test="${landmarks.landmarkRating >2}">
+			<img class="rating" src="img/2-star.png">
+		</c:when>
+		<c:otherwise>
+			<img class="rating" src="img/1-star.png">
+		</c:otherwise>
+	</c:choose>
+			
+			</div>
 		</p>
 		
 		<p id="landmark-address">
@@ -38,7 +61,7 @@
 			<c:out value="${landmarks.description}" />
 		</p>
 	</div>
-
+    </div>
 	</section>
 		
 		</div>
