@@ -6,6 +6,7 @@
 <title>Add Landmark</title>
 </head>
 <body>
+	<c:import url="/WEB-INF/jsp/common/header.jsp" />
 
 	<div class="container-fluid text-center">
 		<div class="row content">
@@ -20,10 +21,10 @@
 					unique!</h2>
 				<c:url var="formAction"
 					value="/users/${currentUser.username}/addLandmark" />
-				<form id="user-profile" method="POST" action="${formAction}">
+				<form id="landmark-input" method="POST" action="${formAction}">
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
-					<div class="form-group">
+ 					<div class="form-group">
 						<label for="LandmarkName">Landmark Name: </label> <input
 							type="text" value="${landMark.landmarkName}" id="landmarkName"
 							name="landmarkName" placeHolder="Landmark Name"
@@ -103,5 +104,6 @@
 
 		</div>
 	</div>
+	<c:import url="/WEB-INF/jsp/common/footer.jsp" />
 </body>
 </html>

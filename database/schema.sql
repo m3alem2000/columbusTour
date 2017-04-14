@@ -83,6 +83,7 @@ CREATE TABLE review
 	user_id INTEGER NOT NULL,
 	review TEXT NOT NULL,
 	rating INTEGER NOT NULL,
+	date_created TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT pk_review_review_id PRIMARY KEY (review_id),
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)

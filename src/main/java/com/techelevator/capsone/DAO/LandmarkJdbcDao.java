@@ -23,11 +23,12 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	}
 
 	@Override
-	public void createLandmark(Landmark landmark) {
+	public boolean createLandmark(Landmark landmark) {
 		Long id = getNextId();
-		String sqlAddLandmark = "Insert into landmark(landmark_id, landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zipcode, address, description) VALUES (?,?,?,?,?,?,?,?,?,?)";
-		jdbcTemplate.update(sqlAddLandmark, landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), landmark.getLongitude(), landmark.getState(), landmark.getCity(), landmark.getZipCode(), landmark.getAddress(), landmark.getDescription());
 		landmark.setLandmarkId(id);
+		String sqlAddLandmark = "Insert into landmark(landmark_id, landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zipcode, address, description) VALUES (?,?,?,?,?,?,?,?,?,?)";
+		int result = jdbcTemplate.update(sqlAddLandmark, landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), landmark.getLongitude(), landmark.getState(), landmark.getCity(), landmark.getZipCode(), landmark.getAddress(), landmark.getDescription());
+		return result==1;
 	}
 
 	@Override
@@ -42,18 +43,21 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	}
 
 	@Override
-	public void updateLandmarkById(Landmark landmark) {
+	public boolean updateLandmarkById(Landmark landmark) {
 		String sqlUpdateLandmarkById = "Update * from landmark where landmark_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlUpdateLandmarkById, landmark.getLandmarkId());
 		if(results.next()){
 			landmark = mapRowToLandmarks(results);
+			return true;
 		}
+		return false;
 	}
 
 	@Override
-	public void deleteLandmarkById(long landmarkId) {
+	public boolean deleteLandmarkById(long landmarkId) {
 		String sqlDeleteLandmarkById = "Delete from landmark where landmark_id = ?";
-		jdbcTemplate.update(sqlDeleteLandmarkById, landmarkId);
+		int result = jdbcTemplate.update(sqlDeleteLandmarkById, landmarkId);
+		return result==1;
 	}
 
 	@Override

@@ -6,14 +6,14 @@ import com.techelevator.capstone.model.Landmark;
 
 public interface LandmarkDAO {
 	//CRUD
-	public void createLandmark(Landmark landmark);
+	public boolean createLandmark(Landmark landmark);
 	
 	public Landmark readLandmarkById(long landmarkId);
 	//get the top x=however many landmarks with highest rating
 	public List<Landmark> getTopXLandmarks(int X);
 	public List<Landmark> getTopPickLandMarksByFlag();
 
-	public void updateLandmarkById(Landmark landmark);
-	public void deleteLandmarkById(long landmarkId);
+	public boolean updateLandmarkById(Landmark landmark);
+	public boolean deleteLandmarkById(long landmarkId);
 
 }
