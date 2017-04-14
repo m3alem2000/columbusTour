@@ -33,17 +33,16 @@ INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Cafe Brioso', 'CafeBrioso.jpg', 4, '39.963788', '-83.000574', 'OH', 'Columbus', '43215', '14 E Gay St, Columbus, OH 43215', 'Easygoing cafe vending premium espresso drinks, custom brews, abundant pastries & lunchtime fare.', false);
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Jennis Ice cream', 'JennisIceCream.jpg','4', '39.976968', '-83.009829', 'OH', 'Columbus', '43215', '714 N. High Stret, Columbus, OH 43215', 'Jenis Splendid Ice Creams is an artisan ice-cream company with national distribution. Known for its creative flavors and its high-quality ingredients.', false);
 
-
-
-INSERT INTO itinerary (user_id, landmark_id) VALUES (1, 1);
-INSERT INTO itinerary (user_id, landmark_id) VALUES (1, 2);
-
 INSERT INTO user_starting_point 
-(itinerary_id, full_address, starting_latitude, starting_longitude) VALUES
-(1, 'XYZ', 39.997339, -83.042371);
+(full_address, starting_latitude, starting_longitude) VALUES
+('XYZ', 39.997339, -83.042371);
 INSERT INTO user_starting_point 
-(itinerary_id, full_address, starting_latitude, starting_longitude) VALUES
-(2, 'ABC', 39.9973, -83.0423);
+(full_address, starting_latitude, starting_longitude) VALUES
+('ABC', 39.9973, -83.0423);
+
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 1);
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 2);
+
 
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'What a nice park', 5);
