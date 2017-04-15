@@ -58,7 +58,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(path="/users/{userName}/addAdmin", method=RequestMethod.POST)
-	public String createProfile(@RequestParam String password, AppUser newUser, ModelMap model) {
+	public String createProfile(@RequestParam String password, 
+								AppUser newUser, ModelMap model) {
 
 		AppUser newAdmin = new AppUser();
 		newAdmin.setEmail(newUser.getEmail());
@@ -90,6 +91,22 @@ public class AdminController {
 		return "cAllUsers";
 	}
 
+	@RequestMapping(path="/users/{userName}/cAllUsers", method=RequestMethod.POST)
+	public String deleteUser(@RequestParam(value = "userToDeleteId", required=false) long userToDeleteId,
+							ModelMap model) {
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		sessionUser = appUserDao.readUserByEmail(sessionUser.getEmail());
+		if(!sessionUser.isAdmin()){
+			return "null";
+		}
+		appUserDao.deleteAppUser(userToDeleteId);
+		model.put("currentUser", sessionUser);
+		List<AppUser> allUsers= new ArrayList<AppUser>();
+		allUsers = appUserDao.readAllAppUsers();
+		model.put("allUsers", allUsers);
+		return "cAllUsers";
+	}
+
 	@RequestMapping(path="/users/{userName}/manageReviews", method=RequestMethod.GET)
 	public String manageReviews(ModelMap model) {
 		AppUser sessionUser = (AppUser)model.get("currentUser");
@@ -99,13 +116,6 @@ public class AdminController {
 		}
 		model.put("currentUser", sessionUser);
 		List<Review> reviews = reviewDao.getAllLandmarksReviews();
-		Set<Long> landmarkIds = new HashSet<Long>();
-		for(Review review : reviews){
-			long lmId = review.getLandmarkId();
-			if (!landmarkIds.contains(lmId)){
-				landmarkIds.add(lmId);
-			}
-		}
 		model.put("reviews", reviews);
 		return "manageReviews";
 	}
@@ -120,13 +130,6 @@ public class AdminController {
 		model.put("currentUser", sessionUser);
 		reviewDao.deleteReviewById(reviewId);
 		List<Review> reviews = reviewDao.getAllLandmarksReviews();
-		Set<Long> landmarkIds = new HashSet<Long>();
-		for(Review review : reviews){
-			long lmId = review.getLandmarkId();
-			if (!landmarkIds.contains(lmId)){
-				landmarkIds.add(lmId);
-			}
-		}
 		model.put("reviews", reviews);
 		return "manageReviews";
 	}

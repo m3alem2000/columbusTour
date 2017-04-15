@@ -33,8 +33,10 @@
 		<div class="col-sm-8 text-left">
 		<!--  <input id="input-3" name="input-3" value="4" class="rating-loading">-->
 			<div id="map"></div>
-			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
-        	</script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap"></script>
+			<c:url value="/js" var="jsHref" />
+			<script src="${jsHref}/maps.js"></script>
+		
 		</div>
 		<!-- end of body of the homepage -->
 
