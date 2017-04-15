@@ -40,7 +40,7 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Search Landmark</a></li>
         <li><a href="${itineraryHref}">Itinerary</a></li>
-        <li><a href="#">Suggest a Landmark</a></li>
+        <li><a href="#">Suggest Landmark</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		<c:if test="${empty currentUser}">
