@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.capstone.model.AppUser;
 import com.techelevator.capstone.model.Landmark;
 
 @Component
@@ -26,19 +27,19 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	public boolean createLandmark(Landmark landmark) {
 		Long id = getNextId();
 		landmark.setLandmarkId(id);
-		String sqlAddLandmark = "Insert into landmark("
-				+ "landmark_id, "
-				+ "landmark_name, "
-				+ "landmark_picture, "
-				+ "landmark_rating, "
-				+ "latitude, "
-				+ "longitude, "
-				+ "state, "
-				+ "city, "
-				+ "zipcode, "
-				+ "address, "
-				+ "description) VALUES (?,?,?,?,?,?,?,?,?,?)";
-		int result = jdbcTemplate.update(sqlAddLandmark, landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), landmark.getLongitude(), landmark.getState(), landmark.getCity(), landmark.getZipCode(), landmark.getAddress(), landmark.getDescription());
+		String sqlAddLandmark = "INSERT INTO landmark( " +
+				"landmark_id, landmark_name, landmark_sub_name, " +
+				"landmark_picture, landmark_rating, latitude, " +
+				"longitude, state, city, " + 
+				"zip_code, address, description, " + 
+				"top_pick) " + 
+				" VALUES ( ?,?,?,?,?,  ?,?,?,?,?, ?,?,? );";
+		int result = jdbcTemplate.update(sqlAddLandmark, 
+				landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkSubName(),
+				landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), 
+				landmark.getLongitude(), landmark.getState(), landmark.getCity(), 
+				landmark.getZipCode(), landmark.getAddress(), landmark.getDescription(),
+				landmark.isTopPick());
 		return result==1;
 	}
 
@@ -55,18 +56,26 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 
 	@Override
 	public boolean updateLandmarkById(Landmark landmark) {
-		String sqlUpdateLandmarkById = "Update * from landmark where landmark_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlUpdateLandmarkById, landmark.getLandmarkId());
-		if(results.next()){
-			landmark = mapRowToLandmarks(results);
-			return true;
-		}
-		return false;
+		String sqlUpdateLandmarkById = "Update landmark SET "+
+				"(landmark_id, landmark_name, landmark_sub_name, " +
+				"landmark_picture, landmark_rating, latitude, " +
+				"longitude, state, city, " + 
+				"zip_code, address, description, " + 
+				"top_pick) " + 
+				" = ( ?,?,?,?,?,  ?,?,?,?,?, ?,?,? ) " +
+				"WHERE landmark_id = ?";
+		int result = jdbcTemplate.update(sqlUpdateLandmarkById, 
+				landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkSubName(),
+				landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), 
+				landmark.getLongitude(), landmark.getState(), landmark.getCity(), 
+				landmark.getZipCode(), landmark.getAddress(), landmark.getDescription(),
+				landmark.isTopPick());
+		return result==1;
 	}
 
 	@Override
 	public boolean deleteLandmarkById(long landmarkId) {
-		String sqlDeleteLandmarkById = "Delete from landmark where landmark_id = ?";
+		String sqlDeleteLandmarkById = "DELETE FROM landmark WHERE landmark_id = ?";
 		int result = jdbcTemplate.update(sqlDeleteLandmarkById, landmarkId);
 		return result==1;
 	}
@@ -77,9 +86,9 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		if (x >0){
 			limitToX= "limit "+ Integer.toString(x);
 		}
-		String sqlGetTopXLandmarks = "select * from landmark l " +
-				"join review r on l.landmark_id = r.landmark_id" +
-				"order by rating desc" + limitToX;
+		String sqlGetTopXLandmarks = "SELECT * FROM landmark l " +
+				"JOIN review r on l.landmark_id = r.landmark_id" +
+				"ORDER BY rating DESC" + limitToX;
 		ArrayList<Landmark> landmarkTopX = new ArrayList<Landmark>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetTopXLandmarks);
 		while(results.next()) {
@@ -103,7 +112,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 
 	@Override
 	public List<Landmark> getTopPickLandMarksByFlag() {
-		String sqlGetTopFiveLandmarks = "select * from landmark where top_pick is true";
+		String sqlGetTopFiveLandmarks = "SELECT * FROM landmark WHERE top_pick IS TRUE";
 		List<Landmark> topLandmarkList = new ArrayList<Landmark>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetTopFiveLandmarks);
 		while(results.next()) {
@@ -117,6 +126,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		theLandmark = new Landmark();
 		theLandmark.setLandmarkId(results.getLong("landmark_id"));
 		theLandmark.setLandmarkName(results.getString("landmark_name"));
+		theLandmark.setLandmarkSubName(results.getString("landmark_sub_name"));
 		theLandmark.setLandmarkPicture(results.getString("landmark_picture"));
 		theLandmark.setLandmarkRating(results.getInt("landmark_rating"));
 		theLandmark.setLatitude(results.getDouble("latitude"));
@@ -126,7 +136,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		theLandmark.setZipCode(results.getLong("zip_code"));
 		theLandmark.setAddress(results.getString("address"));
 		theLandmark.setDescription(results.getString("description"));
-		theLandmark.setLandmarkSubName(theLandmark.getLandmarkSubName(results.getString("landmark_name")));
+		theLandmark.setTopPick(results.getBoolean("top_pick"));
 		return theLandmark;
 	}
 
