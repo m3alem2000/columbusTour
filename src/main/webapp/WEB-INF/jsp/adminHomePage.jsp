@@ -35,6 +35,8 @@
 
 			<div class="col-sm-8 text-left">
 				<h2>Admin Home Page</h2>
+				
+				
 			</div>
 			<!-- end of body of the homepage -->
 

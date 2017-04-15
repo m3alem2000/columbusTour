@@ -7,8 +7,15 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		
-
+		<p>Select Starting Point:</p>
+		<form>
+			<select>
+			  <option value="volvo">Volvo</option>
+			  <option value="saab">Saab</option>
+			  <option value="mercedes">Mercedes</option>
+			  <option value="audi">Audi</option>
+			</select>
+		</form>
 		</div>
 		<!-- end links on the left of the homepage -->
 

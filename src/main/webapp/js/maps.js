@@ -10,19 +10,43 @@
 	          zoom: 11
 	        });
 	        
-	      function text_truncate(str, length, ending) {
-	            if (length == null) {
-	              length = 100;
-	            }
-	            if (ending == null) {
-	              ending = '...';
-	            }
-	            if (str.length > length) {
-	              return str.substring(0, length - ending.length) + ending;
-	            } else {
-	              return str;
-	            }
-	          };
+	        infoWindow = new google.maps.InfoWindow;
+
+	        // Try HTML5 geolocation.
+	        if (navigator.geolocation) {
+	          navigator.geolocation.getCurrentPosition(function(position) {
+	            var pos = {
+	              lat: position.coords.latitude,
+	              lng: position.coords.longitude
+	            };
+
+	            infoWindow.setPosition(pos);
+	            infoWindow.setContent('Location found.');
+	            infoWindow.open(map);
+	            map.setCenter(pos);
+	          }, function() {
+	            handleLocationError(true, infoWindow, map.getCenter());
+	          });
+	        } else {
+	          // Browser doesn't support Geolocation
+	          handleLocationError(false, infoWindow, map.getCenter());
+	        }
+	      }
+	      
+	      
+//	      function text_truncate(str, length, ending) {
+//	            if (length == null) {
+//	              length = 100;
+//	            }
+//	            if (ending == null) {
+//	              ending = '...';
+//	            }
+//	            if (str.length > length) {
+//	              return str.substring(0, length - ending.length) + ending;
+//	            } else {
+//	              return str;
+//	            }
+//	          };
 	        
 	        for (i = 0; i < 6; i++) { 
 		        var marker = new google.maps.Marker({
@@ -52,4 +76,4 @@
 		        
 		        markers[i] = marker;
 	        }
-	      }
+	      
