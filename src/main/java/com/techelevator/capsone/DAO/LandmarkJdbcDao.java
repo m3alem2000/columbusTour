@@ -26,7 +26,18 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	public boolean createLandmark(Landmark landmark) {
 		Long id = getNextId();
 		landmark.setLandmarkId(id);
-		String sqlAddLandmark = "Insert into landmark(landmark_id, landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zipcode, address, description) VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String sqlAddLandmark = "Insert into landmark("
+				+ "landmark_id, "
+				+ "landmark_name, "
+				+ "landmark_picture, "
+				+ "landmark_rating, "
+				+ "latitude, "
+				+ "longitude, "
+				+ "state, "
+				+ "city, "
+				+ "zipcode, "
+				+ "address, "
+				+ "description) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		int result = jdbcTemplate.update(sqlAddLandmark, landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), landmark.getLongitude(), landmark.getState(), landmark.getCity(), landmark.getZipCode(), landmark.getAddress(), landmark.getDescription());
 		return result==1;
 	}
@@ -79,7 +90,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	}
 
 	private Long getNextId() {
-		String sqlSelectNextId = "SELECT NEXTVAL('seq_landmark_id')";
+		String sqlSelectNextId = "SELECT NEXTVAL('landmark_landmark_id_seq')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		Long id = null;
 		if(results.next()) {

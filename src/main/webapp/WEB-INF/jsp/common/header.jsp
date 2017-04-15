@@ -6,13 +6,15 @@
   		<meta charset="utf-8">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	    <script src="./js/maps.js"></script>
-	    <script src="./js/jquery.min.js"></script>
-	    <script src="./js/jquery.validate.min.js"></script>
-	    <script src="./js/additional-methods.min.js "></script>
+		<c:url value="/js" var="jsHref" />
+		<!-- https://code.jquery.com/ to get the right urls for all the scripts-->
+	    <script src="${jsHref}/maps.js"></script>
+	    <script src="${jsHref}/jquery.min.js"></script>
+	    <script src="${jsHref}/jquery.validate.min.js"></script>
+	    <script src="${jsHref}/additional-methods.min.js "></script>
 	    <!-- <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script> -->
-	    <script src="./js/bootstrap.min.js"></script>
-	    <!--  <script src="./js/validation.js"></script>-->
+	    <script src="${jsHref}/bootstrap.min.js"></script>
+	    <!--  <script src="${jsHref}/validation.js"></script>-->
 	    
 	    <c:url var="cssHref" value="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">

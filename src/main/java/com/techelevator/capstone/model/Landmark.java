@@ -3,18 +3,25 @@ package com.techelevator.capstone.model;
 public class Landmark {
 
 	private Long landmarkId;
-	private String landmarkName;
-	private String landmarkSubName;
+	private String landmarkName; // next val
+	private String landmarkSubName; //*=Required
 	private String landmarkPicture;
 	private int landmarkRating;
-	private double latitude;
-	private double longitude;
-	private String state;
-	private String city;
-	private Long zipCode;
+	private double latitude;//*
+	private double longitude;//*
+	private String state;//*
+	private String city;//*
+	private Long zipCode;//*
 	private String address;
-	private String description;
+	private String description;//*
+	private boolean topPick;
 	
+	public boolean isTopPick() {
+		return topPick;
+	}
+	public void setTopPick(boolean topPick) {
+		this.topPick = topPick;
+	}
 	public Long getLandmarkId() {
 		return landmarkId;
 	}

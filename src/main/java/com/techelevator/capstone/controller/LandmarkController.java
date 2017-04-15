@@ -23,9 +23,12 @@ public class LandmarkController {
 	
 	@RequestMapping(path="/users/{userName}/addLandmark", method=RequestMethod.GET)
 	public String displayAddLandmarkForm(ModelMap model){
+		// TODO: get the landmark to pre populate the fields 
+//		if (model.get("landmark")!=null){
+//		Landmark sessionLandmark = (Landmark)model.get("landmark");
+//		landmarkDao.readLandmarkById(sessionLandmark.getLandmarkId())
+//		}
 		
-		//model.put("admintUser", formUser);
-		//Landmark sessionLandmark = (Landmark)model.get("landmark");
 		return "addLandmark";
 	}
 	
