@@ -98,6 +98,28 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		return landmarkTopX;
 	}
 
+	@Override
+	public List<Landmark> getTopPickLandMarksByFlag() {
+		String sqlGetFlagedLandmarks = "SELECT * FROM landmark WHERE top_pick IS TRUE";
+		List<Landmark> topLandmarkList = new ArrayList<Landmark>();
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetFlagedLandmarks);
+		while(results.next()) {
+			topLandmarkList.add(mapRowToLandmarks(results));
+		}
+		return topLandmarkList;
+	}
+	
+	@Override
+	public List<Landmark> getAllLandmarks() {
+		String sqlGetAllLandmarks = "SELECT * FROM landmark";
+		List<Landmark> allLandmarks = new ArrayList<Landmark>();
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllLandmarks);
+		while(results.next()) {
+			allLandmarks.add(mapRowToLandmarks(results));
+		}
+		return allLandmarks;
+	}
+	
 	private Long getNextId() {
 		String sqlSelectNextId = "SELECT NEXTVAL('landmark_landmark_id_seq')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
@@ -110,16 +132,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		return id;
 	}
 
-	@Override
-	public List<Landmark> getTopPickLandMarksByFlag() {
-		String sqlGetTopFiveLandmarks = "SELECT * FROM landmark WHERE top_pick IS TRUE";
-		List<Landmark> topLandmarkList = new ArrayList<Landmark>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetTopFiveLandmarks);
-		while(results.next()) {
-			topLandmarkList.add(mapRowToLandmarks(results));
-		}
-		return topLandmarkList;
-	}
+
 	
 	private Landmark mapRowToLandmarks(SqlRowSet results) {
 		Landmark theLandmark;

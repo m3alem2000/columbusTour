@@ -21,7 +21,7 @@ import com.techelevator.capstone.model.AppUser;
 import com.techelevator.capstone.model.Review;
 
 @Controller
-@SessionAttributes({"currentUser","reviews"})
+@SessionAttributes({"currentUser","reviews","allUsers"})
 public class AdminController {
 	private AppUserDAO appUserDao;
 	
@@ -84,6 +84,9 @@ public class AdminController {
 			return "null";
 		}
 		model.put("currentUser", sessionUser);
+		List<AppUser> allUsers= new ArrayList<AppUser>();
+		allUsers = appUserDao.readAllAppUsers();
+		model.put("allUsers", allUsers);
 		return "cAllUsers";
 	}
 
