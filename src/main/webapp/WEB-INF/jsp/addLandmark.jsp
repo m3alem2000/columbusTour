@@ -92,58 +92,10 @@
 							value="${landMark.description}" id="description"
 							name="description" placeHolder="Description" class="form-control" />
 					</div>
-					<input type="checkbox" name="topPick" value="true">Top Pick landmark<br>
-
-	<!-- private Long landmarkId;
-	private String landmarkName; // next val
-	private String landmarkSubName; //*=Required
-	private String landmarkPicture;
-	private int landmarkRating;
-	private double latitude;//*
-	private double longitude;//*
-	private String state;//*
-	private String city;//*
-	private Long zipCode;//*
-	private String address;
-	private String description;//*
-	private boolean topPick; -->
-
-	<!-- private Long landmarkId;
-	private String landmarkName; // next val
-	private String landmarkSubName; //*=Required
-	private String landmarkPicture;
-	private int landmarkRating;
-	private double latitude;//*
-	private double longitude;//*
-	private String state;//*
-	private String city;//*
-	private Long zipCode;//*
-	private String address;
-	private String description;//*
-	private boolean topPick; -->
-	
-	
-	<!-- landmark_id INTEGER DEFAULT NEXTVAL('landmark_landmark_id_seq'::regclass) NOT NULL,
-	landmark_name VARCHAR(128) NOT NULL,
-	landmark_sub_name TEXT,
-	landmark_picture VARCHAR(256),
-	landmark_rating INTEGER,
-	latitude REAL NOT NULL,
-	longitude REAL NOT NULL,
-	state VARCHAR(128) NOT NULL,
-	city VARCHAR(128),
-	zip_code INTEGER NOT NULL,
-	address VARCHAR(256),
-	description TEXT NOT NULL,
-	top_pick BOOLEAN,
-	CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id) -->
-
-
-
-
-
-
-
+					<span>Top Pick landmark  </span>
+					<input type="hidden" value="0" name="topPick" />
+					<input class="form-control" type="checkbox" value="1" name="topPick" />
+					
 
 
 					<input type="submit" class="btn btn-default" value="Submit" />
