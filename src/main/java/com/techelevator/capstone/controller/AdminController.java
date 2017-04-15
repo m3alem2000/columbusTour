@@ -1,5 +1,13 @@
 package com.techelevator.capstone.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,15 +16,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.capsone.DAO.AppUserDAO;
+import com.techelevator.capsone.DAO.ReviewDAO;
 import com.techelevator.capstone.model.AppUser;
+import com.techelevator.capstone.model.Review;
 
 @Controller
-@SessionAttributes("currentUser")
+@SessionAttributes({"currentUser","reviews","allUsers"})
 public class AdminController {
 	private AppUserDAO appUserDao;
+	
+	@Autowired
+	private ReviewDAO reviewDao;
 
+	
 	public AdminController(AppUserDAO appUserDao) {
 		this.appUserDao = appUserDao;
+		
 	}
 
 	@RequestMapping(path="/users/{userName}/adminHomePage", method=RequestMethod.GET)
@@ -43,7 +58,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(path="/users/{userName}/addAdmin", method=RequestMethod.POST)
-	public String createProfile(@RequestParam String password, AppUser newUser, ModelMap model) {
+	public String createProfile(@RequestParam String password, 
+								AppUser newUser, ModelMap model) {
 
 		AppUser newAdmin = new AppUser();
 		newAdmin.setEmail(newUser.getEmail());
@@ -69,6 +85,25 @@ public class AdminController {
 			return "null";
 		}
 		model.put("currentUser", sessionUser);
+		List<AppUser> allUsers= new ArrayList<AppUser>();
+		allUsers = appUserDao.readAllAppUsers();
+		model.put("allUsers", allUsers);
+		return "cAllUsers";
+	}
+
+	@RequestMapping(path="/users/{userName}/cAllUsers", method=RequestMethod.POST)
+	public String deleteUser(@RequestParam(value = "userToDeleteId", required=false) long userToDeleteId,
+							ModelMap model) {
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		sessionUser = appUserDao.readUserByEmail(sessionUser.getEmail());
+		if(!sessionUser.isAdmin()){
+			return "null";
+		}
+		appUserDao.deleteAppUser(userToDeleteId);
+		model.put("currentUser", sessionUser);
+		List<AppUser> allUsers= new ArrayList<AppUser>();
+		allUsers = appUserDao.readAllAppUsers();
+		model.put("allUsers", allUsers);
 		return "cAllUsers";
 	}
 
@@ -80,15 +115,22 @@ public class AdminController {
 			return "null";
 		}
 		model.put("currentUser", sessionUser);
+		List<Review> reviews = reviewDao.getAllLandmarksReviews();
+		model.put("reviews", reviews);
 		return "manageReviews";
 	}
-	
-	@RequestMapping(path="/adminReviews", method=RequestMethod.GET)
-	public String displaySignupForm() {
-		
-		
-		return "adminReviews";
+
+	@RequestMapping(path="/users/{userName}/manageReviews", method=RequestMethod.POST)
+	public String deleteReviews(@RequestParam long reviewId, ModelMap model) {
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		sessionUser = appUserDao.readUserByEmail(sessionUser.getEmail());
+		if(!sessionUser.isAdmin()){
+			return "null";
+		}
+		model.put("currentUser", sessionUser);
+		reviewDao.deleteReviewById(reviewId);
+		List<Review> reviews = reviewDao.getAllLandmarksReviews();
+		model.put("reviews", reviews);
+		return "manageReviews";
 	}
-
-
 }
