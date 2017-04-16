@@ -63,10 +63,16 @@
 
 				<button>Show/Hide reviews</button>
 				<div id="reviews">
-					<c:forEach var="review" items="${reviews}">
-						<p>${review.reviewId}</p>
-						<p>${review.review}</p>
-					</c:forEach>
+					<table>
+						<c:forEach var="review" items="${reviews}">
+							<tr>
+								<td>${review.reviewId}</td>
+								<td>${review.review}</td>
+								<td>${review.dateCreated}</td>
+								<td>${review.rating}</td>
+							</tr>
+						</c:forEach>
+					</table>
 				</div>
 
 			</div>
