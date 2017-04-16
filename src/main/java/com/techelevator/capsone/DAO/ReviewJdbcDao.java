@@ -53,6 +53,19 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
+	public List<Review> getAllLandmarkReviews(long landmarkId) {
+		List<Review> reviews = new ArrayList<>();
+		String sqlReviews = "SELECT * FROM review "
+				+ "WHERE landmark_id =? "
+				+ "ORDER by review.date_created DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReviews, landmarkId);
+		while(results.next()) {
+			reviews.add(mapRowToReview(results));
+		}
+		return reviews;
+	}
+	
+	@Override
 	public boolean updateReview(Review review) {//look into dateCreated here
 		String sqlUpdateReview = "UPDATE users SET landmark_id = ?, user_id = ?, review = ?, rating = ?";
 		int result = jdbcTemplate.update(sqlUpdateReview, review.getLandmarkId(), review.getUserId(), review.getReview(), review.getRating());

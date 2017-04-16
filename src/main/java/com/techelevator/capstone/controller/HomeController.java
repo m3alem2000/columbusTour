@@ -14,17 +14,17 @@ import com.techelevator.capstone.model.Landmark;
 
 
 
-	@Controller
-	@SessionAttributes("landmarks")
-	public class HomeController {
-		@Autowired
-		private LandmarkDAO landmarkDao;
-		
-		@RequestMapping(path="/", method=RequestMethod.GET)
-			public String showHomePage(HttpServletRequest request) {
-			List<Landmark> landmark = landmarkDao.getTopPickLandMarksByFlag();
-			request.setAttribute("landmarks", landmark);
-			return "home";
-		}
-	
+@Controller
+@SessionAttributes("landmarks")
+public class HomeController {
+	@Autowired
+	private LandmarkDAO landmarkDao;
+
+	@RequestMapping(path="/", method=RequestMethod.GET)
+	public String showHomePage(HttpServletRequest request) {
+		List<Landmark> landmark = landmarkDao.getTopPickLandMarksByFlag();
+		request.setAttribute("landmarks", landmark);
+		return "home";
+	}
+
 }

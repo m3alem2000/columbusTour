@@ -17,10 +17,10 @@
 				<input type="hidden" name="landmarkPicture${landmark.landmarkId}" value="${landmark.landmarkPicture}"/>
 				<input type="hidden" name="description${landmark.landmarkId}" value="${landmark.description}"/>
 				<a href="javascript:show_detail(${count})">${landmark.landmarkSubName}
-<!-- 				<script type="text/javascript">
+				<script type="text/javascript">
 					text_truncate('${landmark.landmarkName}', 20);
-					document.getElementById("landmarkTitle").innerHTML = "asdff";
-					</script> -->
+					<!-- document.getElementById("landmarkTitle").innerHTML = "asdff"; -->
+					</script>
 				<br>
 				<c:set var="count" value="${count + 1}" scope="page"/>
 				<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 100px">				
