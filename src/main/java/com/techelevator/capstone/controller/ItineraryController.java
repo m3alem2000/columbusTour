@@ -28,18 +28,21 @@ public class ItineraryController {
 
 	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
 	public String displayItineraryForm(HttpServletRequest request, ModelMap model) {
-		if(model.get("currentUser").equals(null)){
-			return "redirect:/login";
-		}else{
-			AppUser appUser = (AppUser) model.get("currentUser");
-			long userId = appUser.getUserId();
-			List<Itinerary> itineraries = new ArrayList<Itinerary>();
-			itineraries = itineraryDao.getItinerariesListByUserId(userId);
-			request.setAttribute("itineraries", itineraries);
-			return "itinerary";
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		if(!sessionUser.equals(null)){
+//		if(model.get("currentUser").equals(null)){
+////			return "redirect:/login";
 		}
-//		AppUser sessionUser = (AppUser)model.get("currentUser");
-//		if(!sessionUser.equals(null)){
+		return null;
+		//else{
+//			AppUser appUser = (AppUser) model.get("currentUser");
+//			long userId = appUser.getUserId();
+//			List<Itinerary> itineraries = new ArrayList<Itinerary>();
+//			itineraries = itineraryDao.getItinerariesListByUserId(userId);
+//			request.setAttribute("itineraries", itineraries);
+//			return "itinerary";
+//		}
+
 //			long userId = sessionUser.getUserId();
 //			if(userId != 0){
 //				
