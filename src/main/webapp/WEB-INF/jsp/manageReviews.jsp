@@ -21,6 +21,14 @@
 			<li class="review">
 				<span class="">${review.review}</span>
 				<span class="">${review.landmarkId}</span>
+				
+				<c:url var="landmarkFormAction" value="/landmarkDetail"/>
+				<form action="${landmarkFormAction}" method="GET">
+					<input type="hidden" name="landmarkId" value="${review.landmarkId}"/>
+					<input type="submit" value="Landmark Details" />
+					
+				</form>
+				
 				<form action="${deleteUrl}" method="POST">		
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 					<input type="hidden" name="reviewId" value="${review.reviewId}">

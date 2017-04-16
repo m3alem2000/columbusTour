@@ -6,8 +6,7 @@ import com.techelevator.capstone.model.UserStartingPoint;
 
 public interface UserStartingPointDAO {
 
-	public	UserStartingPoint createStartingPoint(Long itineraryId, String address, double latitude,
-			double longitude);
+	public	UserStartingPoint createStartingPoint(UserStartingPoint usp);
 	
 	public List<UserStartingPoint> getListStartingPoingByUserId(long userId);
 	

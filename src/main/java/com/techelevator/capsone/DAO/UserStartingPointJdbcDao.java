@@ -23,18 +23,14 @@ public class UserStartingPointJdbcDao implements UserStartingPointDAO {
 	}
 
 	@Override
-	public UserStartingPoint createStartingPoint(Long itineraryId, String address, double latitude, double longitude) {
+	public UserStartingPoint createStartingPoint(UserStartingPoint usp) {
 		String sqlNewSP = "INSERT INTO user_starting_point "
 				+ "(starting_id, itinerary_id, full_address, starting_latitude, starting_longitude) " + "VALUES (?,?,?,?,?)";
 		Long id = getNextId();
-		int rowsAffected = jdbcTemplate.update(sqlNewSP, id, itineraryId, address, latitude, longitude);
+		int rowsAffected = jdbcTemplate.update(sqlNewSP, 
+				id, usp.getItineraryId(), usp.getFullAddress(), 
+				usp.getLatitude(), usp.getLongitude());
 		if (rowsAffected == 1) {
-			UserStartingPoint usp = new UserStartingPoint();
-			usp.setStartingId(id);
-			usp.setItineraryId(itineraryId);
-			usp.setFullAddress(address);
-			usp.setLatitude(latitude);
-			usp.setLongitude(longitude);
 			return usp;
 		} else {
 			return null;

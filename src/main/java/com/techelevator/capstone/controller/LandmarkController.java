@@ -24,6 +24,7 @@ import com.techelevator.capstone.model.UserStartingPoint;
 @Controller
 @SessionAttributes({"landmark","currentUser","landmarks"})
 public class LandmarkController {
+	
 	private LandmarkDAO landmarkDao;
 
 	@Autowired
@@ -61,15 +62,18 @@ public class LandmarkController {
 	}
 	
 	@RequestMapping(path="/landmarkDetail", method=RequestMethod.GET)
-	public String viewLandmarkDetail(HttpServletRequest request, @RequestParam Long landmarkId, ModelMap map) {
-			request.setAttribute("landmarks", landmarkDao.readLandmarkById(landmarkId));
+	public String viewLandmarkDetail(HttpServletRequest request, 
+			@RequestParam Long landmarkId, 
+			ModelMap map) {
+			request.setAttribute("landmark", landmarkDao.readLandmarkById(landmarkId));
 		return "landmarkDetail";
 	}
 
 	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
-	public String showlandmarkSearchPage(HttpServletRequest request, @RequestParam long itineraryId, @RequestParam String address, @RequestParam double latitude , @RequestParam double longitude) {
-	UserStartingPoint usps = uspDao.createStartingPoint(itineraryId, address, latitude, longitude);
-		request.setAttribute("userStartingPoint", usps);
+	public String showlandmarkSearchPage(HttpServletRequest request, 
+			UserStartingPoint userStartingPoint) {
+			uspDao.createStartingPoint(userStartingPoint);
+		request.setAttribute("userStartingPoint", userStartingPoint);
 	return "landmarkSearchPage";
 	}
 }
