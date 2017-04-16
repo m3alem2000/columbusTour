@@ -15,39 +15,60 @@
 			<div class="landmark-detail">
 				<h3 id="detail-title">${landmark.landmarkName}</h3>
 
-					<c:set value="${landmark.landmarkId}" var="landmarkId" />
-					<%-- <img src="<c:url value="./img/${landmark.landmarkPicture}"/>" /> --%>
-					<img id="pic" class="land-image"
-						src="./img/${landmark.landmarkPicture}" />
+				<c:set value="${landmark.landmarkId}" var="landmarkId" />
+				<%-- <img src="<c:url value="./img/${landmark.landmarkPicture}"/>" /> --%>
+				<img id="pic" class="land-image"
+					src="./img/${landmark.landmarkPicture}" />
 
 
-					<c:choose>
-						<c:when test="${landmark.landmarkRating == 5}">
-							<img class="rating" src="img/5-star.png">
-						</c:when>
-						<c:when test="${landmark.landmarkRating >4}">
-							<img class="rating" src="img/4-star.png">
-						</c:when>
-						<c:when test="${landmark.landmarkRating >3}">
-							<img class="rating" src="img/3-star.png">
-						</c:when>
-						<c:when test="${landmark.landmarkRating >2}">
-							<img class="rating" src="img/2-star.png">
-						</c:when>
-						<c:otherwise>
-							<img class="rating" src="img/1-star.png">
-						</c:otherwise>
-					</c:choose>
+				<c:choose>
+					<c:when test="${landmark.landmarkRating == 5}">
+						<img class="rating" src="img/5-star.png">
+					</c:when>
+					<c:when test="${landmark.landmarkRating >4}">
+						<img class="rating" src="img/4-star.png">
+					</c:when>
+					<c:when test="${landmark.landmarkRating >3}">
+						<img class="rating" src="img/3-star.png">
+					</c:when>
+					<c:when test="${landmark.landmarkRating >2}">
+						<img class="rating" src="img/2-star.png">
+					</c:when>
+					<c:otherwise>
+						<img class="rating" src="img/1-star.png">
+					</c:otherwise>
+				</c:choose>
 
 
 
-					<p id="landmark-address">
-						<c:out value="${landmark.address}" />
-					</p>
+				<p id="landmark-address">
+					<c:out value="${landmark.address}" />
+				</p>
 
-					<p id="landmark-description">
-						<c:out value="${landmark.description}" />
-					</p>
+				<p id="landmark-description">
+					<c:out value="${landmark.description}" />
+				</p>
+
+				<!--Add a hidden div with all the reviews that can be reveled and re-hide  -->
+				<script
+					src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+				<script>
+					$(document).ready(function() {
+						$("button").click(function() {
+							$("#reviews").toggle();
+						});
+					});
+				</script>
+
+
+				<button>Show/Hide reviews</button>
+				<div id="reviews">
+					<c:forEach var="review" items="${reviews}">
+						<p>${review.reviewId}</p>
+						<p>${review.review}</p>
+					</c:forEach>
+				</div>
+
 			</div>
 		</div>
 
