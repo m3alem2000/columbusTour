@@ -6,17 +6,23 @@
 	<div class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-			<c:url var="createAStartPoint" value="/users/${currentUser.username}/createStartingPoint"/>
-				<form action="${createAStartPoint}" method="GET">		
-					<input type="submit" class="button" value="Create Starting Point">
+				<p>Enter Address or click on map</p>
+				
+				<c:url var="createAStartPoint" value="/users/${currentUser.username}/createItinerary"/>
+				<form action="${createAStartPoint}" method="POST">	
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+					<input type="hidden" name="userToDeleteId" value="${currentUser.userId}">
+					<input type="hidden" name="userToDeleteId" value="${itinerary.itineraryName}">
+					<input type="hidden" name="userToDeleteId" value="${itinerary.userId}">
+					<input type="submit" class="button" value="Create Itinerary">
 				</form>
+				
 		</div>
 		<!-- end links on the left of the homepage -->
 
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
-		<h2>Land Mark Search Page</h2>
 			<input id="mile_radius" name="input_mile" value="5"
 				class="mile_radius">
 			<div id="map"></div>

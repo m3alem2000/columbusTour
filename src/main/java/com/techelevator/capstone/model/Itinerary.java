@@ -11,15 +11,8 @@ public class Itinerary {
 	private double startingLongitude;
 	private double destinationLatitude;
 	private double destinationLongitude;
-	private int userStartingPointId;
 	private LocalDateTime dateCreated;
 
-	public int getUserStartingPointId() {
-		return userStartingPointId;
-	}
-	public void setUserStartingPointId(int userStartingPointId) {
-		this.userStartingPointId = userStartingPointId;
-	}
 
 	public String getItineraryName() {
 		return itineraryName;

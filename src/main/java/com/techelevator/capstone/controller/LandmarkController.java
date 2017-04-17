@@ -46,7 +46,6 @@ public class LandmarkController {
 	public String displaySearchLandmarkForm(ModelMap model){
 		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
 		model.put("landmarks", landmarks);
-		
 		return "landmarkSearchPage";
 	}
 	
