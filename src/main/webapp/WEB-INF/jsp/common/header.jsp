@@ -35,7 +35,6 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-
 				<c:url var="homeHref" value="/" />
 				<a class="navbar-brand" href="${homeHref}"> <c:url
 						var="logoHref" value="/img/delta_logo.gif" /> <img
@@ -44,7 +43,6 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-
 					<c:url var="homeHref" value="/" />
 					<li class="active"><a href="${homeHref}">Home</a></li>
 
@@ -54,26 +52,18 @@
 					<c:if test="${empty currentUser}">
 						<c:url var="searchLandmarkHref" value="/searchLanmark" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
-
-
-						<c:url var="itineraryHref" value="/itinerary" />
-						<%-- <li><a href="${itineraryHref}">Itinerary</a></li> --%>
-						<li><a href="#">Itinerary</a> <c:url var="suggestALandmark"
-								value="/suggestALandmark" />
+						<c:url var="itineraryHref" value="/itinerary"/>
+						<li><a href="${itineraryHref}">Itinerary</a> 
+						<c:url var="suggestALandmark" value="/suggestALandmark"/>
 						<li><a href="#">Suggest a Landmark</a></li>
 					</c:if>
 
 					<c:if test="${not empty currentUser}">
-						<c:url var="searchLandmarkHref"
-							value="/users/${currentUser.username}/searchLanmark" />
+						<c:url var="searchLandmarkHref" value="/users/${currentUser.username}/searchLanmark" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
-
-
-						<c:url var="itineraryHref"
-							value="/users/${currentUser.username}/itinerary" />
-						<%-- <li><a href="${itineraryHref}">Itinerary</a></li> --%>
-						<li><a href="#">Itinerary</a> <c:url var="suggestALandmark"
-								value="/users/${currentUser.username}/suggestALandmark" />
+						<c:url var="itineraryHref" value="/itinerary" />
+						<li><a href="${itineraryHref}">Itinerary</a> 
+						<c:url var="suggestALandmark" value="/users/${currentUser.username}/suggestALandmark" />
 						<li><a href="#">Suggest a Landmark</a></li>
 					</c:if>
 				</ul>
