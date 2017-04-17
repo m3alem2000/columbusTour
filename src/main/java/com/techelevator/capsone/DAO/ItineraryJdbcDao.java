@@ -11,7 +11,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.capstone.model.Itinerary;
-import com.techelevator.capstone.model.Landmark;
 
 @Component
 public class ItineraryJdbcDao implements ItineraryDAO{
@@ -28,15 +27,21 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	public void createItinerary(Itinerary itinerary) {
 		Long itineraryId = getNextId();
 		String sqlCreateItinerary = "INSERT INTO itinerary"
-				+ "(itinerary_id, user_id, starting_latitude, starting_longitude) "
-				+ "VALUES (?,?,?,?,?,?)";
-		jdbcTemplate.update(sqlCreateItinerary, itineraryId, itinerary.getUserId(), itinerary.getStartingLatitude(), itinerary.getStartingLongitude());
-
+				+ "(itinerary_id, "
+				+ "itinerary_name, "
+				+ "user_id, "
+				+ "user_starting_point_id) "
+				+ "VALUES (?,?,?,?)";
+		jdbcTemplate.update(sqlCreateItinerary, 
+				itineraryId, 
+				itinerary.getItineraryName(), 
+				itinerary.getUserId(), 
+				itinerary.getUserStartingPointId());
 	}
 
 	@Override
 	public List<Itinerary> getItinerariesListByUserId(int userId) {
-		String sqlgetItineraryById = "select * from itinerary where  user_id = ?";
+		String sqlgetItineraryById = "select * from itinerary where user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlgetItineraryById, userId);
 		List<Itinerary> userItineraries = new ArrayList<>();
 		while(results.next()){
@@ -49,10 +54,10 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	@Override
 	public List<Itinerary> getItinerariesDetailByUserId(int userId, int itineraryId) {
 		String sqlSelectItineraryByUser = "select * from itinerary "+
-		"join itinerary_landmark on itinerary_landmark.itinerary_id = itinerary.itinerary_id "+
-		"join landmark on itinerary_landmark.landmark_id = landmark.landmark_id "+
-		"join user_starting_point on user_starting_point.starting_id = itinerary.user_starting_point_id "+
-		"where itinerary.user_id = ? and itinerary.itinerary_id = ?";
+				"join itinerary_landmark on itinerary_landmark.itinerary_id = itinerary.itinerary_id "+
+				"join landmark on itinerary_landmark.landmark_id = landmark.landmark_id "+
+				"join user_starting_point on user_starting_point.starting_id = itinerary.user_starting_point_id "+
+				"where itinerary.user_id = ? and itinerary.itinerary_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectItineraryByUser, userId, itineraryId);
 		List<Itinerary> userItineraries = new ArrayList<>();
 		while(results.next()){
@@ -61,25 +66,27 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 		}
 		return userItineraries;
 	}
-		private Itinerary mapRowToItinerary(SqlRowSet results) {
-			Itinerary theItinerary = new Itinerary();
-			theItinerary.setItineraryId(results.getInt("itinerary_id"));
-			theItinerary.setUserId(results.getInt("user_id"));
-			theItinerary.setUserStartingPointId(results.getInt("user_starting_point_id"));
-			theItinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
+	private Itinerary mapRowToItinerary(SqlRowSet results) {
+		Itinerary theItinerary = new Itinerary();
+		theItinerary.setItineraryId(results.getInt("itinerary_id"));
+		theItinerary.setItineraryName(results.getString("itinerary_name"));
+		theItinerary.setUserId(results.getInt("user_id"));
+		theItinerary.setUserStartingPointId(results.getInt("user_starting_point_id"));
+		theItinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
 		return theItinerary;
 	}
-		
-		private Itinerary mapRowToItineraryDetail(SqlRowSet results) {
-			Itinerary theItinerary = new Itinerary();
-			theItinerary.setItineraryId(results.getInt("itinerary_id"));
-			theItinerary.setUserId(results.getInt("user_id"));
-			theItinerary.setUserStartingPointId(results.getInt("user_starting_point_id"));
-			theItinerary.setStartingLatitude(results.getDouble("starting_Latitude"));
-			theItinerary.setStartingLongitude(results.getDouble("starting_Longitude"));
-			theItinerary.setDestinationLatitude(results.getDouble("latitude"));
-			theItinerary.setDestinationLongitude(results.getDouble("longitude"));
-			theItinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
+
+	private Itinerary mapRowToItineraryDetail(SqlRowSet results) {
+		Itinerary theItinerary = new Itinerary();
+		theItinerary.setItineraryId(results.getInt("itinerary_id"));
+		theItinerary.setItineraryName(results.getString("itinerary_name"));
+		theItinerary.setUserId(results.getInt("user_id"));
+		theItinerary.setUserStartingPointId(results.getInt("user_starting_point_id"));
+		theItinerary.setStartingLatitude(results.getDouble("starting_Latitude"));
+		theItinerary.setStartingLongitude(results.getDouble("starting_Longitude"));
+		theItinerary.setDestinationLatitude(results.getDouble("latitude"));
+		theItinerary.setDestinationLongitude(results.getDouble("longitude"));
+		theItinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
 		return theItinerary;
 	}
 

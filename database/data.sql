@@ -47,14 +47,14 @@ INSERT INTO user_starting_point
 (full_address, starting_latitude, starting_longitude) VALUES
 ('ABC', 39.9973, -83.0423);
 
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 2);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 2);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 2);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 2);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (1, 'Day 1', 1);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (1, 'Day 2', 2);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (2, 'Day 3', 1);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (2, 'Day 4', 2);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (3, 'Day 5', 1);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (3, 'Day 6', 2);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (4, 'Day 7', 1);
+INSERT INTO itinerary (user_id, itinerary_name, user_starting_point_id) VALUES (4, 'Day 8', 2);
 
 
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'Beautiful park outside, outstanding indoor biomes. Need several hours to visit. Nice cafe and gift shop for unique gifts.', 5);

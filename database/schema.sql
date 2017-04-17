@@ -115,6 +115,7 @@ CREATE SEQUENCE itinerary_itinerary_id_seq
 CREATE TABLE itinerary
 (
 	itinerary_id INTEGER DEFAULT NEXTVAL('itinerary_itinerary_id_seq'::regclass) NOT NULL,
+	itinerary_name VARCHAR(32) NOT NULL,
 	user_id INTEGER NOT NULL,
 	user_starting_point_id INTEGER NOT NULL,
 	date_created TIMESTAMP DEFAULT NOW(),

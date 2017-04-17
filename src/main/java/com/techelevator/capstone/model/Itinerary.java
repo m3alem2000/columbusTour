@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Itinerary {
 
 	private int itineraryId;
-	private String itinerary_name;
+	private String itineraryName;
 	private int userId;
 	private double startingLatitude;
 	private double startingLongitude;
@@ -20,14 +20,14 @@ public class Itinerary {
 	public void setUserStartingPointId(int userStartingPointId) {
 		this.userStartingPointId = userStartingPointId;
 	}
-	
-	public String getItinerary_name() {
-		return itinerary_name;
+
+	public String getItineraryName() {
+		return itineraryName;
 	}
-	public void setItinerary_name(String itinerary_name) {
-		this.itinerary_name = itinerary_name;
+	public void setItineraryName(String itineraryName) {
+		this.itineraryName = itineraryName;
 	}
-	
+
 	public double getDestinationLatitude() {
 		return destinationLatitude;
 	}
