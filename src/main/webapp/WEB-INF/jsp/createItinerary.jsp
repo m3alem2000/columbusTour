@@ -10,10 +10,10 @@
 				
 				<c:url var="createAStartPoint" value="/users/${currentUser.username}/createItinerary"/>
 				<form action="${createAStartPoint}" method="POST">	
-				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-					<input type="hidden" name="userToDeleteId" value="${currentUser.userId}">
-					<input type="hidden" name="userToDeleteId" value="${itinerary.itineraryName}">
-					<input type="hidden" name="userToDeleteId" value="${itinerary.userId}">
+					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+					<input type="text" name="itineraryName" >
+					<input type="text" name="itineraryAddress" >
+					<input type="hidden" name="userId" value="${itinerary.userId}">
 					<input type="submit" class="button" value="Create Itinerary">
 				</form>
 				
@@ -23,8 +23,8 @@
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
-			<input id="mile_radius" name="input_mile" value="5"
-				class="mile_radius">
+			<h2>Create Itinerary</h2>
+			
 			<div id="map"></div>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
