@@ -42,6 +42,16 @@ public class ItineraryController {
 		}
 	}
 
+	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.GET)
+	public String createItinerary(ModelMap model) {
+
+		if(model.isEmpty() || model.get("currentUser")==null){
+			return "redirect:/login";
+		}else{
+			return "createItinerary";
+		}
+	}
+
 	@RequestMapping(path="/itineraryDetail", method=RequestMethod.GET)
 	public String displayItineraryDetail(@RequestParam int itineraryId, HttpServletRequest request, ModelMap model) {
 
