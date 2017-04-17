@@ -9,17 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+//import com.techelevator.capsone.DAO.AppUserDAO;
 import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capstone.model.Landmark;
 
 
 @Controller
-@SessionAttributes("landmarks")
+@SessionAttributes({"currentUser","landmarks"})
 public class HomeController {
+//	@Autowired
+//	private AppUserDAO appUserDao;
 	@Autowired
 	private LandmarkDAO landmarkDao;
 
-	@RequestMapping(path="/", method=RequestMethod.GET)
+	@RequestMapping(path={"/","/users/{userName}/"}, method=RequestMethod.GET)
 	public String showHomePage(HttpServletRequest request) {
 		List<Landmark> landmark = landmarkDao.getTopPickLandMarksByFlag();
 		request.setAttribute("landmarks", landmark);

@@ -13,7 +13,7 @@
 			<div class="col-sm-2 sidenav">
 				<p>
 					<c:url var="addLAndmarkhref"
-						value="/users/${currentUser.username}/addLandmark" />
+						value="/users/${currentUser.username}/addOUpdateLandmark" />
 					<a href="${addLAndmarkhref}">Add landmark form</a>
 				</p>
 				<p>
@@ -30,6 +30,11 @@
 					<c:url var="addAdmin"
 						value="/users/${currentUser.username}/addAdmin" />
 					<a href="${addAdmin}">Add Admin</a>
+				</p>
+				<p>
+					<c:url var="manageLandmark"
+						value="/users/${currentUser.username}/menageLandmarks" />
+					<a href="${manageLandmark}">Manage Landmarks</a>
 				</p>
 			</div>
 

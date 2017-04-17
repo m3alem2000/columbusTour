@@ -41,24 +41,6 @@ public class LandmarkController {
 		this.landmarkDao = landmarkDao;
 	}
 	
-	@RequestMapping(path="/users/{userName}/addLandmark", method=RequestMethod.GET)
-	public String displayAddLandmarkForm(ModelMap model){
-		// TODO: get the landmark to pre populate the fields 
-//		if (model.get("landmark")!=null){
-//		Landmark sessionLandmark = (Landmark)model.get("landmark");
-//		landmarkDao.readLandmarkById(sessionLandmark.getLandmarkId())
-//		}
-		
-		return "addLandmark";
-	}
-	
-	
-	@RequestMapping(path="/users/{userName}/addLandmark", method=RequestMethod.POST)
-	public String saveLandmarkInDB(Landmark inputLandMark, ModelMap model){
-		landmarkDao.createLandmark(inputLandMark);
-		AppUser adminUser = (AppUser)model.get("currentUser");
-		return "redirect:/users/"+adminUser.getUsername()+"/adminHomePage";
-	}
 	
 	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
 	public String displaySearchLandmarkForm(ModelMap model){

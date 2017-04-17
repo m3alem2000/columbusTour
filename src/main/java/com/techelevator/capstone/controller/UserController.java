@@ -51,6 +51,7 @@ public class UserController {
 	public String goToUserPage(AppUser appUser, ModelMap model) {
 		// sesion user has userName eamil
 		AppUser sessionUser = (AppUser)model.get("currentUser");
+		appUser.setUserId(sessionUser.getUserId());
 		appUser.setUsername(sessionUser.getUsername());
 		appUser.setEmail(sessionUser.getEmail());
 		// appUser has the rest of the data

@@ -9,9 +9,9 @@
 		<div class="col-sm-2 sidenav">
 		<a href="newItinerary"><p>New Itinerary</p></a>
 		<p>Saved Itineraries</p>
-		<c:forEach var="itineraries" items="${itineraries}">
-				<a href="itineraryDetail"><p>${itineraries.itineraryId}</p></a>
-		</c:forEach>
+	<c:forEach var="itinerariesDetail" items="${itinerariesDetail}">
+			<a href="itinerary/detail"><p>${itinerariesDetail.itineraryId}</p></a>
+	</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
 
