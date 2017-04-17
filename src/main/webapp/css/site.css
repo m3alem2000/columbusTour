@@ -34,6 +34,18 @@
 	background-color: #f1f1f1;
 	height: 100%;
 }
+/* sidenav on home page */
+div#homePageSiteDescription {
+    max-width: 177px;
+}
+
+div#homePageSiteDescription span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+}
 
 /* Set black background color, white text and some padding */
 footer {

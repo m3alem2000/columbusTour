@@ -16,15 +16,23 @@
 				<input type="hidden" name="landmarkRating${landmark.landmarkId}" value="${landmark.landmarkRating}"/>
 				<input type="hidden" name="landmarkPicture${landmark.landmarkId}" value="${landmark.landmarkPicture}"/>
 				<input type="hidden" name="description${landmark.landmarkId}" value="${landmark.description}"/>
-				<a href="javascript:show_detail(${count})">${landmark.landmarkSubName}
-				<script type="text/javascript">
+<%-- 				${landmark.landmarkSubName}
+ --%>				<!-- <script type="text/javascript">
 					text_truncate('${landmark.landmarkName}', 20);
-					<!-- document.getElementById("landmarkTitle").innerHTML = "asdff"; -->
-					</script>
-				<br>
+					<!-- document.getElementById("landmarkTitle").innerHTML = "asdff";
+					</script> -->
+				<div id="homePageSiteDescription">
+					<span>
+						${landmark.landmarkName}
+					</span>
+				</div>
+					<a href="javascript:show_detail(${count})" >
+						<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 100px">	
+					</a>
+									
+					<!-- <hr> -->
+				
 				<c:set var="count" value="${count + 1}" scope="page"/>
-				<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 100px">				
-				</a><hr>
 			</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
@@ -33,7 +41,9 @@
 		<div class="col-sm-8 text-left">
 		<!--  <input id="input-3" name="input-3" value="4" class="rating-loading">-->
 			<div id="map"></div>
-			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap"></script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
+
+			</script>
 			<c:url value="/js" var="jsHref" />
 			<script src="${jsHref}/maps.js"></script>
 		
