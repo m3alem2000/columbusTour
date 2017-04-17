@@ -52,11 +52,20 @@ public class LandmarkController {
 		return "addLandmark";
 	}
 	
+	
 	@RequestMapping(path="/users/{userName}/addLandmark", method=RequestMethod.POST)
 	public String saveLandmarkInDB(Landmark inputLandMark, ModelMap model){
 		landmarkDao.createLandmark(inputLandMark);
 		AppUser adminUser = (AppUser)model.get("currentUser");
 		return "redirect:/users/"+adminUser.getUsername()+"/adminHomePage";
+	}
+	
+	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
+	public String displaySearchLandmarkForm(ModelMap model){
+		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
+		model.put("landmarks", landmarks);
+		
+		return "landmarkSearchPage";
 	}
 	
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)
