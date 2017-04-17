@@ -19,7 +19,7 @@
 				<h2>Add Landmark, It's on you to make sure a landmark is
 					unique!</h2>
 				<c:url var="formAction"
-					value="/users/${currentUser.username}/addLandmark" />
+					value="/users/${currentUser.username}/addOUpdateLandmark" />
 				<form id="landmark-input" method="POST" action="${formAction}">
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 

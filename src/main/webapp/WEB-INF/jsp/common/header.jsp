@@ -36,10 +36,14 @@
 						class="icon-bar"></span>
 				</button>
 				<c:url var="homeHref" value="/" />
+				<%-- <c:if test="${not empty currentUser}">
+					<c:url var="homeHref" value="/users/${currentUser.username}/" />
+				</c:if> --%>
 				<a class="navbar-brand" href="${homeHref}"> <c:url
 						var="logoHref" value="/img/delta_logo.gif" /> <img
 					style="width: 60px" src="${logoHref}" alt="Delta Tour" width="25%">
 				</a>
+				
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
@@ -47,6 +51,9 @@
 					<li class="active"><a href="${homeHref}">Home</a></li>
 
 					<c:url var="aboutHref" value="/about" />
+					<c:if test="${not empty currentUser}">
+						<c:url var="aboutHref" value="/users/${currentUser.username}/about" />
+					</c:if>
 					<li><a href="${aboutHref}">About</a></li>
 
 					<c:if test="${empty currentUser}">

@@ -16,18 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.capsone.DAO.AppUserDAO;
+import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capsone.DAO.ReviewDAO;
 import com.techelevator.capstone.model.AppUser;
+import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
 
 @Controller
-@SessionAttributes({"currentUser","reviews","allUsers"})
+@SessionAttributes({"landmark","landmarks","currentUser","reviews","allUsers"})
 public class AdminController {
 	private AppUserDAO appUserDao;
 	
 	@Autowired
 	private ReviewDAO reviewDao;
-
+	@Autowired
+	private LandmarkDAO landmarkDao;
 	
 	public AdminController(AppUserDAO appUserDao) {
 		this.appUserDao = appUserDao;
@@ -133,4 +136,33 @@ public class AdminController {
 		model.put("reviews", reviews);
 		return "manageReviews";
 	}
+	@RequestMapping(path="/users/{userName}/addOUpdateLandmark", method=RequestMethod.GET)
+	public String displayAddLandmarkForm(ModelMap model){
+		// TODO: get the landmark to pre populate the fields 
+//		if (model.get("landmark")!=null){
+//		Landmark sessionLandmark = (Landmark)model.get("landmark");
+//		landmarkDao.readLandmarkById(sessionLandmark.getLandmarkId())
+//		}
+		
+		return "addOUpdateLandmark";
+	}
+	
+	@RequestMapping(path="/users/{userName}/addOUpdateLandmark", method=RequestMethod.POST)
+	public String saveLandmarkInDB(Landmark inputLandMark, ModelMap model){
+		landmarkDao.createLandmark(inputLandMark);
+		AppUser adminUser = (AppUser)model.get("currentUser");
+		return "redirect:/users/"+adminUser.getUsername()+"/adminHomePage";
+	}
+	
+	@RequestMapping(path="/users/{userName}/menageLandmarks", method=RequestMethod.GET)
+	public String displaymenageLendmarksForm(ModelMap model){
+		// TODO: get the landmark to pre populate the fields 
+//		if (model.get("landmark")!=null){
+//		Landmark sessionLandmark = (Landmark)model.get("landmark");
+//		landmarkDao.readLandmarkById(sessionLandmark.getLandmarkId())
+//		}
+		
+		return "menageLandmarks";
+	}
+	
 }
