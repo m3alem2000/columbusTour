@@ -48,7 +48,7 @@ public class ItineraryController {
 		if(model.isEmpty() || model.get("currentUser")==null){
 			return "redirect:/login";
 		}else{
-			int itineraryId = 3;
+			int itineraryId = 1;
 			AppUser appUser = (AppUser) model.get("currentUser");
 			int userId = (int) appUser.getUserId();
 			List<Itinerary> itinerariesDetail = new ArrayList<Itinerary>();
