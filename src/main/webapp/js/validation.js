@@ -6,6 +6,10 @@ $(document).ready(function () {
 				required: true,
 				minlength: 5,
 			},
+			email: {
+				required: true,
+				email: true,
+			},
 			password: {
 				required: true,
 				minlength: 8,
@@ -21,6 +25,9 @@ $(document).ready(function () {
 			userName: {
 				required: "Your User name must be at least 5 characters long",
 			},
+			email: {
+				required: "Your email is not valid",
+			},
 			password: {
 				required: "Password must be at least 8 characters long",
 			},
@@ -30,6 +37,11 @@ $(document).ready(function () {
 		},
 	});
 });
+
+//$.validator.addMethod("vadidateMail", function (value, index) {
+//	return value.toLowerCase().endsWith(".gov"); 
+//}, "Please enter a .gov email");
+//
 
 $.validator.addMethod("passwordCharacters", function (password, index) {
 	if(password.length<129){return true};
@@ -63,34 +75,3 @@ $.validator.addMethod("passwordThreeRules", function (password, index) {
 	}
 }, "Password must meet three of these conditions: one lower case letter, one upper case letter, one number and one special character.");
 
-
-//$('#new-user').submit(function(event) {
-//if ($('#userName').hasClass('errorUserName')) {
-//alert('submit intercepted');
-//event.preventDefault(event);
-//}
-//});
-
-
-//$('#userName').on('input', function(){
-//var userName = $("#userName").val();
-//$.ajax({
-//url: "/capstone/users/new?userName="+userName,
-//type: "GET",
-//dataType: "json",
-//success: function(data) {
-//console.log(data);
-//if (data){
-//$('#userName').addClass('errorUserName');
-//}
-//if(!data){
-//$('#userName').removeClass('errorUserName');
-//}
-//},
-//failure: {
-//function (xhr, status, error) {
-//console.log(error);
-//}
-//}
-//});
-//});

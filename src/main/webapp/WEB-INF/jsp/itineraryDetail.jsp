@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
-
+<c:url value="/js" var="jsHref" />
+			<script src="${jsHref}/maps.js"></script>
 <div class="container-fluid">
 
 	<div style="background-color: #f1f1f1; height:100%" class="row content">
@@ -10,7 +11,15 @@
 		<a href="newItinerary"><p>New Itinerary</p></a>
 		<p>Saved Itineraries</p>
 	<c:forEach var="itinerariesDetail" items="${itinerariesDetail}">
-			<a href="itinerary/detail"><p>${itinerariesDetail.itineraryId}</p></a>
+			<p>${itinerariesDetail.itineraryId}</p>
+			<p>${itinerariesDetail.userId}</p>
+			<p>${itinerariesDetail.startingLatitude}</p>
+			<p>${itinerariesDetail.startingLongitude}</p>
+			<p>${itinerariesDetail.destinationLatitude}</p>
+			<p>${itinerariesDetail.destinationLongitude}</p>
+			<p>${itinerariesDetail.userStartingPointId}</p>
+			<p>${itinerariesDetail.dateCreated}</p>
+			
 	</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
