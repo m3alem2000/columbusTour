@@ -11,6 +11,13 @@ INSERT INTO users (email_address, state, city, zip_code, phone_number, username,
 INSERT INTO users (email_address, state, city, zip_code, phone_number, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
 ('charlie@lola.com',  'OH', 'Columbus', '43210', '123', 'admin', 'Charlie',  'Lola', '123 street street', 'myRRyv7lSsgWA6r0gs9Rl/Ki0VlI5wl7b43nio0ADLN/U2wf+UOlWbTUrb1Oj/ETm/KT202nMyujBC/J0HP66ZXUglQQGWtlmHKR4xx2HDi9UhZLs6hFw4MN/JkuqeDlA7BrE0IvPMKYDrKy3jOm9gZMk03eOqO7FkAL94Ev88k=', '5ibzhLzIqTrBQv+Huzluiw==', true);
 -- admin password is Yom Huledet 120
+INSERT INTO users (email_address, state, city, zip_code, phone_number, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
+('devin@yahoo.com', 'OH', 'Columbus', '43064', '6141234567', 'traveler1', 'bob', 'jones', '123 street street', 'XCAGsmD/u9poOK9Kv2flcxY3CN71lpaP3k5kWqe5EIxgzm5OYpQOIewTppaPmveiQFn+ak5durD3mFSsrFBmVJ8h8p+uKAqRmZnouX8RvqvAdEJOP7IMAr0MGitzd5HFZCwpWoN4jG9rB+RFdeMLXbuq5eL5Ju6wRwZ31v1aVqk=', 'k53ZchPGscnwkRvIgGFC2g==', false);
+-- Password1!
+INSERT INTO users (email_address, state, city, zip_code, phone_number, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
+('m@yahoo.com', 'OH', 'Columbus', '43064', '6141234567', 'traveler1', 'bob', 'jones', '123 street street', 'XCAGsmD/u9poOK9Kv2flcxY3CN71lpaP3k5kWqe5EIxgzm5OYpQOIewTppaPmveiQFn+ak5durD3mFSsrFBmVJ8h8p+uKAqRmZnouX8RvqvAdEJOP7IMAr0MGitzd5HFZCwpWoN4jG9rB+RFdeMLXbuq5eL5Ju6wRwZ31v1aVqk=', 'k53ZchPGscnwkRvIgGFC2g==', false);
+-- traveler1@yahoo.com Password1!
+
 
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Franklin Park Conservatory and Botanical Gardens', 'FPC.jpg', 5, '39.965910', '-82.953862', 'OH', 'Columbus', '43206', '1777 E Broad St, Columbus, OH 43203', 'Franklin Park Conservatory and Botanical Gardens offers enriching and memorable experiences inspired by art, culture and the botanical world.', true);
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Columbus Museum of Art', 'museum.jpg', 3, '39.964207', '-82.987897', 'OH', 'Columbus', '43215', '480 E Broad St, Columbus, OH 43215', 'Recently renovated and expanded, the museums hosts permanent & traveling art collections plus an American cafe & a gift shop.', true);
@@ -42,6 +49,12 @@ INSERT INTO user_starting_point
 
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 1);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 2);
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 1);
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 2);
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 1);
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 2);
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 1);
+INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 2);
 
 
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'great place', 5);
@@ -58,5 +71,11 @@ INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES
 INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (5, 2);
 INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (6, 2);
 INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (7, 2);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (5, 3);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (6, 3);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (7, 3);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (5, 4);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (6, 4);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (7, 4);
 
 COMMIT;
