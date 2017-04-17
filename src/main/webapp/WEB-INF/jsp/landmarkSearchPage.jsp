@@ -7,10 +7,10 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-				<input id="user_latitude" value="${userStartingPoint.latitude}"/>
-				<input id="user_longitude" value="${userStartingPoint.longitude}"/>
-				<button>Drop Pin</button>
-		</div>
+				<p>Lat</p><input id="user_latitude" type="number" value="${userStartingPoint.latitude}"/>
+				<p>Long</p><input id="user_longitude" type="number" value="${userStartingPoint.longitude}"/>
+				<p>Miles</p><input id="user_miles" type="number" value="${userStartingPoint.longitude}"/>
+				<button id="drop" onclick="dropPin()">Drop</button>  		</div>
 		<!-- end links on the left of the homepage -->
 
 

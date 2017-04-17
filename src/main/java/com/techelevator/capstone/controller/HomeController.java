@@ -38,7 +38,7 @@ import com.techelevator.capstone.model.UserStartingPoint;
 		}
 
 		@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
-		public String showlandmarkSearchPage(HttpServletRequest request, @RequestParam long itineraryId, @RequestParam String address, @RequestParam double latitude , @RequestParam double longitude) {
+		public String showlandmarkSearchPage(HttpServletRequest request, @RequestParam long itineraryId, @RequestParam String address, @RequestParam double latitude, @RequestParam double longitude) {
 		UserStartingPoint usps = uspDao.createStartingPoint(itineraryId, address, latitude, longitude);
 			request.setAttribute("userStartingPoint", usps);
 		return "landmarkSearchPage";
