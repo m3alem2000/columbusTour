@@ -32,9 +32,7 @@
 	</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
-					<a href="javascript:show_detail(${count})" >
-						<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 100px">	
-					</a>
+
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 			<div id="map"></div>
