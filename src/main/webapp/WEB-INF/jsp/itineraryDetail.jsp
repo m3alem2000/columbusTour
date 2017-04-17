@@ -19,7 +19,7 @@
 				<input type="hidden" name="DLongitude${count}" value="${itinerariesDetail.destinationLongitude}"/>
 				<c:set var="count" value="${count + 1}" scope="page"/>
 			</c:forEach>
-		
+
 	<c:forEach var="itinerariesDetail" items="${itinerariesDetail}">
 			<p>${itinerariesDetail.itineraryId}</p>
 			<p>${itinerariesDetail.userId}</p>
@@ -27,7 +27,6 @@
 			<p>${itinerariesDetail.startingLongitude}</p>
 			<p>${itinerariesDetail.destinationLatitude}</p>
 			<p>${itinerariesDetail.destinationLongitude}</p>
-			<p>${itinerariesDetail.userStartingPointId}</p>
 			<p>${itinerariesDetail.dateCreated}</p>
 			
 	</c:forEach>
