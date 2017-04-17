@@ -34,9 +34,9 @@
 			<td>${userFromList.zipCode}</td>
 			<td>${userFromList.phoneNumber}</td>
 			<td>
-				<%-- <c:if test="${user.isAdmin==true}">
+				<c:if test="${userFromList.admin==true}">
 					Admin
-				</c:if> --%>
+				</c:if>
 			</td>
 			<td>
 				<c:url var="deleteUserUrl" value="/users/${currentUser.username}/cAllUsers"/>
