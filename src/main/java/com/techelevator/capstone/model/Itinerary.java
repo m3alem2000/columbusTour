@@ -1,17 +1,29 @@
 package com.techelevator.capstone.model;
 
-import java.util.List;
 import java.time.LocalDateTime;
 
 public class Itinerary {
 
 	private Long itineraryId;
 	private Long userId;
-	private List<Landmark> landmarkList;// List<Landmarks> 
 	private double startingLatitude;
 	private double startingLongitude;
+	private double destinationLatitude;
+	private double destinationLongitude;
 	private LocalDateTime dateCreated;
-
+	
+	public double getDestinationLatitude() {
+		return destinationLatitude;
+	}
+	public void setDestinationLatitude(double destinationLatitude) {
+		this.destinationLatitude = destinationLatitude;
+	}
+	public double getDestinationLongitude() {
+		return destinationLongitude;
+	}
+	public void setDestinationLongitude(double destinationLongitude) {
+		this.destinationLongitude = destinationLongitude;
+	}
 	public Long getItineraryId() {
 		return itineraryId;
 	}
@@ -23,12 +35,6 @@ public class Itinerary {
 	}
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
-	public List<Landmark> getLandmarkList() {
-		return landmarkList;
-	}
-	public void setLandmarkIds(List<Landmark> landmarkList) {
-		this.landmarkList = landmarkList;
 	}
 	public double getStartingLatitude() {
 		return startingLatitude;

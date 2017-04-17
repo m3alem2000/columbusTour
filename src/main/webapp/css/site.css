@@ -34,6 +34,18 @@
 	background-color: #f1f1f1;
 	height: 100%;
 }
+/* sidenav on home page */
+div#homePageSiteDescription {
+    max-width: 177px;
+}
+
+div#homePageSiteDescription span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+}
 
 /* Set black background color, white text and some padding */
 footer {
@@ -69,6 +81,35 @@ hr {
     border-width: 1px;
     width:90%;
 } 
+
+/* landmarkDetail */	
+ 
+ .rating {
+	width: 60px;
+} 
+
+.landmark-detail{
+	width: 100%;
+	
+}
+#pic{
+	width: 100%; 
+    height:auto;
+	
+	 
+}
+
+/********  Admin ******/
+/* manage users  */
+table#userListTable {
+	width: 90%;
+	margin: auto;
+}
+
+div#manageUsersH2 {
+	padding-left: 20%;
+}
+
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
 	.sidenav {
@@ -81,4 +122,3 @@ hr {
 	.form-control {
 		width: 200px;
 	}
-}

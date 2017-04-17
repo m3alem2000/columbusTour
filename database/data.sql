@@ -50,5 +50,13 @@ INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'awesome
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 1, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 1, 'great place', 5);
 
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (1, 1);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (2, 1);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (3, 1);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (4, 1);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (4, 2);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (5, 2);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (6, 2);
+INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (7, 2);
 
 COMMIT;

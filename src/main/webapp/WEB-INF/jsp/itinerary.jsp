@@ -7,8 +7,10 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		
-
+		<p>Select Starting Point:</p>
+	<%--  <c:forEach var="itineraries" items=${itineraries}>
+			<p>${itineraries.itinerary_id}</p>
+	</c:forEach>--%>
 		</div>
 		<!-- end links on the left of the homepage -->
 

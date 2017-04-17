@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Landmark</title>
-</head>
-<body>
+	<c:import url="/WEB-INF/jsp/common/header.jsp" />
+
+	<c:url value="/js" var="jsHref" />
+		<script src="${jsHref}/jquery.validate.js"></script>
+		<script
+			src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js"></script>
+		<script src="${jsHref}/landmarkValidation.js"></script>
 
 	<div class="container-fluid text-center">
 		<div class="row content">
@@ -20,10 +20,10 @@
 					unique!</h2>
 				<c:url var="formAction"
 					value="/users/${currentUser.username}/addLandmark" />
-				<form id="user-profile" method="POST" action="${formAction}">
+				<form id="landmark-input" method="POST" action="${formAction}">
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
-					<div class="form-group">
+ 					<div class="form-group">
 						<label for="LandmarkName">Landmark Name: </label> <input
 							type="text" value="${landMark.landmarkName}" id="landmarkName"
 							name="landmarkName" placeHolder="Landmark Name"
@@ -44,12 +44,12 @@
 							placeHolder="Picture Path" class="form-control" />
 					</div>
 
-					<div class="form-group">
+					<%-- <div class="form-group">
 						<label for="landmarkRating">Landmark Rating: </label> <input
 							type="text" value="${landMark.landmarkRating}"
 							id="landmarkRating" name="landmarkRating"
 							placeHolder="Landmark Rating" class="form-control" />
-					</div>
+					</div> --%>
 
 					<div class="form-group">
 						<label for="latitude">Latitude: </label> <input type="text"
@@ -92,6 +92,11 @@
 							value="${landMark.description}" id="description"
 							name="description" placeHolder="Description" class="form-control" />
 					</div>
+					<span>Top Pick landmark  </span>
+					<input type="hidden" value="0" name="topPick" />
+					<input class="form-control" type="checkbox" value="1" name="topPick" />
+					
+
 
 					<input type="submit" class="btn btn-default" value="Submit" />
 				</form>
@@ -103,5 +108,6 @@
 
 		</div>
 	</div>
+	<c:import url="/WEB-INF/jsp/common/footer.jsp" />
 </body>
 </html>

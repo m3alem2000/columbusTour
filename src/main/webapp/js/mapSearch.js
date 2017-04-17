@@ -19,12 +19,14 @@
 		 	    	  for (var i = 0; i < markerArray.length; i++) {
 		 	    	    markerArray[i].setMap(null);
 		 	    	  }
-		 	     
-		 	    	  
-		 	    //WIP	  
-		 	    function pullMarkersFromItinerary(){
-		 	    	for()
-		 	    }
+//		 	     
+//		 	    	  
+//		 	    //WIP	  
+//		 	    function pullLandmarkCoordsFromItinerary() {
+//		 	    	for(var ) {
+//		 	    		
+//		 	    	}
+//		 	    }
 		 	     
 		 	     //DONE
 			      function initMap() {
