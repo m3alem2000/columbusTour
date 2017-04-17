@@ -14,7 +14,6 @@ import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capstone.model.Landmark;
 
 
-
 @Controller
 @SessionAttributes({"currentUser","landmarks"})
 public class HomeController {

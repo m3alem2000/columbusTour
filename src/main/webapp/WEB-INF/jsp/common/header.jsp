@@ -57,7 +57,7 @@
 					<li><a href="${aboutHref}">About</a></li>
 
 					<c:if test="${empty currentUser}">
-						<c:url var="searchLandmarkHref" value="/searchLanmark" />
+						<c:url var="searchLandmarkHref" value="/signup" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
 						<c:url var="itineraryHref" value="/itinerary"/>
 						<li><a href="${itineraryHref}">Itinerary</a> 
@@ -66,7 +66,7 @@
 					</c:if>
 
 					<c:if test="${not empty currentUser}">
-						<c:url var="searchLandmarkHref" value="/users/${currentUser.username}/searchLanmark" />
+						<c:url var="searchLandmarkHref" value="/users/${currentUser.username}/landmarkSearchPage" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
 						<c:url var="itineraryHref" value="/itinerary" />
 						<li><a href="${itineraryHref}">Itinerary</a> 

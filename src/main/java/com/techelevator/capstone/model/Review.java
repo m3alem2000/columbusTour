@@ -7,6 +7,15 @@ public class Review {
 	private long reviewId;
 	private long landmarkId;
 	private long userId;
+	private String username;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	private String review;
 	private long rating;
 	private LocalDateTime dateCreated;

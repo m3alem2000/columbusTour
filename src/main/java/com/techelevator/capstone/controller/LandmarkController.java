@@ -41,7 +41,14 @@ public class LandmarkController {
 		this.landmarkDao = landmarkDao;
 	}
 	
-
+	
+	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
+	public String displaySearchLandmarkForm(ModelMap model){
+		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
+		model.put("landmarks", landmarks);
+		
+		return "landmarkSearchPage";
+	}
 	
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)
 	public String manageReviews(ModelMap model) {

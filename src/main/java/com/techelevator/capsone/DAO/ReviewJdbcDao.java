@@ -44,10 +44,10 @@ public class ReviewJdbcDao implements ReviewDAO{
 	@Override
 	public List<Review> getAllLandmarksReviews() {
 		List<Review> reviews = new ArrayList<>();
-		String sqlReviews = "SELECT * FROM review ORDER by review.date_created DESC";
+		String sqlReviews = "SELECT r.*, u.username FROM review r JOIN users u ON r.user_id = u.user_id ORDER BY r.date_created DESC";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReviews);
 		while(results.next()) {
-			reviews.add(mapRowToReview(results));
+			reviews.add(mapRowToReviewWithUsername(results));
 		}
 		return reviews;
 	}
@@ -100,5 +100,15 @@ public class ReviewJdbcDao implements ReviewDAO{
 		}
 		return id;
 	}
-
+	
+	private Review mapRowToReviewWithUsername(SqlRowSet row) {
+		Review review = new Review();
+		review.setReviewId(row.getLong("review_id"));
+		review.setLandmarkId(row.getLong("landmark_id"));
+		review.setUserId(row.getLong("user_id"));
+		review.setUsername(row.getString("username"));
+		review.setReview(row.getString("review"));
+		review.setRating(row.getLong("rating"));
+		return review;
+	}
 }

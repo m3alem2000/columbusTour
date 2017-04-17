@@ -16,13 +16,17 @@
 <!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 		<h2>Manage Reviews</h2>
-<ol class="reviewList">
-		<c:forEach var="review" items="${reviews}">
+
+<ul class="reviewList">		
+	<c:forEach var="review" items="${reviews}">
 			<li class="review">
+			    <span class="">${review.username}</span>
+			    
 				<span class="">${review.review}</span>
 				<span class="">${review.landmarkId}</span>
-				
+ 				
 				<c:url var="landmarkFormAction" value="/landmarkDetail"/>
+				
 				<form action="${landmarkFormAction}" method="GET">
 					<input type="hidden" name="landmarkId" value="${review.landmarkId}"/>
 					<input type="submit" value="Landmark Details" />
@@ -36,7 +40,7 @@
 				</form>
 			</li>
 		</c:forEach>	
-</ol>
+</ul>
 
 			
 	</div>
