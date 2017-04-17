@@ -49,19 +49,14 @@ INSERT INTO user_starting_point
 
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 1);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 2);
-<<<<<<< HEAD
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 1);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 2);
-=======
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 1);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 2);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 1);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 2);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 1);
 INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 2);
-
->>>>>>> 67747c9d37471cfa4670e819822ec9278cfa1e97
-
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'What a nice park', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'awesome', 5);
