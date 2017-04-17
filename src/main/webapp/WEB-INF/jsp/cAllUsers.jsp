@@ -2,10 +2,11 @@
 
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 
-<h2>See and Manage All Users</h2>
+<div  id="manageUsersH2">
+	<h2 >See and Manage All Users</h2>
+</div>
 
-
-<table class="usersList">
+<table id="userListTable" class="usersList">
 	<tr>
 		<th>userId</th>
 		<th>email</th>
@@ -20,29 +21,30 @@
 		<th>isAdmin</th>
 		<th>Delete</th>
 	</tr>
-	<c:forEach var="user" items="${allUsers}">
-			<tr class="user">
-			<td>${user.userId}</td>
-			<td>${user.email}</td>
-			<td>${user.username}</td>
-			<td>${user.firstName}</td>
-			<td>${user.lastName}</td>
-			<td>${user.address}</td>
-			<td>${user.city}</td>
-			<td>${user.state}</td>
-			<td>${user.zipCode}</td>
-			<td>${user.phoneNumber}</td>
+	<c:forEach var="userFromList" items="${allUsers}">
+			<tr >
+			<td>${userFromList.userId}</td>
+			<td>${userFromList.email}</td>
+			<td>${userFromList.username}</td>
+			<td>${userFromList.firstName}</td>
+			<td>${userFromList.lastName}</td>
+			<td>${userFromList.address}</td>
+			<td>${userFromList.city}</td>
+			<td>${userFromList.state}</td>
+			<td>${userFromList.zipCode}</td>
+			<td>${userFromList.phoneNumber}</td>
 			<td>
-				<%-- <c:if test="${user.isAdmin}">
+				<%-- <c:if test="${user.isAdmin==true}">
 					Admin
 				</c:if> --%>
 			</td>
 			<td>
-				<%-- <form action="${deleteUrl}" method="POST">		
+				<c:url var="deleteUserUrl" value="/users/${currentUser.username}/cAllUsers"/>
+				<form action="${deleteUserUrl}" method="POST">		
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-					<input type="hidden" name="userId" value="${user.userId}">
-					<input type="submit" id="${user.userId}" class="deleteButton" value="Delete">
-				</form> --%>
+					<input type="hidden" name="userToDeleteId" value="${userFromList.userId}">
+					<input type="submit" class="deleteButton" value="Delete User">
+				</form>
 			</td>
 
 			</tr>
