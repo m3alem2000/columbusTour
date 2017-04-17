@@ -90,22 +90,6 @@ CREATE TABLE review
 	CONSTRAINT fk_landmark_id FOREIGN KEY (landmark_id) REFERENCES landmark (landmark_id)
 );
 
-CREATE SEQUENCE user_starting_point_starting_id_seq
-  INCREMENT BY 1
-  NO MAXVALUE
-  NO MINVALUE
-  CACHE 1;
-
-
-CREATE TABLE user_starting_point
-(
-	starting_id INTEGER DEFAULT NEXTVAL('user_starting_point_starting_id_seq'::regclass) NOT NULL,
-	full_address VARCHAR(256) NOT NULL,
-	starting_latitude REAL NOT NULL,
-	starting_longitude REAL NOT NULL,
-	CONSTRAINT pk_starting_id PRIMARY KEY (starting_id)
-);
-
 CREATE SEQUENCE itinerary_itinerary_id_seq
   INCREMENT BY 1
   NO MAXVALUE
@@ -115,12 +99,12 @@ CREATE SEQUENCE itinerary_itinerary_id_seq
 CREATE TABLE itinerary
 (
 	itinerary_id INTEGER DEFAULT NEXTVAL('itinerary_itinerary_id_seq'::regclass) NOT NULL,
+	itinerary_name VARCHAR(32) NOT NULL,
 	user_id INTEGER NOT NULL,
-	user_starting_point_id INTEGER NOT NULL,
+	start_lat INTEGER NOT NULL,
+	start_lon INTEGER NOT NULL,
 	date_created TIMESTAMP DEFAULT NOW(),
-	CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id),
-	CONSTRAINT fk_user_starting_point_id FOREIGN KEY (user_starting_point_id) REFERENCES user_starting_point (starting_id)
-
+	CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id)
 );
 
 CREATE TABLE itinerary_landmark

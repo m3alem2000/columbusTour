@@ -79,16 +79,6 @@ public class ReviewJdbcDao implements ReviewDAO{
 		return result==1;
 	}
 
-	private Review mapRowToReview(SqlRowSet row) {
-		Review review = new Review();
-		review.setReviewId(row.getLong("review_id"));
-		review.setLandmarkId(row.getLong("landmark_id"));
-		review.setUserId(row.getLong("user_id"));
-		review.setReview(row.getString("review"));
-		review.setRating(row.getLong("rating"));
-		return review;
-	}
-
 	private Long getNextId() {
 		String sqlSelectNextId = "SELECT NEXTVAL('seq_review_id')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
@@ -99,6 +89,16 @@ public class ReviewJdbcDao implements ReviewDAO{
 			throw new RuntimeException("Unable to select next landmark id from sequence");
 		}
 		return id;
+	}
+	
+	private Review mapRowToReview(SqlRowSet row) {
+		Review review = new Review();
+		review.setReviewId(row.getLong("review_id"));
+		review.setLandmarkId(row.getLong("landmark_id"));
+		review.setUserId(row.getLong("user_id"));
+		review.setReview(row.getString("review"));
+		review.setRating(row.getLong("rating"));
+		return review;
 	}
 	
 	private Review mapRowToReviewWithUsername(SqlRowSet row) {

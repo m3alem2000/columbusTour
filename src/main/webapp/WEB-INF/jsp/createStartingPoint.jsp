@@ -6,8 +6,10 @@
 	<div class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
+		
 			<c:url var="createAStartPoint" value="/users/${currentUser.username}/createStartingPoint"/>
-				<form action="${createAStartPoint}" method="GET">		
+				<form action="${createAStartPoint}" method="POST">	
+					<input name="adress" type="text" class="textArea" value="Insert Address">	
 					<input type="submit" class="button" value="Create Starting Point">
 				</form>
 		</div>
@@ -16,7 +18,7 @@
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
-		<h2>Land Mark Search Page</h2>
+		<h2>Create Start Point</h2>
 			<input id="mile_radius" name="input_mile" value="5"
 				class="mile_radius">
 			<div id="map"></div>

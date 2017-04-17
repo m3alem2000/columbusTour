@@ -45,6 +45,7 @@ function initMap() {
 			'<h5>'+$('[name=name'+i+']').val()+'</h5>'+
 			'<a href="#"><img style="width:200px" src=img/'+$('[name=landmarkPicture'+i+']').val()+'></a><br>'+
 			'<p><b>Description: </b>'+$('[name=description'+i+']').val()+'</p>'+
+			'<a href=\"http://localhost:8080/capstone/landmarkDetail?landmarkId=1"\">' +'See details' +
 			'</div>';
 
 		marker.infoWindow = new google.maps.InfoWindow({
