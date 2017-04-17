@@ -4,13 +4,21 @@ import java.time.LocalDateTime;
 
 public class Itinerary {
 
-	private Long itineraryId;
-	private Long userId;
+	private int itineraryId;
+	private int userId;
 	private double startingLatitude;
 	private double startingLongitude;
 	private double destinationLatitude;
 	private double destinationLongitude;
+	private int userStartingPointId;
 	private LocalDateTime dateCreated;
+
+	public int getUserStartingPointId() {
+		return userStartingPointId;
+	}
+	public void setUserStartingPointId(int userStartingPointId) {
+		this.userStartingPointId = userStartingPointId;
+	}
 	
 	public double getDestinationLatitude() {
 		return destinationLatitude;
@@ -24,16 +32,16 @@ public class Itinerary {
 	public void setDestinationLongitude(double destinationLongitude) {
 		this.destinationLongitude = destinationLongitude;
 	}
-	public Long getItineraryId() {
+	public int getItineraryId() {
 		return itineraryId;
 	}
-	public void setItineraryId(Long itineraryId) {
+	public void setItineraryId(int itineraryId) {
 		this.itineraryId = itineraryId;
 	}
-	public Long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public double getStartingLatitude() {

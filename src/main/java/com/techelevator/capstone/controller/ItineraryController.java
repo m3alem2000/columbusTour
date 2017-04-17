@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.capsone.DAO.ItineraryDAO;
@@ -27,32 +27,46 @@ public class ItineraryController {
 	}
 
 	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
-	public String displayItineraryForm(HttpServletRequest request, ModelMap model) {
-		AppUser sessionUser = (AppUser)model.get("currentUser");
-		if(!sessionUser.equals(null)){
-//		if(model.get("currentUser").equals(null)){
-////			return "redirect:/login";
-		}
-		return null;
-		//else{
-//			AppUser appUser = (AppUser) model.get("currentUser");
-//			long userId = appUser.getUserId();
-//			List<Itinerary> itineraries = new ArrayList<Itinerary>();
-//			itineraries = itineraryDao.getItinerariesListByUserId(userId);
-//			request.setAttribute("itineraries", itineraries);
-//			return "itinerary";
-//		}
+	public String displayItineraryList(HttpServletRequest request, ModelMap model) {
 
-//			long userId = sessionUser.getUserId();
-//			if(userId != 0){
-//				
-////				List<Itinerary> itineraries = new ArrayList<Itinerary>();
-////				itineraries = itineraryDao.getItineraryByUserIdAndItineraryId(userId, itineraryId);
-////				model.put("itineraries", itineraries);
-////				return "itinerary";
-//			}
-		
-		
+		if(model.isEmpty() || model.get("currentUser")==null){
+			return "redirect:/login";
+		}else{
+
+			AppUser appUser = (AppUser) model.get("currentUser");
+			int userId = (int) appUser.getUserId();
+			List<Itinerary> itineraries = new ArrayList<Itinerary>();
+			itineraries = itineraryDao.getItinerariesListByUserId(userId);
+			request.setAttribute("itineraries", itineraries);
+			return "itinerary";
+		}
+	}
+
+	@RequestMapping(path="/itineraryDetail", method=RequestMethod.GET)
+	public String displayItineraryDetail(HttpServletRequest request, ModelMap model) {
+
+		if(model.isEmpty() || model.get("currentUser")==null){
+			return "redirect:/login";
+		}else{
+			int itineraryId = 1;
+			AppUser appUser = (AppUser) model.get("currentUser");
+			int userId = (int) appUser.getUserId();
+			List<Itinerary> itinerariesDetail = new ArrayList<Itinerary>();
+			itinerariesDetail = itineraryDao.getItinerariesDetailByUserId(userId, itineraryId);
+			request.setAttribute("itinerariesDetail", itinerariesDetail);
+			return "itineraryDetail";
+		}
+
+		//			long userId = sessionUser.getUserId();
+		//			if(userId != 0){
+		//				
+		////				List<Itinerary> itineraries = new ArrayList<Itinerary>();
+		////				itineraries = itineraryDao.getItineraryByUserIdAndItineraryId(userId, itineraryId);
+		////				model.put("itineraries", itineraries);
+		////				return "itinerary";
+		//			}
+
+
 	}
 }
 

@@ -35,45 +35,42 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-
 				<c:url var="homeHref" value="/" />
+				<%-- <c:if test="${not empty currentUser}">
+					<c:url var="homeHref" value="/users/${currentUser.username}/" />
+				</c:if> --%>
 				<a class="navbar-brand" href="${homeHref}"> <c:url
 						var="logoHref" value="/img/delta_logo.gif" /> <img
 					style="width: 60px" src="${logoHref}" alt="Delta Tour" width="25%">
 				</a>
+				
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-
 					<c:url var="homeHref" value="/" />
 					<li class="active"><a href="${homeHref}">Home</a></li>
 
 					<c:url var="aboutHref" value="/about" />
+					<c:if test="${not empty currentUser}">
+						<c:url var="aboutHref" value="/users/${currentUser.username}/about" />
+					</c:if>
 					<li><a href="${aboutHref}">About</a></li>
 
 					<c:if test="${empty currentUser}">
-						<c:url var="searchLandmarkHref" value="/searchLanmark" />
+						<c:url var="searchLandmarkHref" value="/signup" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
-
-
-						<c:url var="itineraryHref" value="/itinerary" />
-						<%-- <li><a href="${itineraryHref}">Itinerary</a></li> --%>
-						<li><a href="#">Itinerary</a> <c:url var="suggestALandmark"
-								value="/suggestALandmark" />
+						<c:url var="itineraryHref" value="/itinerary"/>
+						<li><a href="${itineraryHref}">Itinerary</a> 
+						<c:url var="suggestALandmark" value="/suggestALandmark"/>
 						<li><a href="#">Suggest a Landmark</a></li>
 					</c:if>
 
 					<c:if test="${not empty currentUser}">
-						<c:url var="searchLandmarkHref"
-							value="/users/${currentUser.username}/searchLanmark" />
+						<c:url var="searchLandmarkHref" value="/users/${currentUser.username}/landmarkSearchPage" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
-
-
-						<c:url var="itineraryHref"
-							value="/users/${currentUser.username}/itinerary" />
-						<%-- <li><a href="${itineraryHref}">Itinerary</a></li> --%>
-						<li><a href="#">Itinerary</a> <c:url var="suggestALandmark"
-								value="/users/${currentUser.username}/suggestALandmark" />
+						<c:url var="itineraryHref" value="/itinerary" />
+						<li><a href="${itineraryHref}">Itinerary</a> 
+						<c:url var="suggestALandmark" value="/users/${currentUser.username}/suggestALandmark" />
 						<li><a href="#">Suggest a Landmark</a></li>
 					</c:if>
 				</ul>

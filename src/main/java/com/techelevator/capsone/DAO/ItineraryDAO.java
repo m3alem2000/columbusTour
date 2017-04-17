@@ -9,8 +9,8 @@ public interface ItineraryDAO {
 	//CRUD
 	public void createItinerary(Itinerary itinerary);
 
-	public List<Itinerary> getItinerariesListByUserId(long userId);
-	public List<Itinerary> getItinerariesDetailByUserId(long userId);
+	public List<Itinerary> getItinerariesListByUserId(int userId);
+	public List<Itinerary> getItinerariesDetailByUserId(int userId, int itineraryId);
 
 	public void deleteItineraryByItineraryId(long itineraryId);
 }

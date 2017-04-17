@@ -43,7 +43,7 @@ function initMap() {
 		var contentString = 
 			'<div style="width:300px" id="siteNotice">'+
 			'<h5>'+$('[name=name'+i+']').val()+'</h5>'+
-			'<img style="width:200px" src=img/'+$('[name=landmarkPicture'+i+']').val()+'></a><br>'+
+			'<a href="#"><img style="width:200px" src=img/'+$('[name=landmarkPicture'+i+']').val()+'></a><br>'+
 			'<p><b>Description: </b>'+$('[name=description'+i+']').val()+'</p>'+
 			'</div>';
 
