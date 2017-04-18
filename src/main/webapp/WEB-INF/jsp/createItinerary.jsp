@@ -6,19 +6,22 @@
 	<div class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-				<p>Enter Address or click on map</p>
-				
-				<c:url var="createAStartPoint" value="/users/${currentUser.username}/createItinerary"/>
-				<form action="${createAStartPoint}" method="POST">	
-					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-					<input type="text" name="itineraryName" >
-					<input type="text" name="itineraryAddress" id="address" onFocus="geolocate()" >
-					<input type="hidden" name="userId" value="${itinerary.userId}">
-					<input type="hidden" name="latitude" id="latitude">
-					<input type="hidden" name="longitude" id="longitude">
-					<input type="submit" class="button" value="Create Itinerary">
-				</form>
-				
+			<p>Enter Address or click on map</p>
+
+			<c:url var="createAStartPoint"
+				value="/users/${currentUser.username}/createItinerary" />
+			<form action="${createAStartPoint}" method="POST">
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
+					type="text" name="itineraryName">
+				<!-- <input type="text" name="itineraryAddress" id="address" onFocus="geolocate()" > -->
+				<input type="text" name="itineraryAddress" id="address"
+					onFocus="geolocate()"> <input type="hidden" name="userId"
+					value="${currentUser.userId}"> <input type="hidden"
+					name="startingLatitude" id="latitude"> <input type="hidden"
+					name="startingLongitude" id="longitude"> <input
+					type="submit" class="button" value="Create Itinerary">
+			</form>
+
 		</div>
 		<!-- end links on the left of the homepage -->
 
@@ -26,13 +29,9 @@
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 			<h2>Create Itinerary</h2>
-			
+
 			<div id="map"></div>
-			<script async defer
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&libraries=places&callback=initMapSearch">
-			</script>
-			<c:url value="/js" var="jsHref"/>
-			<script src="${jsHref}/maps.js"></script>
+
 		</div>
 		<!-- end of body of the homepage -->
 
@@ -48,6 +47,11 @@
 		<!--end of Ads on the right of the homepage  -->
 	</div>
 </div>
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&libraries=places&callback=initMapSearch">
+</script>
+<c:url value="/js" var="jsHref" />
+<script src="${jsHref}/maps.js"></script>
 <script>
 	var marker = null;
 	var placeSearch, autocomplete;
