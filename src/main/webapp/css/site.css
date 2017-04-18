@@ -46,6 +46,9 @@ div#homePageSiteDescription span {
     display: inline-block;
     max-width: 100%;
 }
+.tech-elevator-pic{
+	padding-top:20px;
+}
 
 /* Set black background color, white text and some padding */
 footer {
