@@ -22,11 +22,15 @@
 			
 			<script>
 			var locations = [
+				[
+					 <c:out value="${itinerariesDetail[0].startingLatitude}"/>,
+					 <c:out value="${itinerariesDetail[0].startingLongitude}"/>
+				],
 			<c:forEach var="itin" items="${itinerariesDetail}" >
-				{
-					lat: <c:out value="${itin.destinationLatitude}"/>,
-					lng: <c:out value="${itin.destinationLongitude}"/>
-				},
+				[
+					 <c:out value="${itin.destinationLatitude}"/>,
+					 <c:out value="${itin.destinationLongitude}"/>
+				],
 			</c:forEach>
 			];
 			</script>

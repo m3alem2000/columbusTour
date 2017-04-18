@@ -24,17 +24,11 @@
 				</div>
 				<div id="homePageSmallPic">
 					<a href="javascript:show_detail(${count})" >
-<<<<<<< HEAD
 						<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 150px">	
 					</a>
 				</div>			
 				<br>
-					<!-- <hr> -->
-				
-=======
-						<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 100px">	
-					</a>				
->>>>>>> 632585e8274123abe445995963674313f4d11963
+							
 				<c:set var="count" value="${count + 1}" scope="page"/>
 			</c:forEach>
 		</div>
