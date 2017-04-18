@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,15 +28,15 @@ import com.techelevator.capstone.model.Review;
 @SessionAttributes({"landmark","landmarks","currentUser","reviews","allUsers"})
 public class AdminController {
 	private AppUserDAO appUserDao;
-	
+
 	@Autowired
 	private ReviewDAO reviewDao;
 	@Autowired
 	private LandmarkDAO landmarkDao;
-	
+
 	public AdminController(AppUserDAO appUserDao) {
 		this.appUserDao = appUserDao;
-		
+
 	}
 
 	@RequestMapping(path="/users/{userName}/adminHomePage", method=RequestMethod.GET)
@@ -62,7 +64,7 @@ public class AdminController {
 
 	@RequestMapping(path="/users/{userName}/addAdmin", method=RequestMethod.POST)
 	public String createProfile(@RequestParam String password, 
-								AppUser newUser, ModelMap model) {
+			AppUser newUser, ModelMap model) {
 
 		AppUser newAdmin = new AppUser();
 		newAdmin.setEmail(newUser.getEmail());
@@ -96,7 +98,7 @@ public class AdminController {
 
 	@RequestMapping(path="/users/{userName}/cAllUsers", method=RequestMethod.POST)
 	public String deleteUser(@RequestParam(value = "userToDeleteId", required=false) long userToDeleteId,
-							ModelMap model) {
+			ModelMap model) {
 		AppUser sessionUser = (AppUser)model.get("currentUser");
 		sessionUser = appUserDao.readUserByEmail(sessionUser.getEmail());
 		if(!sessionUser.isAdmin()){
@@ -137,32 +139,42 @@ public class AdminController {
 		return "manageReviews";
 	}
 	@RequestMapping(path="/users/{userName}/addOUpdateLandmark", method=RequestMethod.GET)
-	public String displayAddLandmarkForm(ModelMap model){
-		// TODO: get the landmark to pre populate the fields 
-//		if (model.get("landmark")!=null){
-//		Landmark sessionLandmark = (Landmark)model.get("landmark");
-//		landmarkDao.readLandmarkById(sessionLandmark.getLandmarkId())
-//		}
-		
+	public String displayAddLandmarkForm(
+			@RequestParam(value = "landmark2Update", required=false) Long landmarkUpdateId,
+			ModelMap model){
+		if (landmarkUpdateId != null ) {
+			Landmark update = landmarkDao.readLandmarkById(landmarkUpdateId);
+			System.out.println(landmarkUpdateId);
+			model.put("landmark", update);
+		} else {
+			model.remove("landmark");
+			System.out.println("Banana");
+
+		}
 		return "addOUpdateLandmark";
 	}
-	
+
 	@RequestMapping(path="/users/{userName}/addOUpdateLandmark", method=RequestMethod.POST)
 	public String saveLandmarkInDB(Landmark inputLandMark, ModelMap model){
 		landmarkDao.createLandmark(inputLandMark);
 		AppUser adminUser = (AppUser)model.get("currentUser");
 		return "redirect:/users/"+adminUser.getUsername()+"/adminHomePage";
 	}
-	
+
 	@RequestMapping(path="/users/{userName}/menageLandmarks", method=RequestMethod.GET)
 	public String displaymenageLendmarksForm(ModelMap model){
-		// TODO: get the landmark to pre populate the fields 
-//		if (model.get("landmark")!=null){
-//		Landmark sessionLandmark = (Landmark)model.get("landmark");
-//		landmarkDao.readLandmarkById(sessionLandmark.getLandmarkId())
-//		}
-		
-		return "menageLandmarks";
+		List<Landmark> landmarks =landmarkDao.getAllLandmarks();
+		model.put("landmarks", landmarks);
+		return "manageLandmarks";
 	}
-	
+
+	@RequestMapping(path="/users/{userName}/deleteLandmark", method=RequestMethod.POST)
+	public String deleteLandmark(@RequestParam(value = "landmark2delId", required=false) long landmark2delId,
+			ModelMap model){
+		landmarkDao.inactivateLandmarkById(landmark2delId);
+		List<Landmark> landmarks =landmarkDao.getAllLandmarks();
+		model.put("landmarks", landmarks);
+		return "manageLandmarks";
+	}
+
 }

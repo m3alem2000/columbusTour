@@ -40,30 +40,51 @@ INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Cafe Brioso', 'CafeBrioso.jpg', 4, '39.963788', '-83.000574', 'OH', 'Columbus', '43215', '14 E Gay St, Columbus, OH 43215', 'Easygoing cafe vending premium espresso drinks, custom brews, abundant pastries & lunchtime fare.', false);
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Jennis Ice cream', 'JennisIceCream.jpg','4', '39.976968', '-83.009829', 'OH', 'Columbus', '43215', '714 N. High Stret, Columbus, OH 43215', 'Jenis Splendid Ice Creams is an artisan ice-cream company with national distribution. Known for its creative flavors and its high-quality ingredients.', false);
 
-INSERT INTO user_starting_point 
-(full_address, starting_latitude, starting_longitude) VALUES
-('XYZ', 39.997339, -83.042371);
-INSERT INTO user_starting_point 
-(full_address, starting_latitude, starting_longitude) VALUES
-('ABC', 39.9973, -83.0423);
-
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (1, 2);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 2);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (2, 2);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (3, 2);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 1);
-INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 2);
 
 
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'What a nice park', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'awesome', 5);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (1, 'Day 1', 39.997339, -83.042371);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (1, 'Day 2', 39.997339, -83.042371);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (2, 'Day 3', 39.997339, -83.042371);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (2, 'Day 4', 39.997339, -83.042371);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (3, 'Day 5', 39.997339, -83.042371);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (3, 'Day 6', 39.997339, -83.042371);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (4, 'Day 7', 39.997339, -83.042371);
+INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (4, 'Day 8', 39.997339, -83.042371);
+
+
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'Beautiful park outside, outstanding indoor biomes. Need several hours to visit. Nice cafe and gift shop for unique gifts.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 2, 'What a nice park, several different gardens, a heaven for plant lovers!', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 3, 'Awesome, check out the butterfly exhibit with the kids. Lots of educational events', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 4, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 2, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 3, 'What a nice park', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 4, 'awesome', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 2, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 4, 'awesome', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 2, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 4, 'awesome', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 2, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 3, 'awesome', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 2, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 4, 'awesome', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 2, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 3, 'awesome', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 2, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 3, 'awesome', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 2, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 4, 'awesome', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 2, 'great place', 5);
+
+
 
 INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (1, 1);
 INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (2, 1);

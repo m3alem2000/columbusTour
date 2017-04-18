@@ -29,24 +29,16 @@ function initMap() {
 		handleLocationError(false, infoWindow, map.getCenter());
 	}
 
-	for (i = 0; i < 6; i++) { 
+	for (i = 0; i < 2; i++) { 
 		var marker = new google.maps.Marker({
 			map: map,
 			draggable: true,
 			animation: google.maps.Animation.DROP,
 			position: {
-				lat: parseFloat($('[name=latitude'+i+']').val()),
-				lng: parseFloat($('[name=longitude'+i+']').val())
+				lat: parseFloat($('[name=DLatitude'+i+']').val()),
+				lng: parseFloat($('[name=DLongitude'+i+']').val())
 			}
 		});
-
-		var contentString = 
-			'<div style="width:300px" id="siteNotice">'+
-			'<h5>'+$('[name=name'+i+']').val()+'</h5>'+
-			'<a href="#"><img style="width:200px" src=img/'+$('[name=landmarkPicture'+i+']').val()+'></a><br>'+
-			'<p><b>Description: </b>'+$('[name=description'+i+']').val()+'</p>'+
-			'<a href=\"http://localhost:8080/capstone/landmarkDetail?landmarkId=1"\">' +'See details' +
-			'</div>';
 
 		marker.infoWindow = new google.maps.InfoWindow({
 			content: contentString
@@ -58,22 +50,9 @@ function initMap() {
 
 		markers[i] = marker;
 	}
-}
-
-
-//function text_truncate(str, length, ending) {
-//if (length == null) {
-//length = 100;
-//}
-//if (ending == null) {
-//ending = '...';
-//}
-//if (str.length > length) {
-//return str.substring(0, length - ending.length) + ending;
-//} else {
-//return str;
-//}
-//};
-
-
-
+}	
+	
+	
+	
+	
+	

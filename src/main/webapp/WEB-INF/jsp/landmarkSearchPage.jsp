@@ -1,20 +1,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
-<script src="./js/mapSearch.js"></script>
+<c:url value="/js" var="jsHref" />
+<script src="${jsHref}/mapSearch.js"></script>
 <div class="container-fluid">
 
 	<div class="row content">
 		<div class="col-sm-2 sidenav">
-			<p>Lat</p>
-			<input id="user_latitude" type="number"
-				value="${userStartingPoint.latitude}" />
-			<p>Long</p>
-			<input id="user_longitude" type="number"
-				value="${userStartingPoint.longitude}" />
-			<p>Miles</p>
-			<input id="user_miles" type="number"
-				value="${userStartingPoint.longitude}" />
-			<button id="drop" onclick="dropPin()">Drop</button>
+			<c:url var="createItinerary"
+				value="/users/${currentUser.username}/createItinerary" />
+			<a href="${createItinerary}" >
+				<button type="button" class="btn btn-link">Create Itinerary</button>
+			</a>
 		</div>
 		<div class="col-sm-3 sidenav">
 		<c:forEach var="itinerary" items="${itineraries}">
@@ -24,19 +20,29 @@
 		</div>
 		
 		
+		<c:forEach var="landmark" items="${landmarks}">
+				<input type="hidden" name="latitude${landmark.landmarkId}" value="${landmark.latitude}"/>
+				<input type="hidden" name="longitude${landmark.landmarkId}" value="${landmark.longitude}"/>
+		</c:forEach>
+		
+		
 		<!-- end links on the left of the homepage -->
 
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
-			<input id="mile_radius" name="input_mile" value="5"
-				class="mile_radius">
+			<h2>Land Mark Search Page</h2>
+			<p>Search By Miles</p>
+			<input id="user_miles" value="5"/>
+			<button onclick="pullLandmarkCoordsFromLandmark()">Search Map</button>
 			<div id="map"></div>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
+				
 			</script>
-			<c:url value="/js" var="jsHref"/>
+			<c:url value="/js" var="jsHref" />
 			<script src="${jsHref}/maps.js"></script>
+			
 		</div>
 		<!-- end of body of the homepage -->
 

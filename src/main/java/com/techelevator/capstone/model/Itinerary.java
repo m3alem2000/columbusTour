@@ -5,19 +5,20 @@ import java.time.LocalDateTime;
 public class Itinerary {
 
 	private int itineraryId;
+	private String itineraryName;
 	private int userId;
 	private double startingLatitude;
 	private double startingLongitude;
 	private double destinationLatitude;
 	private double destinationLongitude;
-	private int userStartingPointId;
 	private LocalDateTime dateCreated;
 
-	public int getUserStartingPointId() {
-		return userStartingPointId;
+
+	public String getItineraryName() {
+		return itineraryName;
 	}
-	public void setUserStartingPointId(int userStartingPointId) {
-		this.userStartingPointId = userStartingPointId;
+	public void setItineraryName(String itineraryName) {
+		this.itineraryName = itineraryName;
 	}
 	public double getDestinationLatitude() {
 		return destinationLatitude;

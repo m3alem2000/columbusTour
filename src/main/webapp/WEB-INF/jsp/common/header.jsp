@@ -18,7 +18,7 @@
 <script src="${jsHref}/additional-methods.min.js "></script>
 <!-- <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script> -->
 <script src="${jsHref}/bootstrap.min.js"></script>
-<!--  <script src="${jsHref}/validation.js"></script>-->
+ <script src="${jsHref}/validation.js"></script>
 
 <c:url var="cssHref" value="/css/site.css" />
 <link rel="stylesheet" type="text/css" href="${cssHref}">
@@ -74,7 +74,6 @@
 						<li><a href="#">Suggest a Landmark</a></li>
 					</c:if>
 				</ul>
-
 
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${empty currentUser}">

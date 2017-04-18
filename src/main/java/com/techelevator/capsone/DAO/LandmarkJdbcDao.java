@@ -74,8 +74,8 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	}
 
 	@Override
-	public boolean deleteLandmarkById(long landmarkId) {
-		String sqlDeleteLandmarkById = "DELETE FROM landmark WHERE landmark_id = ?";
+	public boolean inactivateLandmarkById(long landmarkId) {
+		String sqlDeleteLandmarkById = "UPDATE landmark SET active = FALSE WHERE landmark_id = ?";
 		int result = jdbcTemplate.update(sqlDeleteLandmarkById, landmarkId);
 		return result==1;
 	}
@@ -88,6 +88,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		}
 		String sqlGetTopXLandmarks = "SELECT * FROM landmark l " +
 				"JOIN review r on l.landmark_id = r.landmark_id" +
+				"WHERE active IS TRUE"+
 				"ORDER BY rating DESC" + limitToX;
 		ArrayList<Landmark> landmarkTopX = new ArrayList<Landmark>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetTopXLandmarks);
@@ -100,7 +101,8 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 
 	@Override
 	public List<Landmark> getTopPickLandMarksByFlag() {
-		String sqlGetFlagedLandmarks = "SELECT * FROM landmark WHERE top_pick IS TRUE";
+		String sqlGetFlagedLandmarks = "SELECT * FROM landmark "
+				+ "WHERE top_pick IS TRUE AND active IS TRUE";
 		List<Landmark> topLandmarkList = new ArrayList<Landmark>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetFlagedLandmarks);
 		while(results.next()) {
@@ -111,7 +113,8 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 	
 	@Override
 	public List<Landmark> getAllLandmarks() {
-		String sqlGetAllLandmarks = "SELECT * FROM landmark";
+		String sqlGetAllLandmarks = "SELECT * FROM landmark "
+				+ "WHERE active IS TRUE";
 		List<Landmark> allLandmarks = new ArrayList<Landmark>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllLandmarks);
 		while(results.next()) {

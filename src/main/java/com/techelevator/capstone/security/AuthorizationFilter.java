@@ -61,7 +61,7 @@ public class AuthorizationFilter implements Filter {
 		String requestUser = null;
 		String[] path = httpRequest.getServletPath().split("/");
 		if(path.length >= 3) {
-			if(path[2].equals("new") == false) {
+			if(path[2].equals("Detail") == false) {
 				requestUser = path[2];
 			}
 		}

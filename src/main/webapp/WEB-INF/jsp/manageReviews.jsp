@@ -16,18 +16,22 @@
 <!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 		<h2>Manage Reviews</h2>
-<ol class="reviewList">
-		<c:forEach var="review" items="${reviews}">
+
+<ul class="reviewList">		
+	<c:forEach var="review" items="${reviews}">
 			<li class="review">
-				<span class="">${review.review}</span>
-				<span class="">${review.landmarkId}</span>
-				
-				<c:url var="landmarkFormAction" value="/landmarkDetail"/>
-				<form action="${landmarkFormAction}" method="GET">
+			    
+			    	<span class=""><c:out value="Posted by ${review.username} on ${review.dateCreated} for Landmark: ${review.landmarkId}"/> </span>
+			    	<form action="${landmarkFormAction}" method="GET">
 					<input type="hidden" name="landmarkId" value="${review.landmarkId}"/>
 					<input type="submit" value="Landmark Details" />
 					
 				</form>
+			    
+				<span class="">${review.review}</span>
+ 				
+				<c:url var="landmarkFormAction" value="/landmarkDetail"/>
+				
 				
 				<form action="${deleteUrl}" method="POST">		
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
@@ -35,8 +39,9 @@
 					<input type="submit" id="${review.reviewId}" class="deleteButton" value="Delete">
 				</form>
 			</li>
+			<br>
 		</c:forEach>	
-</ol>
+</ul>
 
 			
 	</div>

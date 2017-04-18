@@ -24,22 +24,22 @@
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
  					<div class="form-group">
-						<label for="LandmarkName">Landmark Name: </label> <input
-							type="text" value="${landMark.landmarkName}" id="landmarkName"
-							name="landmarkName" placeHolder="Landmark Name"
+						<label for="LandmarkName">Landmark Name: </label> 
+						<input type="text" value="${landmark.landmarkName}" 
+						id="landmarkName" name="landmarkName" placeHolder="Landmark Name"
 							class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="LandmarkSubName">Landmark Sub Name: </label> <input
-							type="text" value="${landMark.landmarkSubName}"
+							type="text" value="${landmark.landmarkSubName}"
 							id="landmarkSubName" name="landmarkSubName"
 							placeHolder="Landmark Sub Name" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="landmarkPicture">Picture Path: </label> <input
-							type="text" value="${landMark.landmarkPicture}"
+							type="text" value="${landmark.landmarkPicture}"
 							id="landmarkPicture" name="landmarkPicture"
 							placeHolder="Picture Path" class="form-control" />
 					</div>
@@ -52,44 +52,50 @@
 					</div> --%>
 
 					<div class="form-group">
-						<label for="latitude">Latitude: </label> <input type="text"
-							value="${landMark.latitude}" id="latitude" name="latitude"
+						<label for="latitude">Latitude: </label> 
+						<input type="text"
+							value="${landmark.latitude}" id="latitude" name="latitude"
 							placeHolder="Latitude" class="form-control" />
 					</div>
 
 					<div class="form-group">
-						<label for="longitude">Longitude: </label> <input type="text"
-							value="${landMark.longitude}" id="longitude" name="longitude"
+						<label for="longitude">Longitude: </label> 
+						<input type="text"
+							value="${landmark.longitude}" id="longitude" name="longitude"
 							placeHolder="Longitude" class="form-control" />
 					</div>
 
 					<div class="form-group">
-						<label for="state">State: </label> <input type="text"
-							value="${landMark.state}" id="state" name="state"
+						<label for="state">State: </label> 
+						<input type="text"
+							value="${landmark.state}" id="state" name="state"
 							placeHolder="State" class="form-control" />
 					</div>
 
 					<div class="form-group">
-						<label for="city">City: </label> <input type="text"
-							value="${landMark.city}" id="city" name="city"
+						<label for="city">City: </label> 
+						<input type="text"
+							value="${landmark.city}" id="city" name="city"
 							placeHolder="City" class="form-control" />
 					</div>
 
 					<div class="form-group">
-						<label for="zipCode">Zip Code: </label> <input type="text"
-							value="${landMark.zipCode}" id="zipCode" name="zipCode"
+						<label for="zipCode">Zip Code: </label> 
+						<input type="text"
+							value="${landmark.zipCode}" id="zipCode" name="zipCode"
 							placeHolder="Zip Code" class="form-control" />
 					</div>
 
 					<div class="form-group">
 						<label for="address">Address: </label>
-						<input type="text" value="${landMark.address}" id="address" name="address"
+						<input type="text" value="${landmark.address}" id="address" name="address"
 							placeHolder="Address" class="form-control" />
 					</div>
 
 					<div class="form-group">
-						<label for="description">Description: </label> <input type="text"
-							value="${landMark.description}" id="description"
+						<label for="description">Description: </label> 
+						<input type="text"
+							value="${landmark.description}" id="description"
 							name="description" placeHolder="Description" class="form-control" />
 					</div>
 					<span>Top Pick landmark  </span>

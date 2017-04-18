@@ -3,36 +3,44 @@ var startMark;
 var radMiles;
 var marker;
 var markers = [];
+var landmarkAr = [];
 var locationCircle;
 
-var directionsService = new google.maps.DirectionsService;
-//Create a renderer for directions and bind it to the map.
-var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
-//Instantiate an info window to hold step text.
-var stepDisplay = new google.maps.InfoWindow;
 
-calculateAndDisplayRoute(directionsDisplay, directionsService, markers, stepDisplay, map);
-//WIP
-function calculateAndDisplayRoute(directionsDisplay, directionsService,
-		markers, stepDisplay, map) {
-	// First, remove any existing markers from the map.
-	for (var i = 0; i < markerArray.length; i++) {
-		markerArray[i].setMap(null);
+
+
+	
+	function haversine() {
+	       var radians = Array.prototype.map.call(arguments, function(deg) { return deg/180.0 * Math.PI; });
+	       var lat1 = radians[0], lon1 = radians[1], lat2 = radians[2], lon2 = radians[3];
+	       var R = 6372.8; // km
+	       var dLat = lat2 - lat1;
+	       var dLon = lon2 - lon1;
+	       var a = Math.sin(dLat / 2) * Math.sin(dLat /2) + Math.sin(dLon / 2) * Math.sin(dLon /2) * Math.cos(lat1) * Math.cos(lat2);
+	       var c = 2 * Math.asin(Math.sqrt(a));
+	       return R * c;
 	}
-
+	//haversine(lat1, lon1, lat2, lon2);
+	
 
 //WIP	  
-	function pullLandmarkCoordsFromItinerary() {
-	for(var i = 0; i < list; i++) {
-
-	}
-	}
-
-//WIP
-	function pullListOfItineraryByUserId() {
-		
-	}
+	function pullLandmarkCoordsFromLandmark() {		
+	for(var i = 0; i < 21; i++) {
+		var lat1 = parseFloat($('#userStartLat').val());
+		var lon1 = parseFloat($('#userStartLong').val());
+		var lat2 = parseFloat($('[name=latitude'+i+']').val());
+		var lon2 = parseFloat($('[name=longitude'+i+']').val());
+		var miles = haversine(lat1, lon1, lat2, lon2) / 1609;
+		var userMiles = $('user_miles').val();
+		if(miles <= userMiles){
+			var endMark = new google.maps.LatLng(lat2, lon2);
+			marker(endMark, 0);
+		}
 	
+	}
+	}
+
+
 	//DONE
 	function initMap() {
 		// Constructor creates a new map - only center and zoom are required.
@@ -40,10 +48,12 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
 			center: {lat: 39.993788, lng: -83.000574},
 			zoom: 11
 		});
-
+		
 	};
+
+	
 	//DONE
-	function startPoint(coords, miles) {
+	function marker(coords, miles) {
 		this.marker = new google.maps.Marker({
 			position: coords,
 			map: map,
@@ -70,7 +80,7 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
 		}
 		this.startMark = new google.maps.LatLng(parseFloat($("#user_latitude").val()),parseFloat($("#user_longitude").val()));
 		this.radMiles = 1609 * $("#user_miles").val();
-		startPoint(startMark, radMiles);
+		marker(startMark, radMiles);
 	};
 
-};
+
