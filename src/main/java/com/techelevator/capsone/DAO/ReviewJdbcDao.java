@@ -53,6 +53,17 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
+	public List<Review> getAllLandmarksReviewsByUserId(long userId) {
+		List<Review> reviews = new ArrayList<>();
+		String sqlReviewById = "SELECT * FROM review WHERE user_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReviewById, userId);
+		while(results.next()) {
+			reviews.add(mapRowToReviewWithUsername(results));
+		}
+		return reviews;
+	}
+
+	@Override
 	public List<Review> getAllLandmarkReviews(long landmarkId) {
 		List<Review> reviews = new ArrayList<>();
 		String sqlReviews = "SELECT * FROM review "
@@ -64,7 +75,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		}
 		return reviews;
 	}
-	
+
 	@Override
 	public boolean updateReview(Review review) {//look into dateCreated here
 		String sqlUpdateReview = "UPDATE users SET landmark_id = ?, user_id = ?, review = ?, rating = ?";
@@ -90,7 +101,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		}
 		return id;
 	}
-	
+
 	private Review mapRowToReview(SqlRowSet row) {
 		Review review = new Review();
 		review.setReviewId(row.getLong("review_id"));
@@ -101,7 +112,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		review.setDateCreated(row.getTimestamp("date_created").toLocalDateTime());
 		return review;
 	}
-	
+
 	private Review mapRowToReviewWithUsername(SqlRowSet row) {
 		Review review = new Review();
 		review.setReviewId(row.getLong("review_id"));
@@ -113,4 +124,6 @@ public class ReviewJdbcDao implements ReviewDAO{
 		review.setDateCreated(row.getTimestamp("date_created").toLocalDateTime());
 		return review;
 	}
+
+
 }

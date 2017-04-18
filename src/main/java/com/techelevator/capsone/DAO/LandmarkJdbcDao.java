@@ -144,7 +144,7 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		theLandmark.setLandmarkName(results.getString("landmark_name"));
 		theLandmark.setLandmarkSubName(results.getString("landmark_sub_name"));
 		theLandmark.setLandmarkPicture(results.getString("landmark_picture"));
-		theLandmark.setLandmarkRating(results.getInt("landmark_rating"));
+		theLandmark.setLandmarkRating(results.getDouble("landmark_rating"));
 		theLandmark.setLatitude(results.getDouble("latitude"));
 		theLandmark.setLongitude(results.getDouble("longitude"));
 		theLandmark.setState(results.getString("state"));

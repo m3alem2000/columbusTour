@@ -11,7 +11,7 @@ public interface ReviewDAO {
 	// retrieves a specific review by its ID from db
 	
 	public List<Review> getAllLandmarksReviews();
-	
+	public List<Review> getAllLandmarksReviewsByUserId(long userId);
 	public List<Review> getAllLandmarkReviews(long landmarkId);
 	//returns a list of all reviews for a specific landmark
 	
