@@ -26,7 +26,6 @@ import com.techelevator.capstone.model.Review;
 public class LandmarkController {
 
 	@Autowired
-
 	private LandmarkDAO landmarkDao;
 
 	@Autowired
