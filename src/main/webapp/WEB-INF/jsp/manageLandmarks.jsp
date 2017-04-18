@@ -20,6 +20,7 @@
 					<th>{Address}</th>
 					<th>{TopPick}</th>
 					<th>Details</th>
+					<th>Update</th>
 					<th>Delete</th>
 				</tr>
 				<c:forEach var="listLandmark" items="${landmarks}">
@@ -32,7 +33,14 @@
 						<c:url var="landmarkDetailsHref" value="/landmarkDetail"/>
 						<form action="${landmarkDetailsHref}" method="GET">
 							<input type="hidden" name="landmarkId" value="${listLandmark.landmarkId}"/>
-							<input type="submit" value="Landmark Details" />
+							<input type="submit" value="More Details" />
+						</form>
+					</td>
+					<td>
+						<c:url var="landmarkUpdateHref" value="/users/${currentUser.username}/addOUpdateLandmark"/>
+						<form action="${landmarkUpdateHref}" method="GET">
+							<input type="hidden" name="landmark2Update" value="${listLandmark.landmarkId}"/>
+							<input type="submit" value="Update" />
 						</form>
 					</td>
 					<td>
@@ -40,7 +48,7 @@
 						<form action="${DeleteLandmarkHref}" method="POST">		
 						<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 						<input type="hidden" name="landmark2delId" value="${listLandmark.landmarkId}">
-						<input type="submit" id="${review.reviewId}" class="deleteButton" value="Delete">
+						<input type="submit" id="${review.reviewId}" class="deleteButton" value="In Activate">
 				</form>
 					</td>
 					<%-- <li class=""><span class="">${listLandmark.landmarkName}</span>

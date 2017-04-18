@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -137,13 +139,18 @@ public class AdminController {
 		return "manageReviews";
 	}
 	@RequestMapping(path="/users/{userName}/addOUpdateLandmark", method=RequestMethod.GET)
-	public String displayAddLandmarkForm(ModelMap model){
-		// TODO: get the landmark to pre populate the fields 
-		//		if (model.get("landmark")!=null){
-		//		Landmark sessionLandmark = (Landmark)model.get("landmark");
-		//		landmarkDao.readLandmarkById(sessionLandmark.getLandmarkId())
-		//		}
+	public String displayAddLandmarkForm(
+			@RequestParam(value = "landmark2Update", required=false) Long landmarkUpdateId,
+			ModelMap model){
+		if (landmarkUpdateId != null ) {
+			Landmark update = landmarkDao.readLandmarkById(landmarkUpdateId);
+			System.out.println(landmarkUpdateId);
+			model.put("landmark", update);
+		} else {
+			model.remove("landmark");
+			System.out.println("Banana");
 
+		}
 		return "addOUpdateLandmark";
 	}
 
