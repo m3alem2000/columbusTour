@@ -2,7 +2,7 @@
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 <c:url value="/js" var="jsHref" />
 			<script src="${jsHref}/itineraryGoogleMap.js"></script>
-<div class="container-fluid">
+<div class="container-fluid" onload="initialize()" >
 
 	<div style="background-color: #f1f1f1; height:100%" class="row content">
 
@@ -19,6 +19,17 @@
 				<input type="hidden" name="DLongitude${count}" value="${itinerariesDetail.destinationLongitude}"/>
 				<c:set var="count" value="${count + 1}" scope="page"/>
 			</c:forEach>
+			
+			<script>
+			var locations = [
+			<c:forEach var="itin" items="${itinerariesDetail}" >
+				{
+					lat: <c:out value="${itin.destinationLatitude}"/>,
+					lng: <c:out value="${itin.destinationLongitude}"/>
+				},
+			</c:forEach>
+			];
+			</script>
 
 	<c:forEach var="itinerariesDetail" items="${itinerariesDetail}">
 			<p>${itinerariesDetail.itineraryId}</p>
@@ -34,9 +45,9 @@
 		<!-- end links on the left of the homepage -->
 
 		<!-- body of the homepage -->
-		<div class="col-sm-8 text-left">
+
 			<div id="map"></div>
-				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
+				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initialize">
        	 		</script>
 			</div>
 		<!-- end of body of the homepage -->
