@@ -45,6 +45,7 @@
 				</a>
 				
 			</div>
+					
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<c:url var="homeHref" value="/" />
@@ -55,7 +56,7 @@
 						<c:url var="aboutHref" value="/users/${currentUser.username}/about" />
 					</c:if>
 					<li><a href="${aboutHref}">About</a></li>
-
+					
 					<c:if test="${empty currentUser}">
 						<c:url var="searchLandmarkHref" value="/signup" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>

@@ -29,4 +29,8 @@ public class HomeController {
 		return "home";
 	}
 
+	@RequestMapping(path={"/about","/users/{userName}/about"}, method=RequestMethod.GET)
+	public String showAboutPage(HttpServletRequest request) {
+		return "about";
+	}
 }
