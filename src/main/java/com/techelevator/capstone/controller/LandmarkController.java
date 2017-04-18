@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.techelevator.capsone.DAO.ItineraryDAO;
 import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capsone.DAO.ReviewDAO;
 import com.techelevator.capstone.model.AppUser;
+import com.techelevator.capstone.model.Itinerary;
 import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
 
@@ -27,7 +29,8 @@ public class LandmarkController {
 
 	@Autowired
 	private ReviewDAO reviewDao;
-
+	@Autowired
+	private ItineraryDAO itinDAO;
 
 	@Autowired
 	public LandmarkController(LandmarkDAO landmarkDao){
@@ -36,11 +39,16 @@ public class LandmarkController {
 
 
 	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
-	public String displaySearchLandmarkForm(ModelMap model){
+	public String displaySearchLandmarkForm(ModelMap model){//, @RequestParam int userId
 		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
 		model.put("landmarks", landmarks);
+		AppUser currentUser = (AppUser)model.get("currentUser");
+		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(currentUser.getUserId());
+		model.put("itineraries", itineraries);
 		return "landmarkSearchPage";
 	}
+
+
 
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)
 	public String manageReviews(ModelMap model) {
@@ -62,6 +70,14 @@ public class LandmarkController {
 
 	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
 	public String showlandmarkSearchPage(HttpServletRequest request) {
+		return "landmarkSearchPage";
+	}
+
+	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
+	public String addLandmark2Itin(ModelMap model,
+			@RequestParam long landmarkId,
+			@RequestParam long itineraryId) {
+		itinDAO.addLandmark2Itin(itineraryId, landmarkId);
 		return "landmarkSearchPage";
 	}
 }
