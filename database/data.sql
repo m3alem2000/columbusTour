@@ -60,7 +60,7 @@ INSERT INTO itinerary (user_id, user_starting_point_id) VALUES (4, 2);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'Beautiful park outside, outstanding indoor biomes. Need several hours to visit. Nice cafe and gift shop for unique gifts.', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 2, 'What a nice park, several different gardens, a heaven for plant lovers!', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 3, 'Awesome, check out the butterfly exhibit with the kids. Lots of educational events', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 4, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 4, 'We take all our out of town friends here when thy visit Columbus.', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 2, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 1, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 3, 'What a nice park', 5);

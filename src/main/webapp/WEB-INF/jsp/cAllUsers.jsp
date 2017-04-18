@@ -2,8 +2,8 @@
 
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 
-<div  id="manageUsersH2">
-	<h2 >See and Manage All Users</h2>
+<div id="manageUsersH2">
+	<h2>See and Manage All Users</h2>
 </div>
 
 <table id="userListTable" class="usersList">
@@ -22,7 +22,7 @@
 		<th>Delete</th>
 	</tr>
 	<c:forEach var="userFromList" items="${allUsers}">
-			<tr >
+		<tr>
 			<td>${userFromList.userId}</td>
 			<td>${userFromList.email}</td>
 			<td>${userFromList.username}</td>
@@ -33,28 +33,25 @@
 			<td>${userFromList.state}</td>
 			<td>${userFromList.zipCode}</td>
 			<td>${userFromList.phoneNumber}</td>
-			<td>
-				<%-- <c:if test="${user.isAdmin==true}">
+			<td><c:if test="${user.admin==true}">
 					Admin
-				</c:if> --%>
-			</td>
-			<td>
-				<c:url var="deleteUserUrl" value="/users/${currentUser.username}/cAllUsers"/>
-				<form action="${deleteUserUrl}" method="POST">		
-					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-					<input type="hidden" name="userToDeleteId" value="${userFromList.userId}">
+				</c:if></td>
+			<td><c:url var="deleteUserUrl"
+					value="/users/${currentUser.username}/cAllUsers" />
+				<form action="${deleteUserUrl}" method="POST">
+					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
+						type="hidden" name="userToDeleteId" value="${userFromList.userId}">
 					<input type="submit" class="deleteButton" value="Delete User">
-				</form>
-			</td>
+				</form></td>
 
-			</tr>
-		</c:forEach>	
+		</tr>
+	</c:forEach>
 </table>
 
 
 
 
 
-	<br>
-	<br>
+<br>
+<br>
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />

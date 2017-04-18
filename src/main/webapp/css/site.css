@@ -110,6 +110,26 @@ div#manageUsersH2 {
 	padding-left: 20%;
 }
 
+ /*  manage reviews  */
+table#reviewTable {
+	width: 100%;
+	margin: auto;
+}
+
+div#manageReviews{
+	padding-left: 20%;
+}
+
+#reviewTable th {
+	padding:10px;
+	text-align: center;
+	
+}
+#reviewTable td  {
+	padding:10px;
+	text-align: center;
+}
+
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
 	.sidenav {

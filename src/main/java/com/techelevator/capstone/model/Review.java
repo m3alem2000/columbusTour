@@ -1,6 +1,7 @@
 package com.techelevator.capstone.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Review {
 
@@ -11,6 +12,7 @@ public class Review {
 	private String review;
 	private long rating;
 	private LocalDateTime dateCreated;
+	private String formattedDateTime;
 
 
 	public long getReviewId() {
@@ -67,5 +69,13 @@ public class Review {
 
 	public void setDateCreated(LocalDateTime dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+	
+	public String getFormattedDateTime() {
+		return dateCreated.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	}
+
+	public void setFormattedDateTime(String formattedDateTime) {
+		this.formattedDateTime = formattedDateTime;
 	}
 }

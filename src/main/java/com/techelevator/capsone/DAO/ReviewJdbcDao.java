@@ -26,8 +26,8 @@ public class ReviewJdbcDao implements ReviewDAO{
 	public boolean createReview(Review review) {
 		Long reviewId = getNextId();
 		String sqlCreateReview = "INSERT INTO review "
-				+ "(review_id, landmark_id, user_id, review, rating) VALUES "
-				+ "(?, ?, ?, ?, ?)";
+				+ "(review_id, landmark_id, user_id, review, rating, date_created) VALUES "
+				+ "(?, ?, ?, ?, ?,?)";
 		int result = jdbcTemplate.update(sqlCreateReview, 
 				reviewId, review.getLandmarkId(), review.getUserId(), review.getReview(), review.getRating());
 		return result==1;
@@ -98,6 +98,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		review.setUserId(row.getLong("user_id"));
 		review.setReview(row.getString("review"));
 		review.setRating(row.getLong("rating"));
+		review.setDateCreated(row.getTimestamp("date_created").toLocalDateTime());
 		return review;
 	}
 	
@@ -109,6 +110,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		review.setUsername(row.getString("username"));
 		review.setReview(row.getString("review"));
 		review.setRating(row.getLong("rating"));
+		review.setDateCreated(row.getTimestamp("date_created").toLocalDateTime());
 		return review;
 	}
 }
