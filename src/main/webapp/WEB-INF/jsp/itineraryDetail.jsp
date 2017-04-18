@@ -11,14 +11,6 @@
 		<a href="newItinerary"><p>New Itinerary</p></a>
 		<p>Saved Itineraries</p>
 		<c:set var="count" value="1" scope="page" />
-		
-			<c:forEach var="itinerariesDetail" items="${itinerariesDetail}">
-				<input type="hidden" name="SLatitude" value="${itinerariesDetail.startingLatitude}"/>
-				<input type="hidden" name="SLongitude" value="${itinerariesDetail.startingLongitude}"/>
-				<input type="hidden" name="DLatitude${count}" value="${itinerariesDetail.destinationLatitude}"/>
-				<input type="hidden" name="DLongitude${count}" value="${itinerariesDetail.destinationLongitude}"/>
-				<c:set var="count" value="${count + 1}" scope="page"/>
-			</c:forEach>
 			
 			<script>
 			var locations = [
@@ -35,16 +27,6 @@
 			];
 			</script>
 
-	<c:forEach var="itinerariesDetail" items="${itinerariesDetail}">
-			<p>${itinerariesDetail.itineraryId}</p>
-			<p>${itinerariesDetail.userId}</p>
-			<p>${itinerariesDetail.startingLatitude}</p>
-			<p>${itinerariesDetail.startingLongitude}</p>
-			<p>${itinerariesDetail.destinationLatitude}</p>
-			<p>${itinerariesDetail.destinationLongitude}</p>
-			<p>${itinerariesDetail.dateCreated}</p>
-			
-	</c:forEach>
 		</div>
 		<!-- end links on the left of the homepage -->
 
