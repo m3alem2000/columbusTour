@@ -15,7 +15,14 @@ public class Landmark {
 	private String address;
 	private String description;//*
 	private boolean topPick;
+	private boolean isActive;
 	
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 	public boolean isTopPick() {
 		return topPick;
 	}

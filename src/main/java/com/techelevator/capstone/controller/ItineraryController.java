@@ -17,10 +17,11 @@ import com.techelevator.capstone.model.AppUser;
 import com.techelevator.capstone.model.Itinerary;
 
 @Controller
-@SessionAttributes("currentUser")
+@SessionAttributes({"currentUser","itinerary"})
 public class ItineraryController {
 
 	private ItineraryDAO itineraryDao;
+
 	@Autowired
 	public ItineraryController(ItineraryDAO itineraryDao){
 		this.itineraryDao = itineraryDao;
@@ -43,12 +44,29 @@ public class ItineraryController {
 	}
 
 	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.GET)
-	public String createItinerary(ModelMap model) {
+	public String createItineraryStartPoint(ModelMap model) {
 
 		if(model.isEmpty() || model.get("currentUser")==null){
 			return "redirect:/login";
 		}else{
 			return "createItinerary";
+		}
+	}
+
+	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.POST)
+	public String createItinerary(Itinerary itinerary, ModelMap model) {
+
+		if(model.isEmpty() || model.get("currentUser")==null){
+			return "redirect:/login";
+		}else{
+			if(itinerary==null){
+				return "redirect:/createItinerary";
+			} else {
+				Itinerary theItinerary =itineraryDao.getItineraryById(itineraryDao.createItinerary(itinerary));
+				model.put("itinerary", theItinerary);
+				return "redirect:/itinerary";
+			}
+
 		}
 	}
 

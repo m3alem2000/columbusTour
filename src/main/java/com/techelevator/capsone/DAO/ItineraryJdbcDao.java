@@ -47,6 +47,16 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	}
 
 	@Override
+	public Itinerary getItineraryById(long itineraryId) {
+		String sqlgetItineraryById = "SELECT * FROM itinerary WHERE itinerary_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlgetItineraryById, itineraryId);
+		if (results.next()){
+			return mapRowToItinerary(results);
+		}
+		return null;
+	}
+
+	@Override
 	public List<Itinerary> getItinerariesListByUserId(int userId) {
 		String sqlgetItineraryById = "select * from itinerary where user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlgetItineraryById, userId);
@@ -78,6 +88,8 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 		theItinerary.setItineraryId(results.getInt("itinerary_id"));
 		theItinerary.setItineraryName(results.getString("itinerary_name"));
 		theItinerary.setUserId(results.getInt("user_id"));
+		theItinerary.setStartingLatitude(results.getDouble("start_lat"));
+		theItinerary.setStartingLongitude(results.getDouble("start_lon"));
 		theItinerary.setDateCreated(results.getTimestamp("date_created").toLocalDateTime());
 		return theItinerary;
 	}
@@ -111,4 +123,5 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 			throw new RuntimeException("Something went wrong while getting the next user id");
 		}
 	}
+
 }

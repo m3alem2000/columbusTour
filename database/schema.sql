@@ -51,6 +51,7 @@ CREATE TABLE landmark
 	address VARCHAR(256),
 	description TEXT NOT NULL,
 	top_pick BOOLEAN,
+	active BOOLEAN DEFAULT TRUE,
 	CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
 	
 );

@@ -25,6 +25,8 @@ import com.techelevator.capstone.model.Review;
 @SessionAttributes({"landmark","reviews","currentUser","landmarks"})
 public class LandmarkController {
 
+	@Autowired
+
 	private LandmarkDAO landmarkDao;
 
 	@Autowired
