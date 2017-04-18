@@ -29,7 +29,6 @@
 					</a>
 				</div>			
 				<br>
-
 					<!-- <hr> -->
 				
 				<c:set var="count" value="${count + 1}" scope="page"/>
@@ -41,22 +40,28 @@
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 		<!--  <input id="input-3" name="input-3" value="4" class="rating-loading">-->
-			<!--  --><h3>Central Ohio's best places to visit</h3>
-			<div id="map"></div>
-			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
-
-			</script>
-			<c:url value="/js" var="jsHref" />
-			<script src="${jsHref}/maps.js"></script>
-		
-		</div>
+			<h6>This site was the culmination of a collaborative project by team Delta during the final two weeks of a Java Software Development Bootcamp.</h6>
+			<h5>Our team members:</h5>
+			<img src="img/liel.jpg" class="photo_image" style="width: 150px">	
+			<p>Liel Azrieli</p>
+			
+			<img src="img/liel.jpg" class="photo_image" style="width: 150px">	
+			<p>Devin Distelhorst</p>
+			
+			<img src="img/debora.jpg" class="photo_image" style="width: 150px">	
+			<p>Debora Lipetz</p>
+			
+			<img src="img/debora.jpg" class="photo_image" style="width: 150px">	
+			<p>Mohammad Ramadan</p>
+		</div>	
+			
 		<!-- end of body of the homepage -->
-		
+
 		<!-- Ads on the right of the homepage -->
 		<c:import url="/WEB-INF/jsp/common/right.jsp" />
 		<!--end of Ads on the right of the homepage  -->
 	
-	</div>
+</div>
 </div>
 
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />

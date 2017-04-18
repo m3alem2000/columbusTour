@@ -12,8 +12,10 @@
 				value="/users/${currentUser.username}/createItinerary" />
 			<form action="${createAStartPoint}" method="POST" id="createStartPointForm">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> 
+				<p>Name your itinerary</p>
 				<input type="text" name="itineraryName">
 				<!-- <input type="text" name="itineraryAddress" id="address" onFocus="geolocate()" > -->
+				<p>Insert address or click on map</p>
 				<input type="text" name="itineraryAddress" id="address"
 					onFocus="geolocate()"> 
 					<input type="hidden" name="userId" value="${currentUser.userId}"> 
