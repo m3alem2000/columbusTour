@@ -6,9 +6,7 @@
   
     <!-- links on the left of the homepage -->
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      
     </div>
     <!-- end links on the left of the homepage -->
     
@@ -35,14 +33,9 @@
     <!-- end of body of the homepage -->
     
     <!-- Ads on the right of the homepage -->
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>ADS</p>
+      	<div class name="techelevator-right">
+      	<c:import url="/WEB-INF/jsp/common/right.jsp" />
       </div>
-      <div class="well">
-        <p>ADS</p>
-      </div>
-    </div>
     <!--end of Ads on the right of the homepage  -->
     
   </div>
