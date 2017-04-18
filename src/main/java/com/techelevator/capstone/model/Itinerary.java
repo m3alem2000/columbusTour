@@ -19,7 +19,6 @@ public class Itinerary {
 	public void setUserStartingPointId(int userStartingPointId) {
 		this.userStartingPointId = userStartingPointId;
 	}
-	
 	public double getDestinationLatitude() {
 		return destinationLatitude;
 	}

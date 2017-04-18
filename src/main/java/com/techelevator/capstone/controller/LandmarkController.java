@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.techelevator.capsone.DAO.ItineraryDAO;
 import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capsone.DAO.ReviewDAO;
 import com.techelevator.capsone.DAO.UserStartingPointDAO;
 import com.techelevator.capstone.model.AppUser;
+import com.techelevator.capstone.model.Itinerary;
 import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
 import com.techelevator.capstone.model.UserStartingPoint;
@@ -34,6 +36,8 @@ public class LandmarkController {
 	
 	@Autowired
 	private ReviewDAO reviewDao;
+	@Autowired
+	private ItineraryDAO itinDAO;
 	
 	
 	@Autowired
@@ -48,6 +52,14 @@ public class LandmarkController {
 		model.put("landmarks", landmarks);
 		
 		return "landmarkSearchPage";
+	}
+	
+	@RequestMapping(path="/users/{userName}/landmarkSearchPage?userId={userId}", method=RequestMethod.GET)
+	public String loadItineraryLocations(HttpServletRequest request, @RequestParam int userId, ModelMap model){
+		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(userId);
+		model.put("itineraries", itineraries);
+		
+		return "landmarkSearchPage?userId={userId}";
 	}
 	
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)

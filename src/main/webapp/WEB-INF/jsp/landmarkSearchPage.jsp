@@ -4,7 +4,6 @@
 <div class="container-fluid">
 
 	<div class="row content">
-		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
 			<p>Lat</p>
 			<input id="user_latitude" type="number"
@@ -17,6 +16,14 @@
 				value="${userStartingPoint.longitude}" />
 			<button id="drop" onclick="dropPin()">Drop</button>
 		</div>
+		<div class="col-sm-3 sidenav">
+		<c:forEach var="itinerary" items="${itineraries}">
+				<input id="userStartLat" type="number" value="${itinerary.startingLatitude}"/>
+				<input id="userStartLong" type="number" value="${itinerary.startingLongitude}"/>
+		</c:forEach>		
+		</div>
+		
+		
 		<!-- end links on the left of the homepage -->
 
 

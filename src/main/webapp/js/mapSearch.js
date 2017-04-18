@@ -21,13 +21,18 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
 	}
 
 
-//	//WIP	  
-//	function pullLandmarkCoordsFromItinerary() {
-//	for(var ) {
+//WIP	  
+	function pullLandmarkCoordsFromItinerary() {
+	for(var i = 0; i < list; i++) {
 
-//	}
-//	}
+	}
+	}
 
+//WIP
+	function pullListOfItineraryByUserId() {
+		
+	}
+	
 	//DONE
 	function initMap() {
 		// Constructor creates a new map - only center and zoom are required.
