@@ -5,11 +5,11 @@
   <div class="row content">
   
     <!-- links on the left of the homepage -->
-    <div class="col-sm-2 sidenav">
+    <!-- <div class="col-sm-2 sidenav">
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
-    </div>
+    </div> -->
     <!-- end links on the left of the homepage -->
     
     <!-- body of the homepage -->

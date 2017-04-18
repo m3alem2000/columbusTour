@@ -149,7 +149,6 @@ public class AdminController {
 		} else {
 			model.remove("landmark");
 			System.out.println("Banana");
-
 		}
 		return "addOUpdateLandmark";
 	}

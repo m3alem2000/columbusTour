@@ -104,8 +104,9 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1>
-				<img style="width: 80px" src="${logoHref}" alt="Delta Tour"
-					width="25%">Delta Tours are the Best!
+				<img style="width:80px" src="${logoHref}" alt="Delta Tour" width="25%">Delta Tours are the Best!
 			</h1>
 		</div>
 	</div>
+	
+	

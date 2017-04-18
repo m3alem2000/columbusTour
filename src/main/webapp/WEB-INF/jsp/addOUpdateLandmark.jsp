@@ -100,7 +100,7 @@
 					</div>
 					<span>Top Pick landmark  </span>
 					<input type="hidden" value="0" name="topPick" />
-					<input class="form-control" type="checkbox" value="1" name="topPick" />
+					<input class="form-control" type="checkbox" name="topPick" <c:if test="${landmark.topPick}">checked</c:if> />
 					
 
 

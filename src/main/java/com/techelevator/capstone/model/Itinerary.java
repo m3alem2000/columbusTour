@@ -9,11 +9,18 @@ public class Itinerary {
 	private int userId;
 	private double startingLatitude;
 	private double startingLongitude;
+	private String startAddress;
 	private double destinationLatitude;
 	private double destinationLongitude;
 	private LocalDateTime dateCreated;
 
-
+	public String getStartAddress() {
+		return startAddress;
+	}
+	public void setStartAddress(String startAddress) {
+		this.startAddress = startAddress;
+	}
+	
 	public String getItineraryName() {
 		return itineraryName;
 	}
