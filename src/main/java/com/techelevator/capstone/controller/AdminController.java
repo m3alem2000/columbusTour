@@ -104,6 +104,10 @@ public class AdminController {
 		if(!sessionUser.isAdmin()){
 			return "null";
 		}
+		List<Review> delRev = reviewDao.getAllLandmarksReviewsByUserId(userToDeleteId);
+		for (Review review: delRev){
+			reviewDao.deleteReviewById(review.getReviewId());
+		}
 		appUserDao.deleteAppUser(userToDeleteId);
 		model.put("currentUser", sessionUser);
 		List<AppUser> allUsers= new ArrayList<AppUser>();
@@ -149,7 +153,6 @@ public class AdminController {
 		} else {
 			model.remove("landmark");
 			System.out.println("Banana");
-
 		}
 		return "addOUpdateLandmark";
 	}

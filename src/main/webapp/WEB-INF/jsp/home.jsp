@@ -29,6 +29,7 @@
 					</a>
 				</div>			
 				<br>
+
 					<!-- <hr> -->
 				
 				<c:set var="count" value="${count + 1}" scope="page"/>

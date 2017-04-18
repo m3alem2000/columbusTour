@@ -10,19 +10,52 @@
 
 			<c:url var="createAStartPoint"
 				value="/users/${currentUser.username}/createItinerary" />
-			<form action="${createAStartPoint}" method="POST">
-				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
-					type="text" name="itineraryName">
+			<form action="${createAStartPoint}" method="POST" id="createStartPointForm">
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> 
+				<p>Name your itinerary</p>
+				<input type="text" name="itineraryName">
 				<!-- <input type="text" name="itineraryAddress" id="address" onFocus="geolocate()" > -->
+				<p>Insert address or click on map</p>
 				<input type="text" name="itineraryAddress" id="address"
-					onFocus="geolocate()"> <input type="hidden" name="userId"
-					value="${currentUser.userId}"> <input type="hidden"
-					name="startingLatitude" id="latitude"> <input type="hidden"
-					name="startingLongitude" id="longitude"> <input
-					type="submit" class="button" value="Create Itinerary">
+					onFocus="geolocate()"> 
+					<input type="hidden" name="userId" value="${currentUser.userId}"> 
+					<input type="hidden" name="startingLatitude" id="latitude"> 
+					<input type="hidden" name="startingLongitude" id="longitude"> 
+					<input type="submit" class="button" value="Create Itinerary">
 			</form>
 
 		</div>
+		<script type="text/javascript">
+			$(document).ready(function () {
+			
+				$("#createStartPointForm").validate({
+					rules : {
+						itineraryName : {
+							required : true
+						},
+						userId : {
+							required : true
+						},
+						startingLatitude : {
+							required : true,
+						},
+						startingLongitude : {
+							required : true,  
+						}
+					},
+					messages : {			
+						itineraryName : {
+							equalTo : "Give your itinerary a name"
+						},
+						startingLatitude : {
+							equalTo : "No starting point was chosen"
+						}
+					},
+					errorClass : "error"
+				});
+				
+			});
+		</script>
 		<!-- end links on the left of the homepage -->
 
 

@@ -6,7 +6,7 @@ public class Landmark {
 	private String landmarkName; // next val
 	private String landmarkSubName; //*=Required
 	private String landmarkPicture;
-	private int landmarkRating;
+	private double landmarkRating;
 	private double latitude;//*
 	private double longitude;//*
 	private String state;//*
@@ -59,11 +59,11 @@ public class Landmark {
 	public void setLandmarkPicture(String landmarkPicture) {
 		this.landmarkPicture = landmarkPicture;
 	}
-	public int getLandmarkRating() {
+	public double getLandmarkRating() {
 		return landmarkRating;
 	}
-	public void setLandmarkRating(int landmarkRating) {
-		this.landmarkRating = landmarkRating;
+	public void setLandmarkRating(double d) {
+		this.landmarkRating = d;
 	}
 	public double getLatitude() {
 		return latitude;
