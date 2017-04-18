@@ -17,39 +17,35 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capsone.DAO.ReviewDAO;
-import com.techelevator.capsone.DAO.UserStartingPointDAO;
 import com.techelevator.capstone.model.AppUser;
 import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
-import com.techelevator.capstone.model.UserStartingPoint;
 
 @Controller
 @SessionAttributes({"landmark","reviews","currentUser","landmarks"})
 public class LandmarkController {
+
 	@Autowired
+
 	private LandmarkDAO landmarkDao;
-	
-	@Autowired
-	private UserStartingPointDAO uspDao;
-	
+
 	@Autowired
 	private ReviewDAO reviewDao;
-	
-	
+
+
 	@Autowired
 	public LandmarkController(LandmarkDAO landmarkDao){
 		this.landmarkDao = landmarkDao;
 	}
-	
-	
+
+
 	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
 	public String displaySearchLandmarkForm(ModelMap model){
 		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
 		model.put("landmarks", landmarks);
-		
 		return "landmarkSearchPage";
 	}
-	
+
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)
 	public String manageReviews(ModelMap model) {
 
@@ -57,22 +53,19 @@ public class LandmarkController {
 		model.put("landmarks", landmarks);
 		return "manageReviews";
 	}
-	
+
 	@RequestMapping(path="/landmarkDetail", method=RequestMethod.GET)
 	public String viewLandmarkDetail(HttpServletRequest request, 
 			@RequestParam Long landmarkId, 
 			ModelMap model) {
-			request.setAttribute("landmark", landmarkDao.readLandmarkById(landmarkId));
-			List<Review> reviews = reviewDao.getAllLandmarkReviews(landmarkId);
-			model.put("reviews", reviews);
+		request.setAttribute("landmark", landmarkDao.readLandmarkById(landmarkId));
+		List<Review> reviews = reviewDao.getAllLandmarkReviews(landmarkId);
+		model.put("reviews", reviews);
 		return "landmarkDetail";
 	}
 
 	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
-	public String showlandmarkSearchPage(HttpServletRequest request, 
-			UserStartingPoint userStartingPoint) {
-			uspDao.createStartingPoint(userStartingPoint);
-		request.setAttribute("userStartingPoint", userStartingPoint);
-	return "landmarkSearchPage";
+	public String showlandmarkSearchPage(HttpServletRequest request) {
+		return "landmarkSearchPage";
 	}
 }

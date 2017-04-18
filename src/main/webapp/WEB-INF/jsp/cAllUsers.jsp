@@ -33,6 +33,7 @@
 			<td>${userFromList.state}</td>
 			<td>${userFromList.zipCode}</td>
 			<td>${userFromList.phoneNumber}</td>
+<<<<<<< HEAD
 			<td><c:if test="${user.admin==true}">
 					Admin
 				</c:if></td>
@@ -41,6 +42,18 @@
 				<form action="${deleteUserUrl}" method="POST">
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
 						type="hidden" name="userToDeleteId" value="${userFromList.userId}">
+=======
+			<td>
+				<c:if test="${userFromList.admin==true}">
+					Admin
+				</c:if>
+			</td>
+			<td>
+				<c:url var="deleteUserUrl" value="/users/${currentUser.username}/cAllUsers"/>
+				<form action="${deleteUserUrl}" method="POST">		
+					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+					<input type="hidden" name="userToDeleteId" value="${userFromList.userId}">
+>>>>>>> 632585e8274123abe445995963674313f4d11963
 					<input type="submit" class="deleteButton" value="Delete User">
 				</form></td>
 

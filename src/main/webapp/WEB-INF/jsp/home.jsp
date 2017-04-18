@@ -17,11 +17,6 @@
 				<input type="hidden" name="landmarkRating${landmark.landmarkId}" value="${landmark.landmarkRating}"/>
 				<input type="hidden" name="landmarkPicture${landmark.landmarkId}" value="${landmark.landmarkPicture}"/>
 				<input type="hidden" name="description${landmark.landmarkId}" value="${landmark.description}"/>
-<%-- 				${landmark.landmarkSubName}
- --%>				<!-- <script type="text/javascript">
-					text_truncate('${landmark.landmarkName}', 20);
-					<!-- document.getElementById("landmarkTitle").innerHTML = "asdff";
-					</script> -->
 				<div id="homePageSiteDescription">
 					<span>
 						${landmark.landmarkName}
@@ -29,12 +24,17 @@
 				</div>
 				<div id="homePageSmallPic">
 					<a href="javascript:show_detail(${count})" >
+<<<<<<< HEAD
 						<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 150px">	
 					</a>
 				</div>			
 				<br>
 					<!-- <hr> -->
 				
+=======
+						<img src="img/${landmark.landmarkPicture}" class="photo_image" style="width: 100px">	
+					</a>				
+>>>>>>> 632585e8274123abe445995963674313f4d11963
 				<c:set var="count" value="${count + 1}" scope="page"/>
 			</c:forEach>
 		</div>
