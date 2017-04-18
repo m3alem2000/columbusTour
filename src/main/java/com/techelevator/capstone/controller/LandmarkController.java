@@ -42,14 +42,15 @@ public class LandmarkController {
 
 
 	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
-	public String displaySearchLandmarkForm(ModelMap model, @RequestParam int userId){
+	public String displaySearchLandmarkForm(ModelMap model){//, @RequestParam int userId
 		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
 		model.put("landmarks", landmarks);
-		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(userId);
+		AppUser currentUser = (AppUser)model.get("currentUser");
+		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(currentUser.getUserId());
 		model.put("itineraries", itineraries);
 		return "landmarkSearchPage";
 	}
-	
+
 
 
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)
@@ -72,6 +73,14 @@ public class LandmarkController {
 
 	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
 	public String showlandmarkSearchPage(HttpServletRequest request) {
+		return "landmarkSearchPage";
+	}
+
+	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
+	public String addLandmark2Itin(ModelMap model,
+			@RequestParam long landmarkId,
+			@RequestParam long itineraryId) {
+		itinDAO.addLandmark2Itin(itineraryId, landmarkId);
 		return "landmarkSearchPage";
 	}
 }
