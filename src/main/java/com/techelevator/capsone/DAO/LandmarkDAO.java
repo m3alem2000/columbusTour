@@ -15,6 +15,7 @@ public interface LandmarkDAO {
 	public List<Landmark> getAllLandmarks();
 
 	public boolean updateLandmarkById(Landmark landmark);
-	public boolean deleteLandmarkById(long landmarkId);
+	
+	public boolean inactivateLandmarkById(long landmarkId);
 
 }
