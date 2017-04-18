@@ -28,7 +28,7 @@
 					</a>
 				</div>			
 				<br>
-							
+
 				<c:set var="count" value="${count + 1}" scope="page"/>
 			</c:forEach>
 		</div>

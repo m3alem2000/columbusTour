@@ -102,8 +102,9 @@ CREATE TABLE itinerary
 	itinerary_id INTEGER DEFAULT NEXTVAL('itinerary_itinerary_id_seq'::regclass) NOT NULL,
 	itinerary_name VARCHAR(32) NOT NULL,
 	user_id INTEGER NOT NULL,
-	start_lat INTEGER NOT NULL,
-	start_lon INTEGER NOT NULL,
+	start_lat REAL NOT NULL,
+	start_lon REAL NOT NULL,
+	address VARCHAR(256),
 	date_created TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id)
 );
