@@ -27,8 +27,24 @@ public class ItineraryController {
 		this.itineraryDao = itineraryDao;
 	}
 
+//	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
+//	public String displayItineraryList(HttpServletRequest request, ModelMap model) {
+//
+//		if(model.isEmpty() || model.get("currentUser")==null){
+//			return "redirect:/login";
+//		}else{
+//
+//			AppUser appUser = (AppUser) model.get("currentUser");
+//			int userId = (int) appUser.getUserId();
+//			List<Itinerary> itineraries = new ArrayList<Itinerary>();
+//			itineraries = itineraryDao.getItinerariesListByUserId(userId);
+//			request.setAttribute("itineraries", itineraries);
+//			return "itinerary";
+//		}
+//	}
+	
 	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
-	public String displayItineraryList(HttpServletRequest request, ModelMap model) {
+	public String displayItineraryList(@RequestParam (defaultValue = "0" ,required = false) int itineraryId, HttpServletRequest request, ModelMap model) {
 
 		if(model.isEmpty() || model.get("currentUser")==null){
 			return "redirect:/login";
@@ -37,26 +53,33 @@ public class ItineraryController {
 			AppUser appUser = (AppUser) model.get("currentUser");
 			int userId = (int) appUser.getUserId();
 			List<Itinerary> itineraries = new ArrayList<Itinerary>();
+			
+			List<Itinerary> itinerariesDetail = new ArrayList<Itinerary>();
+			
+			if(itineraryId!=0){
+			itinerariesDetail = itineraryDao.getItinerariesDetailByUserId(userId, itineraryId);
+			request.setAttribute("itinerariesDetail", itinerariesDetail);
+			}
 			itineraries = itineraryDao.getItinerariesListByUserId(userId);
 			request.setAttribute("itineraries", itineraries);
 			return "itinerary";
 		}
 	}
 	
-	@RequestMapping(path="/itineraryDetail", method=RequestMethod.GET)
-	public String displayItineraryDetail(@RequestParam int itineraryId, HttpServletRequest request, ModelMap model) {
-
-		if(model.isEmpty() || model.get("currentUser")==null){
-			return "redirect:/login";
-		}else{
-			AppUser appUser = (AppUser) model.get("currentUser");
-			int userId = (int) appUser.getUserId();
-			List<Itinerary> itinerariesDetail = new ArrayList<Itinerary>();
-			itinerariesDetail = itineraryDao.getItinerariesDetailByUserId(userId, itineraryId);
-			request.setAttribute("itinerariesDetail", itinerariesDetail);
-			return "itinerary";
-		}
-	}
+//	@RequestMapping(path="/itineraryDetail", method=RequestMethod.GET)
+//	public String displayItineraryDetail(@RequestParam int itineraryId, HttpServletRequest request, ModelMap model) {
+//
+//		if(model.isEmpty() || model.get("currentUser")==null){
+//			return "redirect:/login";
+//		}else{
+//			AppUser appUser = (AppUser) model.get("currentUser");
+//			int userId = (int) appUser.getUserId();
+//			List<Itinerary> itinerariesDetail = new ArrayList<Itinerary>();
+//			itinerariesDetail = itineraryDao.getItinerariesDetailByUserId(userId, itineraryId);
+//			request.setAttribute("itinerariesDetail", itinerariesDetail);
+//			return "itineraryDetail";
+//		}
+//	}
 	
 
 	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.GET)
