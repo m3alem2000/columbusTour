@@ -34,7 +34,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
-	public Review getReviewById(Long reviewId) {
+	public Review getReviewById(long reviewId) {
 		String sqlReviewById = "SELECT * FROM review WHERE review_id = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlReviewById, reviewId);
 		Review requested = mapRowToReview(result);
