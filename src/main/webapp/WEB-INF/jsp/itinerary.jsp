@@ -9,7 +9,7 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-			<c:url var="createItinerary" value="/users/${currentUser.username}/createItinerary" />
+			<c:url var="createItinerary" value="/newItinerary" />
 		<a href="${createItinerary}" >
 		<button type="button" class="btn btn-link">New Itinerary</button>
 		</a><br><br>
@@ -41,10 +41,11 @@
 			var itinDetail = [
 			<c:forEach var="itin" items="${itinerariesDetail}" >
 				[
-					<c:out value="${itin.itineraryName}"/>,
-					<c:out value="${itin.description}"/>,
-					<c:out value="${itin.landmarkPicture}"/>,
-					<c:out value="${itin.landmarkRating}"/>
+					'<c:out value="${itin.landmarkName}"/>',
+					'<c:out value="${itin.description}"/>',
+					'<c:out value="${itin.landmarkPicture}"/>',
+					<c:out value="${itin.landmarkRating}"/>,
+					'<c:out value="${itin.landmarkId}"/>'
 				],
 			</c:forEach>
 				];

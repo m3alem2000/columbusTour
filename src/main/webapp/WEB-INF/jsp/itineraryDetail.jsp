@@ -10,7 +10,6 @@
 		<div class="col-sm-2 sidenav">
 		<p><a href="newItinerary">New Itinerary</a></p>
 		<p>Saved Itineraries</p>
-		<c:set var="count" value="1" scope="page" />
 			
 			<script>
 			var locations = [

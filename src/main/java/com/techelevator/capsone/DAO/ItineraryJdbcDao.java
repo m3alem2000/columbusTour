@@ -97,6 +97,8 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	private Itinerary mapRowToItineraryDetail(SqlRowSet results) {
 		Itinerary theItinerary = new Itinerary();
 		theItinerary.setItineraryId(results.getInt("itinerary_id"));
+		theItinerary.setLandmarkName(results.getString("landmark_name"));
+		theItinerary.setLandmarkId(results.getInt("landmark_id"));
 		theItinerary.setItineraryName(results.getString("itinerary_name"));
 		theItinerary.setDescription(results.getString("description"));
 		theItinerary.setLandmarkPicture(results.getString("landmark_picture"));
