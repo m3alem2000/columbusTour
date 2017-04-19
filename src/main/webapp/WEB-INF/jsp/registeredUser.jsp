@@ -1,8 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 <c:url value="/js" var="jsHref" />
 <script src="${jsHref}/mapSearch.js"></script>
@@ -10,24 +6,10 @@
 	<div class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">HTML</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
-    </ul>
-  </div>
-</div>
-		
-		
-			<div id="itincreate">
 		<c:url var="createItinerary" value="/users/${currentUser.username}/createItinerary" />
 		<a href="${createItinerary}" >
 		<button type="button" class="btn btn-link">New Itinerary</button>
-		</div>
-		</a><br><br><div class="savedItin">
+		</a><br><br>
 			<p>Saved Itineraries</p>
 			<c:forEach var="itineraries" items="${itineraries}">
 				<c:url var="itineraryLink" value="/itinerary" >
@@ -37,8 +19,6 @@
 					<a href="${itineraryLink}">${itineraries.itineraryName}</a>
 				</p>
 			</c:forEach>
-				</div>
-				<div id="searchLand">
 			<h2>Land Mark Search</h2>
 			<p>Search By Miles</p>
 			<input id="user_miles" value="5"/>
@@ -48,10 +28,7 @@
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 			<input type="hidden" name="itineraryId" value="${itinerary.itineraryId}">
 			<input type="submit" value="Save Itinerary" onclick="submitIds()">
-			</form>		
-			</div>
-			
-			
+			</form>	
 		</div>
 			<script>
 			var locations = [

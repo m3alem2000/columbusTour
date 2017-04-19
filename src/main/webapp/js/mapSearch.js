@@ -6,10 +6,6 @@ var markers = [];
 var landmarkAr = [];
 var locationCircles = [];
 
-
-
-
-
 function haversine() {
 	var radians = Array.prototype.map.call(arguments, function(deg) { return deg/180.0 * Math.PI; });
 	var lat1 = radians[0], lon1 = radians[1], lat2 = radians[2], lon2 = radians[3];
