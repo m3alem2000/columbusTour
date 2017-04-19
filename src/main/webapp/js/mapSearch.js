@@ -51,7 +51,7 @@ function submitIds() {
 	}
 }
 
-//WIP	  
+//DONE
 function pullLandmarkCoordsFromLandmark() {	//pass the lankdmark list length
 	clearOverlays();
 	var lat1 = parseFloat($('#userStartLat').val());
@@ -59,7 +59,8 @@ function pullLandmarkCoordsFromLandmark() {	//pass the lankdmark list length
 	var startMark = new google.maps.LatLng(lat1, lng1);
 	var userMiles = parseFloat($('#user_miles').val());
 	var userMeter = 1609.344 * userMiles;
-	dropMarker(startMark, userMeter);
+	var startPoint = "Starting Point";
+	dropMarker(startMark, startPoint, userMeter);
 	
 	for(var i = 0; i < landmarks.length; i++) {
 		var landmark = landmarks[i];
@@ -78,34 +79,8 @@ function pullLandmarkCoordsFromLandmark() {	//pass the lankdmark list length
 			dropMarker(location, contentString, 0);
 		}
 	}
-	
-//	for(var i = 0; i < 21; i++) {
-//		var lat2 = parseFloat($('[name=latitude'+i+']').val());
-//		var lon2 = parseFloat($('[name=longitude'+i+']').val());
-//		var miles = haversine(lat1, lon1, lat2, lon2) / 1.609344;
-//
-//
-//		if(miles <= userMiles){
-//			var contentString = 
-//				'<div style="width:300px" id="siteNotice">'+
-//				'<h5>'+$('[name=name'+i+']').val()+'</h5>'+
-//				'<a href="#"><img style="width:200px" src=img/'+$('[name=landmarkPicture'+i+']').val()+'></a><br>'+
-//				'<p><b>Description: </b>'+$('[name=description'+i+']').val()+'</p>'+
-//				'<span>Add to Itinerary  </span>' +
-//				'<div id="checkBoxdiv'+i+'">' +
-//					'<c:param name="Landmark'+i+'" type="hidden" value="'+i+'">' +
-//					'<input class="landmarkCheckbox" id="'+i+'" type="checkbox" name="add2Itin"/>'+
-//				'</div>'+
-//				'</div>';
-//			var endMark = new google.maps.LatLng(lat2, lon2);
-//			dropMarker(endMark, contentString, 0);
-//		}
-//	}
-}
+}	
 
-function getId(){
-
-}
 
 function clearOverlays() {
 	for (var i = 0; i < markers.length; i++ ) {

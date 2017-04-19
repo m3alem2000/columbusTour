@@ -39,15 +39,15 @@ public class LandmarkController {
 	}
 
 
-	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
-	public String displaySearchLandmarkForm(ModelMap model){//, @RequestParam int userId
-		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
-		model.put("landmarks", landmarks);
-		AppUser currentUser = (AppUser)model.get("currentUser");
-		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(currentUser.getUserId());
-		model.put("itineraries", itineraries);
-		return "landmarkSearchPage";
-	}
+//	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
+//	public String displaySearchLandmarkForm(ModelMap model){//, @RequestParam int userId
+//		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
+//		model.put("landmarks", landmarks);
+//		AppUser currentUser = (AppUser)model.get("currentUser");
+//		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(currentUser.getUserId());
+//		model.put("itineraries", itineraries);
+//		return "landmarkSearchPage";
+//	}
 
 
 
@@ -74,17 +74,17 @@ public class LandmarkController {
 		return "landmarkSearchPage";
 	}
 
-	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
-	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] itenIds, ModelMap model) {
-		System.out.println(itineraryId);
-		
-		if(itenIds != null) {
-			for(int id : itenIds) {
-				System.out.println(id);
-			}
-		}
-		
-		
-		return "landmarkSearchPage";
-	}
+//	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
+//	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] itenIds, ModelMap model) {
+//		System.out.println(itineraryId);
+//		
+//		if(itenIds != null) {
+//			for(int id : itenIds) {
+//				System.out.println(id);
+//			}
+//		}
+//		
+//		
+//		return "landmarkSearchPage";
+//	}
 }
