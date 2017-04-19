@@ -62,7 +62,7 @@
 
 			<div class="about-pics">
 				<div class="photo-image">
-					<c:url var="imgLiel" value="/img/Liel.jpg" />
+					<c:url var="imgLiel" value="/img/Liel1.jpg" />
 					<img src="${imgLiel}" style="width: 200px">
 					<p>Liel Azrieli (Israel)</p>
 				</div>
