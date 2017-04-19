@@ -45,7 +45,7 @@
 					'<c:out value="${itin.description}"/>',
 					'<c:out value="${itin.landmarkPicture}"/>',
 					<c:out value="${itin.landmarkRating}"/>,
-					'<c:out value="${itin.landmarkId}"/>'
+					<c:out value="${itin.landmarkId}"/>
 				],
 			</c:forEach>
 				];

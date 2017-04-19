@@ -6,10 +6,6 @@ var markers = [];
 var landmarkAr = [];
 var locationCircles = [];
 
-
-
-
-
 function haversine() {
 	var radians = Array.prototype.map.call(arguments, function(deg) { return deg/180.0 * Math.PI; });
 	var lat1 = radians[0], lon1 = radians[1], lat2 = radians[2], lon2 = radians[3];
@@ -22,57 +18,65 @@ function haversine() {
 }
 //haversine(lat1, lon1, lat2, lon2);
 
+var idToAdd = [];
 
-//WIP	  
-function pullLandmarkCoordsFromLandmark() {	
-	clearOverlays();
-	var lat1 = parseFloat($('#userStartLat').val());
-	var lon1 = parseFloat($('#userStartLong').val());
-	var startMark = new google.maps.LatLng(lat1, lon1);
-	var userMiles = parseFloat($('#user_miles').val());
-	var userMeter = 1609.344 * userMiles;
-	dropMarker(startMark, userMeter);
-	for(var i = 0; i < 21; i++) {
-		var lat2 = parseFloat($('[name=latitude'+i+']').val());
-		var lon2 = parseFloat($('[name=longitude'+i+']').val());
-		var miles = haversine(lat1, lon1, lat2, lon2) / 1.609344;
-
-
-		if(miles <= userMiles){
-			var contentString = 
-				'<div style="width:300px" id="siteNotice">'+
-				'<h5>'+$('[name=name'+i+']').val()+'</h5>'+
-				'<button>Add to Itinerary</button>' +
-				'<a href="#"><img style="width:200px" src=img/'+$('[name=landmarkPicture'+i+']').val()+'></a><br>'+
-				'<p><b>Description: </b>'+$('[name=description'+i+']').val()+'</p>'+
-				'<c:url var="formAction" ' +
-				'value="/users/${currentUser.username}/mapSearch" />'+
-				'<form id="land-itin" method="POST" action="${formAction}">'+
-				'<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">'+
-				'<input type="hidden" name="landmarkId" value="'+
-				$('[name='+i+']').val()+
-				'">' +
-				'<input type="hidden" name="itineraryId" value="${itinerary.itineraryId}">'+
-				'<div class="form-group">'+
-				//'<a href="landmarkDetail?landmarkId='+$('[name=landmarkId'+i+']').val()+'">See details</a>'+
-				'<input type="submit" class="btn btn-default" value="Add to itinerary" />'+
-				'</div>';
-
-//			<form id="user-profile" method="POST" action="${formAction}">
-//			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
-
-//			<div class="form-group">
-//			<label for="userName">User Name: </label> 
-//			<input type="text" id="userName"
-//			name="username" placeHolder="userName" class="form-control" />
-//			</div>
-//			<input type="submit" class="btn btn-default" value="Submit" />
-//			</form>
-			var endMark = new google.maps.LatLng(lat2, lon2);
-			dropMarker(endMark, contentString, 0);
+function clickMarker(marker) {
+	var id = $(marker).val();
+	
+	if($(marker).is(':checked')) {
+		// Add to list
+		idToAdd.push(id);
+	} else {
+		// Remove
+		for(var i = 0; i < idToAdd.length; i++) {
+			if(idToAdd[i] === id) {
+				idToAdd.splice(i, 1);
+			}
 		}
 	}
+	
+	console.log(idToAdd);
 }
+
+function submitIds() {
+	var form = $('#idForm');
+	form.children('.idItem').remove();
+	for(var i = 0; i < idToAdd.length; i++) {
+		var input = $('<input>').addClass('idItem').attr('name', 'itenIds').attr('value', idToAdd[i]).attr('type', 'hidden');
+		form.append(input);
+	}
+}
+
+//DONE
+function pullLandmarkCoordsFromLandmark() {	//pass the lankdmark list length
+	clearOverlays();
+	var lat1 = parseFloat($('#userStartLat').val());
+	var lng1 = parseFloat($('#userStartLong').val());
+	var startMark = new google.maps.LatLng(lat1, lng1);
+	var userMiles = parseFloat($('#user_miles').val());
+	var userMeter = 1609.344 * userMiles;
+	var startPoint = "Starting Point";
+	dropMarker(startMark, startPoint, userMeter);
+	
+	for(var i = 0; i < landmarks.length; i++) {
+		var landmark = landmarks[i];
+		var miles = haversine(lat1, lng1, landmark.lat, landmark.lng) / 1.609344;
+		
+		if(miles <= userMiles) {
+			var contentString = 
+			'<div style="width:300px" id="siteNotice">'+
+				'<h5>'+landmark.name+'</h5>'+
+				'<a href="#"><img style="width:200px" src=img/'+landmark.imageUrl+'></a><br>'+
+				'<p><b>Description: </b>'+landmark.description+'</p>'+
+				'<span>Add to Itinerary  </span>' +
+				'<input class="landmarkCheckbox" type="checkbox" name="ids" value="'+landmark.id+'" onclick="clickMarker(this)"/>'+
+			'</div>';
+			var location = new google.maps.LatLng(landmark.lat, landmark.lng);
+			dropMarker(location, contentString, 0);
+		}
+	}
+}	
+
 
 function clearOverlays() {
 	for (var i = 0; i < markers.length; i++ ) {
@@ -93,7 +97,7 @@ function initMap() {
 		center: {lat: 39.993788, lng: -83.000574},
 		zoom: 11
 	});
-
+	pullLandmarkCoordsFromLandmark();
 };
 
 
