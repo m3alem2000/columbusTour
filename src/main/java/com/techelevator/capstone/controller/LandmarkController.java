@@ -1,5 +1,6 @@
 package com.techelevator.capstone.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -74,10 +75,16 @@ public class LandmarkController {
 	}
 
 	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
-	public String addLandmark2Itin(ModelMap model,
-			@RequestParam long landmarkId,
-			@RequestParam long itineraryId) {
-		itinDAO.addLandmark2Itin(itineraryId, landmarkId);
+	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] itenIds, ModelMap model) {
+		System.out.println(itineraryId);
+		
+		if(itenIds != null) {
+			for(int id : itenIds) {
+				System.out.println(id);
+			}
+		}
+		
+		
 		return "landmarkSearchPage";
 	}
 }
