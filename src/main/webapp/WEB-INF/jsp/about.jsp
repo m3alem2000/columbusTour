@@ -84,6 +84,7 @@
 			</div>
 
 			<div class="teamwork">
+
 				<h5>This webapp was the culmination of a collaborative project
 					by team Delta during the final weeks of a full stack Java Software
 					Development Bootcamp.</h5>
