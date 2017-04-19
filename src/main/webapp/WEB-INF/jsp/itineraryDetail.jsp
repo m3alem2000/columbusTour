@@ -1,14 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
-<c:url value="/js" var="jsHref" />
-			<script src="${jsHref}/itineraryGoogleMap.js"></script>
+<c:url value="/js/itineraryGoogleMap.js" var="jsHref" />
+			<script src="${jsHref}"></script>
 <div class="container-fluid" onload="initialize()" >
 
 	<div style="background-color: #f1f1f1; height:100%" class="row content">
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		<a href="newItinerary"><p>New Itinerary</p></a>
+		<p><a href="newItinerary">New Itinerary</a></p>
 		<p>Saved Itineraries</p>
 		<c:set var="count" value="1" scope="page" />
 			
@@ -42,6 +42,6 @@
 			<c:import url="/WEB-INF/jsp/common/right.jsp" />
 		<!--end of Ads on the right of the homepage  -->
 	</div>
-</div>
+
 
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />
