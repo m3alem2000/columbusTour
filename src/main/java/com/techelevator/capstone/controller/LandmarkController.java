@@ -1,6 +1,5 @@
 package com.techelevator.capstone.controller;
 
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.techelevator.capsone.DAO.ItineraryDAO;
 import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capsone.DAO.ReviewDAO;
-import com.techelevator.capstone.model.AppUser;
-import com.techelevator.capstone.model.Itinerary;
 import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
 
@@ -37,19 +34,6 @@ public class LandmarkController {
 	public LandmarkController(LandmarkDAO landmarkDao){
 		this.landmarkDao = landmarkDao;
 	}
-
-
-//	@RequestMapping(path="/users/{userName}/landmarkSearchPage", method=RequestMethod.GET)
-//	public String displaySearchLandmarkForm(ModelMap model){//, @RequestParam int userId
-//		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
-//		model.put("landmarks", landmarks);
-//		AppUser currentUser = (AppUser)model.get("currentUser");
-//		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(currentUser.getUserId());
-//		model.put("itineraries", itineraries);
-//		return "landmarkSearchPage";
-//	}
-
-
 
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)
 	public String manageReviews(ModelMap model) {
@@ -74,21 +58,6 @@ public class LandmarkController {
 		return "landmarkSearchPage";
 	}
 
-<<<<<<< HEAD
-//	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
-//	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] itenIds, ModelMap model) {
-//		System.out.println(itineraryId);
-//		
-//		if(itenIds != null) {
-//			for(int id : itenIds) {
-//				System.out.println(id);
-//			}
-//		}
-//		
-//		
-//		return "landmarkSearchPage";
-//	}
-=======
 	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
 	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
 		System.out.println(itineraryId);
@@ -100,5 +69,4 @@ public class LandmarkController {
 
 		return "landmarkSearchPage";
 	}
->>>>>>> 9b0bb249c47e0a06e40a7738bac23239966fd2d4
 }
