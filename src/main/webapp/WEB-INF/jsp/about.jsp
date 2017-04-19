@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
-
+<c:url var="imgFolder" value="/img/" />
 <div class="container-fluid">
 
 	<div style="background-color: #f1f1f1; height: 100%"
@@ -10,8 +10,10 @@
 		<div class="col-sm-2 sidenav">
 			<h4>Thinking of moving?</h4>
 			<div class="tech-elevator-pic">
-				<a href="https://www.columbus.gov/"><img
-					src="img/Columbus USA.png" class="photo_image" style="width: 205px" />
+				<a href="https://www.columbus.gov/"> <img
+					src="${imgFolder}Columbus USA.png" class="photo_image"
+					style="width: 205px" />
+				</a>
 			</div>
 			<div class="tech-elevator-link">
 				<a href="https://www.columbus.gov/">Come visit Columbus!</a>
@@ -36,7 +38,6 @@
 					<span> ${landmark.landmarkName} </span>
 				</div>
 				<div id="homePageSmallPic">
-					<c:url var="imgFolder" value="/img/" />
 					<a href="javascript:show_detail(${count})"> <img
 						src="${imgFolder}${landmark.landmarkPicture}" class="photo_image"
 						style="width: 150px">
@@ -58,10 +59,10 @@
 				<h3>Our worldwide team:</h3>
 
 			</div>
-			<c:url var="imgFolder" value="/img/" />
+
 			<div class="about-pics">
 				<div class="photo-image">
-					<img src="${imgFolder}Liel.jpg" style="width: 200px">
+					<img src="${imgFolder}liel.jpg" style="width: 200px">
 					<p>Liel Azrieli (Israel)</p>
 				</div>
 
@@ -82,9 +83,9 @@
 			</div>
 
 			<div class="teamwork">
-				<h5>This website was the culmination of a collaborative project
-					by team Delta during the fina weeks of a Java Software Development
-					Bootcamp.</h5>
+				<h5>This webapp was the culmination of a collaborative project
+					by team Delta during the final weeks of a full stack Java Software
+					Development Bootcamp.</h5>
 			</div>
 
 		</div>
@@ -94,7 +95,6 @@
 		<!-- Ads on the right of the homepage -->
 		<c:import url="/WEB-INF/jsp/common/right.jsp" />
 		<!--end of Ads on the right of the homepage  -->
-
 	</div>
 </div>
 
