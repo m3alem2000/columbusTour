@@ -74,6 +74,7 @@ public class LandmarkController {
 		return "landmarkSearchPage";
 	}
 
+<<<<<<< HEAD
 //	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
 //	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] itenIds, ModelMap model) {
 //		System.out.println(itineraryId);
@@ -87,4 +88,17 @@ public class LandmarkController {
 //		
 //		return "landmarkSearchPage";
 //	}
+=======
+	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
+	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
+		System.out.println(itineraryId);
+
+
+		for (int landId : landmarkIds){
+			itinDAO.addLandmark2Itin(itineraryId, landId);
+		}
+
+		return "landmarkSearchPage";
+	}
+>>>>>>> 9b0bb249c47e0a06e40a7738bac23239966fd2d4
 }

@@ -84,7 +84,7 @@ CREATE TABLE review
 	landmark_id INTEGER NOT NULL,
 	user_id INTEGER NOT NULL,
 	review TEXT NOT NULL,
-	rating INTEGER,
+	rating REAL,
 	date_created TIMESTAMP DEFAULT NOW(),
 	CONSTRAINT pk_review_review_id PRIMARY KEY (review_id),
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),

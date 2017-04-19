@@ -13,11 +13,11 @@
 	background-size: cover;
 	color: black;
 	background-color: black;
-	margin-bottom:0px;
+	margin-bottom: 0px;
 }
 
 .jumbotron h1 {
-	    text-shadow: 0px 0px 20px #FFF;
+	text-shadow: 0px 0px 20px #FFF;
 }
 
 .jumbotron p {
@@ -36,17 +36,16 @@
 }
 /* sidenav on home page */
 div#homePageSiteDescription {
-    max-width: 177px;
+	max-width: 177px;
 }
 
 div#homePageSiteDescription span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+	max-width: 100%;
 }
-
 
 /* Set black background color, white text and some padding */
 footer {
@@ -70,21 +69,21 @@ footer {
 #left-menu {
 	text-align: left;
 }
-bodyContent{
-	width:200px;
+
+bodyContent {
+	width: 200px;
 }
 
-hr { 
-    display: block;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border-style: inset;
-    border-width: 1px;
-    width:90%;
-} 
+hr {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border-style: inset;
+	border-width: 1px;
+	width: 90%;
+}
 
 /* about page*/
-
 .about-pics{
 	width:900px;
 	height:250px;
@@ -106,24 +105,21 @@ hr {
 }
 
 /********login************/
-.techelevator-right{
+.techelevator-right {
 	padding-bottom: 50px;
 }
-/******* landmarkDetail *****/	
- 
- .rating {
+/******* landmarkDetail *****/
+.rating {
 	width: 60px;
-} 
-
-.landmark-detail{
-	width: 100%;
-	
 }
-#pic{
-	width: 100%; 
-    height:auto;
-	
-	 
+
+.landmark-detail {
+	width: 100%;
+}
+
+#pic {
+	width: 100%;
+	height: auto;
 }
 
 /********  Admin ******/
@@ -137,23 +133,23 @@ div#manageUsersH2 {
 	padding-left: 20%;
 }
 
- /*  manage reviews  */
+/*  manage reviews  */
 table#reviewTable {
 	width: 100%;
 	margin: auto;
 }
 
-div#manageReviews{
+div#manageReviews {
 	padding-left: 20%;
 }
 
 #reviewTable th {
-	padding:10px;
+	padding: 10px;
 	text-align: center;
-	
 }
-#reviewTable td  {
-	padding:10px;
+
+#reviewTable td {
+	padding: 10px;
 	text-align: center;
 }
 
@@ -169,3 +165,4 @@ div#manageReviews{
 	.form-control {
 		width: 200px;
 	}
+}
