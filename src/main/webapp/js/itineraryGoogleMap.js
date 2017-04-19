@@ -10,16 +10,9 @@ var geocoder;
 var map;
 var directionsDisplay;
 var directionsService;
-/* var locations = [
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Maroubra Beach', -33.950198, 151.259302, 1],
-  ['Cronulla Beach', -34.028249, 151.157507, 3]
-]; */
 
 function initialize() {
-	/*  initMaps(); */
+//	initMaps();
 	directionsService = new google.maps.DirectionsService();
 	directionsDisplay = new google.maps.DirectionsRenderer();
 
@@ -29,6 +22,7 @@ function initialize() {
     center: new google.maps.LatLng(39.993788, -83.000574),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+  
   directionsDisplay.setMap(map);
   var infowindow = new google.maps.InfoWindow();
 
@@ -39,13 +33,12 @@ function initialize() {
   for (i = 0; i < locations.length; i++) {
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-//      position: new google.maps.LatLng(locations[i].latlng),
-
     });
 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
-        infowindow.setContent(locations[i][0]);
+//        infowindow.setContent(locations[i][0]);
+    	  	infowindow.setContent(locations[i][0]);
         infowindow.open(map, marker);
       }
     })(marker, i));

@@ -7,7 +7,13 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		
+		<h4>Thinking of moving?</h4>
+		<div class="tech-elevator-pic">
+				<a href="https://www.columbus.gov/"><img src="img/Columbus USA.png" class="photo_image" style="width: 205px"/>	
+		</div>
+		<div class="tech-elevator-link">
+		<a href="https://www.columbus.gov/">Come visit Columbus!</a>
+		</div>
 			<c:set var="count" value="1" scope="page" />
 			<c:forEach var="landmark" items="${landmarks}">
 				<input type="hidden" name="landmarkId${count}" value="${landmark.landmarkId}"/>
@@ -40,19 +46,37 @@
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 		<!--  <input id="input-3" name="input-3" value="4" class="rating-loading">-->
-			<h6>This site was the culmination of a collaborative project by team Delta during the final two weeks of a Java Software Development Bootcamp.</h6>
-			<h5>Our team members:</h5>
-			<img src="img/liel.jpg" class="photo_image" style="width: 150px">	
-			<p>Liel Azrieli</p>
+			<div class="team-members">
+			<h3>Our worldwide team:</h3>
 			
-			<img src="img/liel.jpg" class="photo_image" style="width: 150px">	
-			<p>Devin Distelhorst</p>
+			</div>
 			
-			<img src="img/debora.jpg" class="photo_image" style="width: 150px">	
-			<p>Debora Lipetz</p>
+			<div class="about-pics">
+			<div class="photo-image">
+			<img src="img/Liel.jpg"  style="width: 200px">	
+			<p>Liel Azrieli (Israel)</p>
+			</div>
 			
-			<img src="img/debora.jpg" class="photo_image" style="width: 150px">	
-			<p>Mohammad Ramadan</p>
+			<div class="photo-image">
+			<img src="img/Devin.jpg"  style="width: 200px">	
+			<p>Devin Distelhorst (United States)</p>
+			</div>
+			
+			<div class="photo-image">
+			<img src="img/Debora.jpg" style="width: 200px">	
+			<p>Debora Lipetz (Brazil)</p>
+			</div>
+			
+			<div class="photo-image">
+			<img src="img/Mohammad.jpg" style="width: 200px">	
+			<p>Mohammad Ramadan (Syria)</p>
+			</div>
+			</div>
+			
+			<div class="teamwork">
+			<h5>This website was the culmination of a collaborative project by team Delta during the fina weeks of a Java Software Development Bootcamp.</h5>
+			</div>
+			
 		</div>	
 			
 		<!-- end of body of the homepage -->

@@ -6,6 +6,9 @@ public class Itinerary {
 
 	private int itineraryId;
 	private String itineraryName;
+	private String description;
+	private String landmarkPicture;
+	private String landmarkRating;
 	private int userId;
 	private double startingLatitude;
 	private double startingLongitude;
@@ -14,6 +17,24 @@ public class Itinerary {
 	private double destinationLongitude;
 	private LocalDateTime dateCreated;
 
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getLandmarkPicture() {
+		return landmarkPicture;
+	}
+	public void setLandmarkPicture(String landmarkPicture) {
+		this.landmarkPicture = landmarkPicture;
+	}
+	public String getLandmarkRating() {
+		return landmarkRating;
+	}
+	public void setLandmarkRating(String landmarkRating) {
+		this.landmarkRating = landmarkRating;
+	}
 	public String getStartAddress() {
 		return startAddress;
 	}

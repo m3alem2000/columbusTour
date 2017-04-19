@@ -46,9 +46,7 @@ div#homePageSiteDescription span {
     display: inline-block;
     max-width: 100%;
 }
-.tech-elevator-pic{
-	padding-top:20px;
-}
+
 
 /* Set black background color, white text and some padding */
 footer {
@@ -85,7 +83,33 @@ hr {
     width:90%;
 } 
 
-/* landmarkDetail */	
+/* about page*/
+
+.about-pics{
+	width:900px;
+	height:250px;
+	vertical-align:bottom;
+}  
+.photo-image{
+	float: left;
+	padding-left:20px;
+	display:inline-block;
+}
+
+.team-members{
+	padding-top: 30px;
+	text-align:center;
+	padding-bottom: 30px;
+}
+.teamwork{
+	text-align:center;
+}
+
+/********login************/
+.techelevator-right{
+	padding-bottom: 50px;
+}
+/******* landmarkDetail *****/	
  
  .rating {
 	width: 60px;
