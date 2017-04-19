@@ -74,7 +74,7 @@
 			</div>
 			
 			<div class="teamwork">
-			<h5>This website was the culmination of a collaborative project by team Delta during the fina weeks of a Java Software Development Bootcamp.</h5>
+			<h5>This website was the culmination of a collaborative project by team Delta during the final weeks of a Java Software Development Bootcamp.</h5>
 			</div>
 			
 		</div>	
