@@ -58,19 +58,20 @@
 					<li><a href="${aboutHref}">About</a></li>
 					
 					<c:if test="${empty currentUser}">
+					<%-- 
 						<c:url var="searchLandmarkHref" value="/signup" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
 						<c:url var="itineraryHref" value="/itinerary"/>
-						<li><a href="${itineraryHref}">Itinerary</a> 
+						<li><a href="${itineraryHref}">Itinerary</a>  --%>
 						<c:url var="suggestALandmark" value="/suggestALandmark"/>
 						<li><a href="#">Suggest a Landmark</a></li>
 					</c:if>
 
 					<c:if test="${not empty currentUser}">
-						<c:url var="searchLandmarkHref" value="/users/${currentUser.username}/landmarkSearchPage" />
+<%-- 						<c:url var="searchLandmarkHref" value="/users/${currentUser.username}/landmarkSearchPage" />
 						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
 						<c:url var="itineraryHref" value="/itinerary" />
-						<li><a href="${itineraryHref}">Itinerary</a> 
+						<li><a href="${itineraryHref}">Itinerary</a>  --%>
 						<c:url var="suggestALandmark" value="/users/${currentUser.username}/suggestALandmark" />
 						<li><a href="#">Suggest a Landmark</a></li>
 					</c:if>

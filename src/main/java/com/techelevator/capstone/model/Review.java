@@ -10,7 +10,7 @@ public class Review {
 	private long userId;
 	private String username;
 	private String review;
-	private long rating;
+	private double rating;
 	private LocalDateTime dateCreated;
 	private String formattedDateTime;
 
@@ -38,7 +38,7 @@ public class Review {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -55,12 +55,12 @@ public class Review {
 		this.review = review;
 	}
 
-	public long getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(long rating) {
-		this.rating = rating;
+	public void setRating(double d) {
+		this.rating = d;
 	}
 
 	public LocalDateTime getDateCreated() {
@@ -70,7 +70,7 @@ public class Review {
 	public void setDateCreated(LocalDateTime dateCreated) {
 		this.dateCreated = dateCreated;
 	}
-	
+
 	public String getFormattedDateTime() {
 		return dateCreated.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}

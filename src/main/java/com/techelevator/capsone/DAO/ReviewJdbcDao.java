@@ -34,7 +34,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
-	public Review getReviewById(Long reviewId) {
+	public Review getReviewById(long reviewId) {
 		String sqlReviewById = "SELECT * FROM review WHERE review_id = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlReviewById, reviewId);
 		Review requested = mapRowToReview(result);
@@ -52,13 +52,17 @@ public class ReviewJdbcDao implements ReviewDAO{
 		return reviews;
 	}
 
+	public void deleteAllLandmarkReviewsByUserId(long userId) {
+
+	}
+
 	@Override
 	public List<Review> getAllLandmarksReviewsByUserId(long userId) {
 		List<Review> reviews = new ArrayList<>();
 		String sqlReviewById = "SELECT * FROM review WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReviewById, userId);
 		while(results.next()) {
-			reviews.add(mapRowToReviewWithUsername(results));
+			reviews.add(mapRowToReview(results));
 		}
 		return reviews;
 	}
@@ -108,7 +112,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		review.setLandmarkId(row.getLong("landmark_id"));
 		review.setUserId(row.getLong("user_id"));
 		review.setReview(row.getString("review"));
-		review.setRating(row.getLong("rating"));
+		review.setRating(row.getDouble("rating"));
 		review.setDateCreated(row.getTimestamp("date_created").toLocalDateTime());
 		return review;
 	}
@@ -120,7 +124,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		review.setUserId(row.getLong("user_id"));
 		review.setUsername(row.getString("username"));
 		review.setReview(row.getString("review"));
-		review.setRating(row.getLong("rating"));
+		review.setRating(row.getDouble("rating"));
 		review.setDateCreated(row.getTimestamp("date_created").toLocalDateTime());
 		return review;
 	}

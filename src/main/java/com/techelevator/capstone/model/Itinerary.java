@@ -5,7 +5,12 @@ import java.time.LocalDateTime;
 public class Itinerary {
 
 	private int itineraryId;
+	private int landmarkId;
 	private String itineraryName;
+	private String landmarkName;
+	private String description;
+	private String landmarkPicture;
+	private String landmarkRating;
 	private int userId;
 	private double startingLatitude;
 	private double startingLongitude;
@@ -14,6 +19,36 @@ public class Itinerary {
 	private double destinationLongitude;
 	private LocalDateTime dateCreated;
 
+	public int getLandmarkId() {
+		return landmarkId;
+	}
+	public void setLandmarkId(int landmarkId) {
+		this.landmarkId = landmarkId;
+	}
+	public String getLandmarkName() {
+		return landmarkName;
+	}
+	public void setLandmarkName(String landmarkName) {
+		this.landmarkName = landmarkName;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getLandmarkPicture() {
+		return landmarkPicture;
+	}
+	public void setLandmarkPicture(String landmarkPicture) {
+		this.landmarkPicture = landmarkPicture;
+	}
+	public String getLandmarkRating() {
+		return landmarkRating;
+	}
+	public void setLandmarkRating(String landmarkRating) {
+		this.landmarkRating = landmarkRating;
+	}
 	public String getStartAddress() {
 		return startAddress;
 	}
