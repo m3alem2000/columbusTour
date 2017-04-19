@@ -6,10 +6,6 @@ var markers = [];
 var landmarkAr = [];
 var locationCircles = [];
 
-
-
-
-
 function haversine() {
 	var radians = Array.prototype.map.call(arguments, function(deg) { return deg/180.0 * Math.PI; });
 	var lat1 = radians[0], lon1 = radians[1], lat2 = radians[2], lon2 = radians[3];
@@ -46,7 +42,7 @@ function submitIds() {
 	var form = $('#idForm');
 	form.children('.idItem').remove();
 	for(var i = 0; i < idToAdd.length; i++) {
-		var input = $('<input>').addClass('idItem').attr('name', 'itenIds').attr('value', idToAdd[i]).attr('type', 'hidden');
+		var input = $('<input>').addClass('idItem').attr('name', 'landmarkIds').attr('value', idToAdd[i]).attr('type', 'hidden');
 		form.append(input);
 	}
 }

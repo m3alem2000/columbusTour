@@ -53,20 +53,5 @@ public class LandmarkController {
 		return "landmarkDetail";
 	}
 
-	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
-	public String showlandmarkSearchPage(HttpServletRequest request) {
-		return "landmarkSearchPage";
-	}
 
-	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.POST)
-	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
-		System.out.println(itineraryId);
-
-
-		for (int landId : landmarkIds){
-			itinDAO.addLandmark2Itin(itineraryId, landId);
-		}
-
-		return "landmarkSearchPage";
-	}
 }
