@@ -41,6 +41,7 @@ INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Jennis Ice cream', 'JennisIceCream.jpg','4', '39.976968', '-83.009829', 'OH', 'Columbus', '43215', '714 N. High Stret, Columbus, OH 43215', 'Jenis Splendid Ice Creams is an artisan ice-cream company with national distribution. Known for its creative flavors and its high-quality ingredients.', false);
 
 
+
 INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (1, 'Day 1', 39.997339, -83.042371);
 INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (1, 'Day 2', 39.997339, -83.042371);
 INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (2, 'Day 3', 39.997339, -83.042371);

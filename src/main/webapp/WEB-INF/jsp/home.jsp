@@ -51,10 +51,11 @@
 		
 		</div>
 		<!-- end of body of the homepage -->
-
+		
 		<!-- Ads on the right of the homepage -->
 		<c:import url="/WEB-INF/jsp/common/right.jsp" />
 		<!--end of Ads on the right of the homepage  -->
+	
 	</div>
 </div>
 

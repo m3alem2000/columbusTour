@@ -57,7 +57,7 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 	}
 
 	@Override
-	public List<Itinerary> getItinerariesListByUserId(int userId) {
+	public List<Itinerary> getItinerariesListByUserId(long userId) {
 		String sqlgetItineraryById = "select * from itinerary where user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlgetItineraryById, userId);
 		List<Itinerary> userItineraries = new ArrayList<>();
@@ -125,6 +125,15 @@ public class ItineraryJdbcDao implements ItineraryDAO{
 		} else {
 			throw new RuntimeException("Something went wrong while getting the next user id");
 		}
+	}
+
+	@Override
+	public boolean addLandmark2Itin(long itinId, long landId) {
+		String sqlAdd2Itin = "INSERT INTO  itinerary_landmark "+
+				"( landmark_id, itinerary_id)"
+				+ "VALUES (?,?)";
+		int result = jdbcTemplate.update(sqlAdd2Itin, landId, itinId);
+		return result==1;
 	}
 
 }

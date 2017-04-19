@@ -48,7 +48,6 @@ public class Itinerary {
 	public void setItineraryName(String itineraryName) {
 		this.itineraryName = itineraryName;
 	}
-
 	public double getDestinationLatitude() {
 		return destinationLatitude;
 	}
