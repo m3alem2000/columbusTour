@@ -43,13 +43,11 @@ public class Landmark {
 	public void setLandmarkName(String landmarkName) {
 		this.landmarkName = landmarkName;
 	}
-	public String getLandmarkSubName() {
-		return landmarkSubName;
-	}
+
 	public void setLandmarkSubName(String landmarkSubName) {
 		this.landmarkSubName = landmarkSubName;
 	}
-	public String getLandmarkSubName(String landmarkName) {
+	public String getLandmarkSubName() {
 		if(landmarkName.length()>30){
 			landmarkName = landmarkName.substring(0,26)+"...";
 		}
