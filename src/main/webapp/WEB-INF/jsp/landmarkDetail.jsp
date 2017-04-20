@@ -23,9 +23,17 @@
 				<p id="landmark-address">
 					<c:out value="${landmark.address}" />
 				</p>
-
+	
 				<p id="landmark-description">
 					<c:out value="${landmark.description}" />
+				</p>
+				
+				<p id="landmark-history">
+					<c:out value="${landmark.history}" />
+				</p>
+				
+				<p> 
+				Website: <a href="${landmark.website}"><c:out value="${landmark.website}"/> </a>
 				</p>
 
 				<!--Add a hidden div with all the reviews that can be reveled and re-hide  -->

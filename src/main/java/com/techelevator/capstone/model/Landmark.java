@@ -14,6 +14,8 @@ public class Landmark {
 	private Long zipCode;//*
 	private String address;
 	private String description;//*
+	private String history;
+	private String website;
 	private boolean topPick;
 	private boolean isActive;
 	
@@ -106,6 +108,19 @@ public class Landmark {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public String getHistory() {
+		return history;
+	}
+	public void setHistory(String history) {
+		this.history = history;
 	}
 	
 	
