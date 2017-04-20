@@ -22,7 +22,7 @@ import com.techelevator.capstone.model.Landmark;
 @SessionAttributes("currentUser")
 public class UserController {
 	private AppUserDAO appUserDao;
-	
+
 	@Autowired
 	private LandmarkDAO landmarkDao;
 
@@ -79,6 +79,7 @@ public class UserController {
 		model.put("itineraries", itineraries);
 		return "registeredUser";
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(path="/users/{userName}/registeredUser", method=RequestMethod.POST)
 	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
@@ -87,6 +88,21 @@ public class UserController {
 			itinDAO.addLandmark2Itin(itineraryId, landId);
 			}
 		return "registeredUser";
+=======
+
+	@RequestMapping(path="/users/{userName}/createNewItin", method=RequestMethod.GET)
+	public String createItin( ModelMap model) {
+		return "createItinerary";
+	}  
+
+	@RequestMapping(path="/users/{userName}/addLandmark2Itinerary", method=RequestMethod.POST)
+	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
+		for (int landId : landmarkIds){
+			itinDAO.addLandmark2Itin(itineraryId, landId);
+		}
+		AppUser sessionUser = (AppUser)model.get("currentUser");
+		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+>>>>>>> 9f5402bb086e435a7484c8423cdba946cc4add44
 	}
-	
+
 }

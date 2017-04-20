@@ -1,6 +1,5 @@
 package com.techelevator.capstone.controller;
 
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.techelevator.capsone.DAO.ItineraryDAO;
 import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capsone.DAO.ReviewDAO;
-import com.techelevator.capstone.model.AppUser;
-import com.techelevator.capstone.model.Itinerary;
 import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
 
@@ -38,8 +35,6 @@ public class LandmarkController {
 		this.landmarkDao = landmarkDao;
 	}
 
-
-
 	@RequestMapping(path="/users/{userName}/manageLandmarks", method=RequestMethod.GET)
 	public String manageReviews(ModelMap model) {
 
@@ -57,5 +52,6 @@ public class LandmarkController {
 		model.put("reviews", reviews);
 		return "landmarkDetail";
 	}
+
 
 }
