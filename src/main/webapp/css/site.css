@@ -168,10 +168,6 @@ table#reviewTable {
 	margin: auto;
 }
 
-div#manageReviews {
-	padding-left: 20%;
-}
-
 #reviewTable th {
 	padding: 10px;
 	text-align: center;
@@ -180,6 +176,10 @@ div#manageReviews {
 #reviewTable td {
 	padding: 10px;
 	text-align: center;
+}
+
+.admin-title{
+	text-align:left;
 }
 
 /******sign-up page******/
@@ -208,7 +208,6 @@ div#manageReviews {
 	height: 100%;
 	text-shadow: 0px 0px 12px #FFF;
 }
-
 
 /* .show {display:block;} */
 

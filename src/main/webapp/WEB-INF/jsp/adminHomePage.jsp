@@ -47,7 +47,7 @@
 
 			<!-- Ads on the right of the homepage -->
 			<div class="col-sm-2 sidenav">
-				<div class="well"></div>
+				
 			</div>
 </body>
 </html>

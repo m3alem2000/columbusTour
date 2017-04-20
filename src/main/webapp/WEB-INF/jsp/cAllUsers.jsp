@@ -3,7 +3,7 @@
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 
 <div id="manageUsersH2">
-	<h2>See and Manage All Users</h2>
+	<h2 class="admin-title" >Manage Users</h2>
 </div>
 
 <table id="userListTable" class="usersList">
@@ -50,11 +50,20 @@
 		</tr>
 	</c:forEach>
 </table>
-
-
-
-
-
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />

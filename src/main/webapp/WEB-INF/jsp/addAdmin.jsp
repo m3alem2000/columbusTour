@@ -14,7 +14,7 @@
 			<!-- body of the homepage -->
 			<div class="col-sm-8 text-left">
 				<!-- Complete if coming from signup Edit if from currentuser -->
-				<h2>Add System Admin</h2>
+				<h2 class="admin-title">Add System Admin</h2>
 				<c:url var="formAction"
 					value="/users/${currentUser.username}/addAdmin" />
 
