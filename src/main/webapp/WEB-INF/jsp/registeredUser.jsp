@@ -10,23 +10,35 @@
 			<c:url var="createItinerary"
 				value="/users/${currentUser.username}/createNewItin" />
 			<a href="${createItinerary}">
-				<button type="button" class="btn btn-link">New Itinerary</button>
+				<button type="button" class="btn btn-primary">New Itinerary</button>
 			</a> <br> <br>
 
-
-			<p>Saved Itineraries</p>
-
-
-			<c:forEach var="itineraries" items="${itineraries}">
+			<div>
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button"
+						data-toggle="dropdown">
+						${currentUser.username} saved itineraries<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<c:forEach var="itineraries" items="${itineraries}">
+							<c:url var="itineraryLink"
+								value="/users/${currentUser.username}/itinerary">
+								<c:param name="itineraryId" value="${itineraries.itineraryId}" />
+							</c:url>
+							<li><a href="${itineraryLink}">${itineraries.itineraryName}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+			<br> <br>
+			<%-- 	<c:forEach var="itineraries" items="${itineraries}">
 				<c:url var="itineraryLink"
-					value="/users/${currentUser.username}/itinerary">
+					value="/itinerary">
 					<c:param name="itineraryId" value="${itineraries.itineraryId}" />
 				</c:url>
 				<p>
 					<a href="${itineraryLink}">${itineraries.itineraryName}</a>
-				</p>
-			</c:forEach>
-
+				</c:forEach>--%>
 
 			<p>Land Mark Search</p>
 			<p>Search By Miles</p>
@@ -86,8 +98,10 @@
 					});
 				}
 			</script>
-				<input type="hidden" id="userStartLat" type="number" value="${itinerary.startingLatitude}" />
-				<input type="hidden" id="userStartLong" type="number" value="${itinerary.startingLongitude}" />
+			<input type="hidden" id="userStartLat" type="number"
+				value="${itinerary.startingLatitude}" /> <input type="hidden"
+				id="userStartLong" type="number"
+				value="${itinerary.startingLongitude}" />
 			<script>
 		var landmarks = [
 		<c:forEach var="landmark" items="${landmarks}">
@@ -107,14 +121,15 @@
 				<input type="hidden" name="landmarkRating${landmark.landmarkId}" value="${landmark.landmarkRating}"/>
 				<input type="hidden" name="landmarkPicture${landmark.landmarkId}" value="${landmark.landmarkPicture}"/>
 				<input type="hidden" name="description${landmark.landmarkId}" value="${landmark.description}"/> --%>
-		</c:forEach>
-		];
-		</script>
+				</c:forEach>
+				];
+				</script>
 			<c:url value="/js" var="jsHref" />
 			<script src="${jsHref}/maps.js"></script>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
-			</script>
+					
+				</script>
 		</div>
 		<!-- end of body of the homepage -->
 
