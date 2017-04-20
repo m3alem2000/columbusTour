@@ -26,7 +26,7 @@
 				<input type="hidden" name="description${count}"
 					value="${landmark.description}" />
 				<div id="homePageSiteDescription">
-					<span> ${landmark.landmarkName} </span>
+					<span id="landmark-toppick-name"> ${landmark.landmarkName} </span>
 				</div>
 				<div id="homePageSmallPic">
 					<a href="javascript:show_detail(${count})"> <img
@@ -46,7 +46,7 @@
 		<div class="col-sm-8 text-left">
 			<!--  <input id="input-3" name="input-3" value="4" class="rating-loading">-->
 			<!--  -->
-			<h3>Central Ohio's best places to visit</h3>
+			<h3>Find the best places to visit in Columbus here!</h3>
 			<div id="map"></div>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
