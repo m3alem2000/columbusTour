@@ -145,6 +145,34 @@ hr {
 	height: auto;
 }
 
+ 
+ .review {
+	font-size : 14pt;
+}
+
+.reviews{
+	list-style-type : none;
+	padding : 0;
+}
+
+.review-list li {
+	padding : .5em 0 .5em 0;
+}
+
+.review .username {
+	font-weight : bold;
+	margin-right : 1em;
+}
+
+.review .formatted-time {
+	margin-left : 1em;
+	font-style : italic;
+	color : #c0c0c0;
+	padding : 0 .3em 0 .3em;
+	border-left : 1px solid #c0c0c0;
+	border-right : 1px solid #c0c0c0;
+}
+
 /********  Admin ******/
 /* manage users  */
 table#userListTable {
@@ -176,8 +204,10 @@ table#reviewTable {
 	text-align:left;
 }
 
+/******background-color****/
 .background-color{
-	background-color: #f1f1f1;
+	background-color: #f1f1f1; 
+	height: 100%
 }
 
 /******sign-up page******/
@@ -211,7 +241,8 @@ table#reviewTable {
  #homePageSiteDescription{
   	 margin:auto;
  }
- 
+
+
  
 /* .show {display:block;} */
 
