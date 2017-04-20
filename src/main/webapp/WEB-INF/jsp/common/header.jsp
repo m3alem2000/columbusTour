@@ -22,7 +22,7 @@
 
 <c:url var="cssHref" value="/css/site.css" />
 <link rel="stylesheet" type="text/css" href="${cssHref}">
-
+<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -56,25 +56,6 @@
 						<c:url var="aboutHref" value="/users/${currentUser.username}/about" />
 					</c:if>
 					<li><a href="${aboutHref}">About</a></li>
-					
-					<c:if test="${empty currentUser}">
-					<%-- 
-						<c:url var="searchLandmarkHref" value="/signup" />
-						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
-						<c:url var="itineraryHref" value="/itinerary"/>
-						<li><a href="${itineraryHref}">Itinerary</a>  --%>
-						<c:url var="suggestALandmark" value="/suggestALandmark"/>
-						<li><a href="#">Suggest a Landmark</a></li>
-					</c:if>
-
-					<c:if test="${not empty currentUser}">
-<%-- 						<c:url var="searchLandmarkHref" value="/users/${currentUser.username}/landmarkSearchPage" />
-						<li><a href="${searchLandmarkHref}">Search Landmark</a></li>
-						<c:url var="itineraryHref" value="/itinerary" />
-						<li><a href="${itineraryHref}">Itinerary</a>  --%>
-						<c:url var="suggestALandmark" value="/users/${currentUser.username}/suggestALandmark" />
-						<li><a href="#">Suggest a Landmark</a></li>
-					</c:if>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -105,9 +86,7 @@
 	</nav>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>
-				<img style="width:80px" src="${logoHref}" alt="Delta Tour" width="25%">Delta Tours are the Best!
-			</h1>
+			<span id="main-title">Columbus Landmarks</span>
 		</div>
 	</div>
 	
