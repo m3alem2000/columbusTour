@@ -8,6 +8,7 @@
 	<div class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
+		<h2>Create Itinerary</h2>
 			<p>Enter Address or click on map</p>
 
 			<%-- <c:url var="createAStartPoint"
@@ -28,19 +29,7 @@
 				<!-- <input type="submit" class="button" value="Create Itinerary"> -->
 			</form>
 
-			<p>Search By Miles</p>
-			<input id="user_miles" value="5" />
-			<button onclick="pullLandmarkCoordsFromLandmark()">Search
-				Map</button>
-			<%-- <c:url var="updateItenUrl"
-				value="/users/${currentUser.username}/addLandmark2Itinerary" /> --%>
-			<%-- <form id="idForm" action="${updateItenUrl}" method="POST">
-				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"> --%>
-			<%-- <input type="hidden" name="itineraryId"
-					value="${itinerary.itineraryId}"> --%>
-			<!-- <input type="submit"
-					value="Save Itinerary" onclick="submitIds()"> -->
-			<!-- </form> -->
+			
 
 		</div>
 
@@ -105,7 +94,7 @@
 							required : "No starting point was chosen"
 						},
 						startingLongitude : {
-							required : "Bananas"
+							required : "No starting point was chosen"
 						}
 					},
 					errorClass : "error"
@@ -118,8 +107,11 @@
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
-			<h2>Create Itinerary</h2>
-
+			
+			<p>Search By Miles</p>
+			<input id="user_miles" value="5" />
+			<button onclick="pullLandmarkCoordsFromLandmark()">Search
+				Map</button>
 			<div id="map"></div>
 
 		</div>
