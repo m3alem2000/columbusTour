@@ -10,11 +10,9 @@
 			<c:url var="createItinerary"
 				value="/users/${currentUser.username}/createNewItin" />
 			<a href="${createItinerary}">
-				<button type="button" class="btn btn-link">New Itinerary</button>
+				<button type="button" class="btn btn-primary">New Itinerary</button>
 			</a> <br> <br>
 
-
-			<p>Saved Itineraries</p>
 			<div>
 				<div class="dropdown">
 					<button class="btn btn-primary dropdown-toggle" type="button"
@@ -32,6 +30,7 @@
 					</ul>
 				</div>
 			</div>
+			<br> <br>
 			<%-- 	<c:forEach var="itineraries" items="${itineraries}">
 				<c:url var="itineraryLink"
 					value="/itinerary">
@@ -40,32 +39,6 @@
 				<p>
 					<a href="${itineraryLink}">${itineraries.itineraryName}</a>
 				</c:forEach>--%>
-
-
-
-			<script>
-			/* When the user clicks on the button, 
-			toggle between hiding and showing the dropdown content */
-			function myFunction() {
-			    document.getElementById("myDropdown").classList.toggle("show");
-			}
-	
-			// Close the dropdown if the user clicks outside of it
-			window.onclick = function(event) {
-			  if (!event.target.matches('.dropbtnItin')) {
-			
-			    var dropdowns = document.getElementsByClassName("dropdown-content");
-			    var i;
-			    for (i = 0; i < dropdowns.length; i++) {
-			      var openDropdown = dropdowns[i];
-			      if (openDropdown.classList.contains('show')) {
-			        openDropdown.classList.remove('show');
-			      }
-			    }
-			  }
-			}
-			</script>
-
 
 			<p>Land Mark Search</p>
 			<p>Search By Miles</p>
