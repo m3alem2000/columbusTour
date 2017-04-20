@@ -19,7 +19,7 @@
 
 			<c:forEach var="itineraries" items="${itineraries}">
 				<c:url var="itineraryLink"
-					value="/users/${currentUser.username}/itinerary">
+					value="/itinerary">
 					<c:param name="itineraryId" value="${itineraries.itineraryId}" />
 				</c:url>
 				<p>

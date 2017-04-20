@@ -71,7 +71,7 @@ function initialize() {
 		  
 		  var path = response.routes[0].overview_path;
 		  var legs = response.routes[0].legs;
-		  for (i = 0; i < legs.length; i++) {
+		  for (i = 1; i < legs.length; i++) {
 			  legs[i].start_address = 
 					'<div style="width:300px" id="siteNotice">'+
 					'<h5>'+itinDetail[i][0]+'</h5>'+
