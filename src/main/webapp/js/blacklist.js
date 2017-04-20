@@ -1,6 +1,7 @@
 
 var blackList = [];
 var reviewArray = [];
+var testing;
 var badWords = 'ass ballsack balls bastard bitch biatch blowjob boner boob '
 	+ 'bugger bum butt buttplug clitoris cock cunt damn dick dildo dyke fag fellate '
 	+ 'fellatio felching fuck fudgepacker hell homo jerk jizz knobend labia '
@@ -24,6 +25,7 @@ function containChar(original, check)
 //checks the users post for any foul language
 function blackListWord()
 {
+	testing = false;
 	this.blackList = badWords.split(' ');
 	var review = $("#reviewInput").val(); 
 	this.reviewArray = review.split(' ');
@@ -35,11 +37,29 @@ function blackListWord()
 			var check = blackList[x];
 			if(containChar(original, check) == true)
 			{
-			alert('please rewrite something that is appropiate before submission, thank you');
+			testing = true; 
 			break;
 			}
 		}
 	}
-	//return some function that submits the review.
+	$(document).ready(function () {
+		$('#landmark-input').validate({
+			rules:{
+				CSRF_TOKEN: { required: true },
+				userId: { required: true },
+				landmarkId: {	required: true },
+				reviewS: { required: true },
+				rating: { required: true }, 
+			},
+			messages: {
+				CSRF_TOKEN: { required: "bad CSRF TOKEN" },
+				userId: { required: "Please Login First" },
+				landmarkId: {required: "Select a Landmark" },
+				reviewS: { required: "Please write a review" },
+				rating: { required: "Please give a rating" }, 
+			},
+		});
+	});
+	return true;
 }
 

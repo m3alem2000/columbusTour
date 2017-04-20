@@ -1,5 +1,6 @@
 package com.techelevator.capstone.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,17 +58,21 @@ public class LandmarkController {
 
 	@RequestMapping(path="/landmarkDetail", method=RequestMethod.POST)
 	public String submitReview(HttpServletRequest request, 
-			@RequestParam Review review, 
+			@RequestParam long userId, 
+			@RequestParam long landmarkId,
+			@RequestParam String reviewS,
+			@RequestParam double rating,
 			ModelMap model) {
-		if(review ==null){
-			return "redirect:/";
-		}else{
-			Review newReview = reviewDao.createReview(review);
-		}
-		AppUser user = (AppUser) model.get("currentUser");
+		Review review = new Review();
+		AppUser currentUser = (AppUser) model.get("currentUser");
+		LocalDateTime dateCreated = LocalDateTime.now();
+		review.setLandmarkId(landmarkId);
+		review.setRating(rating);
+		review.setUserId(userId);
+		review.setReview(reviewS);
+		review.setDateCreated(dateCreated);
 		reviewDao.createReview(review);
-		List<Review> reviews = reviewDao.getAllLandmarkReviews(review.getLandmarkId());
-		model.put("reviews", reviews);
+		model.put("currentUser", currentUser);
 		request.setAttribute("landmark", landmarkDao.readLandmarkById(review.getLandmarkId()));
 		return "landmarkDetail";//redirect
 	}
