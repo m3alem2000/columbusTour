@@ -14,7 +14,7 @@
 			<h2>Edit your user profile:</h2>
 			<c:url var="formAction"
 				value="/users/${currentUser.username}/profile" />
-			<form id="user-profile" method="POST" action="${formAction}">
+			<form class="form-fields" id="user-profile" method="POST" action="${formAction}">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
 				<div class="form-group">

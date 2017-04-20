@@ -18,7 +18,7 @@
 				<c:url var="formAction"
 					value="/users/${currentUser.username}/addAdmin" />
 
-				<form id="new-user" method="POST" action="${formAction}">
+				<form class="form-fields" id="new-user" method="POST" action="${formAction}">
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
 					<div class="form-group">
