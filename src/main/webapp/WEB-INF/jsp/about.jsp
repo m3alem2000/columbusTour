@@ -91,7 +91,6 @@
 			</div>
 
 		</div>
-
 		<!-- end of body of the homepage -->
 
 		<!-- Ads on the right of the homepage -->

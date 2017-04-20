@@ -78,19 +78,8 @@
 		<!-- end of body of the homepage -->
 
 		<!-- Ads on the right of the homepage -->
-		<div class="col-sm-2 sidenav">
-			<div class="well">
-				<p>ADS</p>
-				<p>Want to make<br> an awesome<br> web app <br>like this?</p>
-				<a href="#">Tech Elevator link</a>
-			</div>
-			<div class="well">
-				<p>ADS</p>
-			</div>
-		</div>
+		<c:import url="/WEB-INF/jsp/common/right.jsp" />
 		<!--end of Ads on the right of the homepage  -->
-
-
 	</div>
 </div>
 <br>
