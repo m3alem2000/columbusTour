@@ -7,31 +7,42 @@
 	<div class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		<c:url var="createItinerary" value="/users/${currentUser.username}/createItinerary" />
-		<a href="${createItinerary}" >
-		<button type="button" class="btn btn-link">New Itinerary</button>
-		</a><br><br>
+			<c:url var="createItinerary"
+				value="/users/${currentUser.username}/createNewItin" />
+			<a href="${createItinerary}">
+				<button type="button" class="btn btn-link">New Itinerary</button>
+			</a> <br> <br>
+
+
 			<p>Saved Itineraries</p>
+
+
 			<c:forEach var="itineraries" items="${itineraries}">
-				<c:url var="itineraryLink" value="/users/${currentUser.username}/createItinerary" >
-				<c:param name="itineraryId" value="${itineraries.itineraryId}" />
+				<c:url var="itineraryLink"
+					value="/users/${currentUser.username}/itinerary">
+					<c:param name="itineraryId" value="${itineraries.itineraryId}" />
 				</c:url>
 				<p>
 					<a href="${itineraryLink}">${itineraries.itineraryName}</a>
 				</p>
 			</c:forEach>
-			<h2>Land Mark Search</h2>
+
+
+			<p>Land Mark Search</p>
 			<p>Search By Miles</p>
-			<input id="user_miles" value="5"/>
-			<button onclick="pullLandmarkCoordsFromLandmark()">Search Map</button>
-			<c:url var="updateItenUrl" value="/users/${currentUser.username}/createItin"/>
+			<input id="user_miles" value="5" />
+			<button onclick="pullLandmarkCoordsFromLandmark()">Search
+				Map</button>
+			<c:url var="updateItenUrl"
+				value="/users/${currentUser.username}/addLandmark2Itinerary" />
 			<form id="idForm" action="${updateItenUrl}" method="POST">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
-				<input type="hidden" name="itineraryId" value="${itinerary.itineraryId}">
-				<input type="submit" value="Save Itinerary" onclick="submitIds()">
-			</form>	
+				<input type="hidden" name="itineraryId"
+					value="${itinerary.itineraryId}"> <input type="submit"
+					value="Save Itinerary" onclick="submitIds()">
+			</form>
 		</div>
-			<script>
+		<script>
 			var locations = [
 				[
 					 <c:out value="${itinerariesDetail[0].startingLatitude}"/>,
@@ -45,7 +56,7 @@
 			</c:forEach>
 			];
 			</script>
-			<script>
+		<script>
 			var itinDetail = [
 			<c:forEach var="itin" items="${itinerariesDetail}" >
 				[
@@ -62,21 +73,21 @@
 			<div id="map"></div>
 			<script>
 				var map;
+				var startLat = ${itinerary.startingLatitude};
+				var startlng = ${itinerary.startingLongitude};
 				function initMap() {
 					// Constructor creates a new map - only center and zoom are required.
 					map = new google.maps.Map(document.getElementById('map'), {
 						center : {
-							lat : 39.963788,
-							lng : -83.000574
+							lat : startLat,
+							lng : startlng
 						},
 						zoom : 13
 					});
 				}
 			</script>
-			<c:forEach var="itinerary" items="${itineraries}">
-				<input type="hidden" id="userStartLat" type="number" value="${itinerary.startingLatitude}"/>
-				<input type="hidden" id="userStartLong" type="number" value="${itinerary.startingLongitude}"/>
-		</c:forEach><!--  -->
+				<input type="hidden" id="userStartLat" type="number" value="${itinerary.startingLatitude}" />
+				<input type="hidden" id="userStartLong" type="number" value="${itinerary.startingLongitude}" />
 			<script>
 		var landmarks = [
 		<c:forEach var="landmark" items="${landmarks}">
@@ -99,11 +110,10 @@
 		</c:forEach>
 		];
 		</script>
-		<c:url value="/js" var="jsHref" />
+			<c:url value="/js" var="jsHref" />
 			<script src="${jsHref}/maps.js"></script>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
-				console.log("banana");
 			</script>
 		</div>
 		<!-- end of body of the homepage -->
