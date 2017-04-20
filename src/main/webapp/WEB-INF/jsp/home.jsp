@@ -13,17 +13,17 @@
 			<c:forEach var="landmark" items="${landmarks}">
 				<input type="hidden" name="landmarkId${count}"
 					value="${landmark.landmarkId}" />
-				<input type="hidden" name="name${landmark.landmarkId}"
+				<input type="hidden" name="name${count}"
 					value="${landmark.landmarkName}" />
-				<input type="hidden" name="latitude${landmark.landmarkId}"
+				<input type="hidden" name="latitude${count}"
 					value="${landmark.latitude}" />
-				<input type="hidden" name="longitude${landmark.landmarkId}"
+				<input type="hidden" name="longitude${count}"
 					value="${landmark.longitude}" />
-				<input type="hidden" name="landmarkRating${landmark.landmarkId}"
+				<input type="hidden" name="landmarkRating${count}"
 					value="${landmark.landmarkRating}" />
-				<input type="hidden" name="landmarkPicture${landmark.landmarkId}"
+				<input type="hidden" name="landmarkPicture${count}"
 					value="${landmark.landmarkPicture}" />
-				<input type="hidden" name="description${landmark.landmarkId}"
+				<input type="hidden" name="description${count}"
 					value="${landmark.description}" />
 				<div id="homePageSiteDescription">
 					<span> ${landmark.landmarkName} </span>
