@@ -128,7 +128,7 @@ public class ItineraryController {
 				}
 				//model.put("itinerary", theItinerary);
 				AppUser sessionUser = (AppUser)model.get("currentUser");
-				return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+				return "redirect:/users/"+sessionUser.getUsername()+"/itinerary";
 			}
 
 		}

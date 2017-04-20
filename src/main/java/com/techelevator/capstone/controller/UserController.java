@@ -59,7 +59,7 @@ public class UserController {
 		sessionUser.setPhoneNumber(formUser.getPhoneNumber());
 		appUserDao.updateAppUserProfile(sessionUser);
 		model.put("currentUser", sessionUser);
-		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+		return "redirect:/users/"+sessionUser.getUsername()+"/itinerary";
 	}
 
 	@RequestMapping(path="/users/{userName}/registeredUser", method=RequestMethod.GET)
@@ -77,7 +77,7 @@ public class UserController {
 		AppUser currentUser = (AppUser)model.get("currentUser");
 		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(currentUser.getUserId());
 		model.put("itineraries", itineraries);
-		return "registeredUser";
+		return "itinerary";
 	}
 
 	//	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.GET)

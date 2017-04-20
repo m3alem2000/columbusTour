@@ -9,13 +9,14 @@
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-			<c:url var="createItinerary" value="/newItinerary" />
-		<a href="${createItinerary}" >
-		<button type="button" class="btn btn-link">New Itinerary</button>
-		</a><br><br>
-			<p>Saved Itineraries</p>
+			<c:url var="createItinerary"
+				value="/users/${currentUser.username}/createItinerary" />
+			<a href="${createItinerary}"> <span class="label label-default">New
+					Itinerary</span>
+			</a> <br> <br>
+			<p><b>Saved Itineraries</b></p>
 			<c:forEach var="itineraries" items="${itineraries}">
-				<c:url var="itineraryLink" value="/itinerary" >
+				<c:url var="itineraryLink" value="/users/${currentUser.username}/itinerary" >
 				<c:param name="itineraryId" value="${itineraries.itineraryId}" />
 				</c:url>
 				<p>
