@@ -25,6 +25,23 @@
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 			<!--  <input id="input-3" name="input-3" value="4" class="rating-loading">-->
+			<div class="teamwork">
+			
+			<h5>Welcome to Columbus Landmarks! This webapp allows 
+			visitors to Columbus, Ohio to map out a tour of the city based 
+			on the best route from their hotel/starting point. If they wish, 
+			they can plan multiple routes on different days from the same location. 
+			The app offers the most efficient route to see as many local 
+			landmarks as possible. It is ideal for the first time visitor who
+			 does not have a feel for the lay of the land but wants to see
+			  some of the city in a short amount of time. Go ahead and register 
+			  so you can create your own itinerary. Enjoy your visit to Columbus!</h5>
+			
+			<h5>This webapp was the culmination of a collaborative project
+					by team Delta during the final weeks of a full stack Java Software
+					Development Bootcamp.</h5>
+			</div>
+			
 			<div class="team-members">
 				<h3>Our worldwide team:</h3>
 
@@ -52,14 +69,6 @@
 					<p>Mohammad Ramadan (Syria)</p>
 				</div>
 			</div>
-
-			<div class="teamwork">
-
-				<h5>This webapp was the culmination of a collaborative project
-					by team Delta during the final weeks of a full stack Java Software
-					Development Bootcamp.</h5>
-			</div>
-
 		</div>
 		<!-- end of body of the homepage -->
 
