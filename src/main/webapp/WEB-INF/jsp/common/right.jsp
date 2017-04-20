@@ -4,7 +4,7 @@
 <div id="right-side-add-div" class="col-sm-2 sidenav">
 
 	<div class="tech-elevator-pic">
-		<a href="http://www.techelevator.com"> <img src="${imgHref}"
+		<a href="http://www.techelevator.com" target="_blank"><img src="${imgHref}"
 			class="photo_image" style="width: 205px" />
 		</a>
 	</div>

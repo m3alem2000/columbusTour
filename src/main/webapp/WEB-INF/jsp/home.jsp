@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 
-<div class="container-fluid">
+<div class="container-fluid text-center">
 
 	<div style="background-color: #f1f1f1; height: 100%"
 		class="row content">
