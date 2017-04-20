@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.techelevator.capsone.DAO.ItineraryDAO;
 import com.techelevator.capsone.DAO.LandmarkDAO;
 import com.techelevator.capsone.DAO.ReviewDAO;
+import com.techelevator.capstone.model.AppUser;
 import com.techelevator.capstone.model.Landmark;
 import com.techelevator.capstone.model.Review;
 
@@ -51,6 +52,19 @@ public class LandmarkController {
 		List<Review> reviews = reviewDao.getAllLandmarkReviews(landmarkId);
 		model.put("reviews", reviews);
 		return "landmarkDetail";
+	}
+
+
+	@RequestMapping(path="/landmarkDetail", method=RequestMethod.POST)
+	public String submitReview(HttpServletRequest request, 
+			@RequestParam Review review, 
+			ModelMap model) {
+		AppUser user = (AppUser) model.get("currentUser");
+		reviewDao.createReview(review);
+		List<Review> reviews = reviewDao.getAllLandmarkReviews(review.getLandmarkId());
+		model.put("reviews", reviews);
+		request.setAttribute("landmark", landmarkDao.readLandmarkById(review.getLandmarkId()));
+		return "landmarkDetail";//redirect
 	}
 
 

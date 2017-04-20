@@ -79,22 +79,18 @@ public class UserController {
 		model.put("itineraries", itineraries);
 		return "registeredUser";
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping(path="/users/{userName}/registeredUser", method=RequestMethod.POST)
-	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
-		System.out.println(itineraryId);
-		for (int landId : landmarkIds){
-			itinDAO.addLandmark2Itin(itineraryId, landId);
-			}
-		return "registeredUser";
-=======
+
 
 	@RequestMapping(path="/users/{userName}/createNewItin", method=RequestMethod.GET)
 	public String createItin( ModelMap model) {
 		return "createItinerary";
 	}  
-
+	//testing a method in js
+	@RequestMapping(path="/landmarkSearchPage", method=RequestMethod.GET)
+	public String tryit( ModelMap model) {
+		return "landmarkSearchPage";
+	}  
+	
 	@RequestMapping(path="/users/{userName}/addLandmark2Itinerary", method=RequestMethod.POST)
 	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
 		for (int landId : landmarkIds){
@@ -102,7 +98,6 @@ public class UserController {
 		}
 		AppUser sessionUser = (AppUser)model.get("currentUser");
 		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
->>>>>>> 9f5402bb086e435a7484c8423cdba946cc4add44
 	}
 
 }
