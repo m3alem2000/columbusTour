@@ -31,14 +31,14 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 				"landmark_id, landmark_name, landmark_sub_name, " +
 				"landmark_picture, landmark_rating, latitude, " +
 				"longitude, state, city, " + 
-				"zip_code, address, description, " + 
+				"zip_code, address, description, history, website, " + 
 				"top_pick) " + 
-				" VALUES ( ?,?,?,?,?,  ?,?,?,?,?, ?,?,? );";
+				" VALUES ( ?,?,?,?,?,  ?,?,?,?,?, ?,?,?,?,?  );";
 		int result = jdbcTemplate.update(sqlAddLandmark, 
 				landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkSubName(),
 				landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), 
 				landmark.getLongitude(), landmark.getState(), landmark.getCity(), 
-				landmark.getZipCode(), landmark.getAddress(), landmark.getDescription(),
+				landmark.getZipCode(), landmark.getAddress(), landmark.getDescription(), landmark.getHistory(), landmark.getWebsite(),
 				landmark.isTopPick());
 		return result==1;
 	}
@@ -60,15 +60,15 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 				"(landmark_id, landmark_name, landmark_sub_name, " +
 				"landmark_picture, landmark_rating, latitude, " +
 				"longitude, state, city, " + 
-				"zip_code, address, description, " + 
+				"zip_code, address, description, history, website, " + 
 				"top_pick) " + 
-				" = ( ?,?,?,?,?,  ?,?,?,?,?, ?,?,? ) " +
+				" = ( ?,?,?,?,?,  ?,?,?,?,?, ?,?,?,?,? ) " +
 				"WHERE landmark_id = ?";
 		int result = jdbcTemplate.update(sqlUpdateLandmarkById, 
 				landmark.getLandmarkId(), landmark.getLandmarkName(), landmark.getLandmarkSubName(),
 				landmark.getLandmarkPicture(), landmark.getLandmarkRating(), landmark.getLatitude(), 
 				landmark.getLongitude(), landmark.getState(), landmark.getCity(), 
-				landmark.getZipCode(), landmark.getAddress(), landmark.getDescription(),
+				landmark.getZipCode(), landmark.getAddress(), landmark.getDescription(), landmark.getHistory(), landmark.getWebsite(),
 				landmark.isTopPick());
 		return result==1;
 	}
@@ -152,6 +152,8 @@ public class LandmarkJdbcDao implements LandmarkDAO{
 		theLandmark.setZipCode(results.getLong("zip_code"));
 		theLandmark.setAddress(results.getString("address"));
 		theLandmark.setDescription(results.getString("description"));
+		theLandmark.setHistory(results.getString("history"));
+		theLandmark.setWebsite(results.getString("website"));
 		theLandmark.setTopPick(results.getBoolean("top_pick"));
 		return theLandmark;
 	}

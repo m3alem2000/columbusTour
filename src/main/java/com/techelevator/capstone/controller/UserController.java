@@ -59,7 +59,7 @@ public class UserController {
 		sessionUser.setPhoneNumber(formUser.getPhoneNumber());
 		appUserDao.updateAppUserProfile(sessionUser);
 		model.put("currentUser", sessionUser);
-		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+		return "redirect:/users/"+sessionUser.getUsername()+"/itinerary";
 	}
 
 	@RequestMapping(path="/users/{userName}/registeredUser", method=RequestMethod.GET)
@@ -77,8 +77,9 @@ public class UserController {
 		AppUser currentUser = (AppUser)model.get("currentUser");
 		List<Itinerary> itineraries = itinDAO.getItinerariesListByUserId(currentUser.getUserId());
 		model.put("itineraries", itineraries);
-		return "registeredUser";
+		return "itinerary";
 	}
+
 
 
 	@RequestMapping(path="/users/{userName}/createNewItin", method=RequestMethod.GET)
@@ -92,12 +93,28 @@ public class UserController {
 	}  
 	
 	@RequestMapping(path="/users/{userName}/addLandmark2Itinerary", method=RequestMethod.POST)
-	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
+	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) 
+	{
 		for (int landId : landmarkIds){
 			itinDAO.addLandmark2Itin(itineraryId, landId);
 		}
 		AppUser sessionUser = (AppUser)model.get("currentUser");
 		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
 	}
+	
+
+	//	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.GET)
+	//	public String createItin( ModelMap model) {
+	//		return "createItinerary";
+	//	}  
+
+	//	@RequestMapping(path="/users/{userName}/addLandmark2Itinerary", method=RequestMethod.POST)
+	//	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
+	//		for (int landId : landmarkIds){
+	//			itinDAO.addLandmark2Itin(itineraryId, landId);
+	//		}
+	//		AppUser sessionUser = (AppUser)model.get("currentUser");
+	//		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+	//	}
 
 }

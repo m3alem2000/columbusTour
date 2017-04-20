@@ -19,14 +19,48 @@
 				<%-- <img src="<c:url value="./img/${landmark.landmarkPicture}"/>" /> --%>
 				<img id="pic" class="land-image"
 					src="./img/${landmark.landmarkPicture}" />
+					
+				<c:choose>
+					<c:when test="${landmark.landmarkRating == 5}">
+						<img class="rating" src="img/5-star.png">
+					</c:when>
+					<c:when test="${landmark.landmarkRating == 4}">
+						<img class="rating" src="img/4-star.png">
+					</c:when>
+					<c:when test="${landmark.landmarkRating == 3}">
+						<img class="rating" src="img/3-star.png">
+					</c:when>
+					<c:when test="${landmark.landmarkRating == 2}">
+						<img class="rating" src="img/2-star.png">
+					</c:when>
+					<c:otherwise>
+						<img class="rating" src="img/1-star.png">
+					</c:otherwise>
+				</c:choose>
 
 				<p id="landmark-address">
 					<c:out value="${landmark.address}" />
 				</p>
-
+	
 				<p id="landmark-description">
 					<c:out value="${landmark.description}" />
 				</p>
+				
+				<p id="landmark-history">
+					<c:out value="${landmark.history}" />
+				</p>
+				<c:choose>
+					<c:when test="${landmark.website != null}">
+						<p>
+							Website: <a href="${landmark.website}"><c:out
+									value="${landmark.website}" /> </a>
+						</p>
+					</c:when>
+					<%-- <c:otherwise>
+   
+    	</c:otherwise> --%>
+				</c:choose>
+
 
 				<!--Add a hidden div with all the reviews that can be reveled and re-hide  -->
 				<script
@@ -45,20 +79,20 @@
 					<table>
 						<c:forEach var="review" items="${reviews}">
 							<tr>
-<%-- 								<td>${review.reviewId}</td>
- --%>								<td>${review.review}</td>
-								<td>${review.formattedDateTime}</td>
-								<td><c:choose>
-					<c:when test="${landmark.landmarkRating == 5}">
+ 								<td>${review.formattedDateTime}</td>
+ 								<td>${review.review}</td>
+								<td>
+				<c:choose>
+					<c:when test="${review.rating == 5}">
 						<img class="rating" src="img/5-star.png">
 					</c:when>
-					<c:when test="${landmark.landmarkRating >4}">
+					<c:when test="${review.rating == 4}">
 						<img class="rating" src="img/4-star.png">
 					</c:when>
-					<c:when test="${landmark.landmarkRating >3}">
+					<c:when test="${review.rating == 3}">
 						<img class="rating" src="img/3-star.png">
 					</c:when>
-					<c:when test="${landmark.landmarkRating >2}">
+					<c:when test="${review.rating == 2}">
 						<img class="rating" src="img/2-star.png">
 					</c:when>
 					<c:otherwise>
@@ -66,7 +100,9 @@
 					</c:otherwise>
 				</c:choose></td>
 							</tr>
+							
 						</c:forEach>
+						<br>
 					</table>
 				</div>
 				

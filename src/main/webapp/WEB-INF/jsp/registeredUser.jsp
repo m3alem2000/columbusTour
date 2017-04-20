@@ -16,8 +16,28 @@
 				value="/users/${currentUser.username}/createNewItin" />
 			<a href="${createItinerary}">
 				<button type="button" class="btn btn-link">New Itinerary</button>
+			<a href="${createItinerary}"> <span class="label label-default">New
+					Itinerary</span>
 			</a> <br> <br>
+			<div class="dropdown">
+				<button class="btn btn-default dropdown-toggle" type="button"
+					id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true">
+					Select Itineraries <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<c:forEach var="itineraries" items="${itineraries}">
+						<c:url var="itineraryLink"
+							value="/users/${currentUser.username}/itinerary">
+							<c:param name="itineraryId" value="${itineraries.itineraryId}" />
+						</c:url>
+						<li><a href="${itineraryLink}">${itineraries.itineraryName}</a></li>
+					</c:forEach>
+				</ul>
+			</div>
+			<br> <br>
 
+<<<<<<< HEAD
 
 			<p>Saved Itineraries</p>
 
@@ -31,6 +51,9 @@
 
 
 			<p>Land Mark Search</p>
+=======
+			<%-- <p>Land Mark Search</p>
+>>>>>>> 5b732c2a048e97ca0a01efd8668852ce1c008e62
 			<p>Search By Miles</p>
 			<input id="user_miles" value="5" />
 			<button onclick="pullLandmarkCoordsFromLandmark()">Search
@@ -49,7 +72,7 @@
 				<input type="hidden" name="itineraryId"
 					value="${itinerary.itineraryId}"> <input type="submit"
 					value="Save Itinerary" onclick="submitIds()">
-			</form>
+			</form> --%>
 		</div>
 		<script>
 			var locations = [
@@ -104,6 +127,10 @@
 			<!--  -->
 				<input type="hidden" id="userStartLat" type="number" value="${itinerary.startingLatitude}" />
 				<input type="hidden" id="userStartLong" type="number" value="${itinerary.startingLongitude}" />
+			<input type="hidden" id="userStartLat" type="number"
+				value="${itinerary.startingLatitude}" /> <input type="hidden"
+				id="userStartLong" type="number"
+				value="${itinerary.startingLongitude}" />
 			<script>
 		var landmarks = [
 		<c:forEach var="landmark" items="${landmarks}">
@@ -116,6 +143,7 @@
 				pictureUrl: '${landmark.landmarkPicture}',
 				description: '${landmark.description}'
 			},
+
 		</c:forEach>
 		];
 		</script>
@@ -123,20 +151,15 @@
 			<script src="${jsHref}/maps.js"></script>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">
-			</script>
+					
+				</script>
 		</div>
 		<!-- end of body of the homepage -->
 
 		<!-- Ads on the right of the homepage -->
-		<div class="col-sm-2 sidenav">
-			<div class="well">
-				<p>ADS</p>
-			</div>
-			<div class="well">
-				<p>ADS</p>
-			</div>
-		</div>
-
+		<c:import url="/WEB-INF/jsp/common/right.jsp" />
+		<!--end of Ads on the right of the homepage  -->
 	</div>
 </div>
+
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />

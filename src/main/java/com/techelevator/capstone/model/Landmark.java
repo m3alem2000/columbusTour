@@ -14,6 +14,8 @@ public class Landmark {
 	private Long zipCode;//*
 	private String address;
 	private String description;//*
+	private String history;
+	private String website;
 	private boolean topPick;
 	private boolean isActive;
 	
@@ -41,13 +43,11 @@ public class Landmark {
 	public void setLandmarkName(String landmarkName) {
 		this.landmarkName = landmarkName;
 	}
-	public String getLandmarkSubName() {
-		return landmarkSubName;
-	}
+
 	public void setLandmarkSubName(String landmarkSubName) {
 		this.landmarkSubName = landmarkSubName;
 	}
-	public String getLandmarkSubName(String landmarkName) {
+	public String getLandmarkSubName() {
 		if(landmarkName.length()>30){
 			landmarkName = landmarkName.substring(0,26)+"...";
 		}
@@ -106,6 +106,19 @@ public class Landmark {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public String getHistory() {
+		return history;
+	}
+	public void setHistory(String history) {
+		this.history = history;
 	}
 	
 	

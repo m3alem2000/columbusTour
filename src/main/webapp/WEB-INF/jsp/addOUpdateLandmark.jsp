@@ -11,16 +11,15 @@
 	<div class="row content">
 
 		<!-- links on the left of the page -->
-		<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-2 text-left"></div> 
 		<!-- end links on the left of the page -->
 
 		<!-- body of the page -->
 		<div class="col-sm-8 text-left">
-			<h2>Add/Update Landmark, It's on you to make sure a landmark is
-				unique!</h2>
+			<h2 class="admin-title">Add/Update Landmark information</h2>
 			<c:url var="formAction"
 				value="/users/${currentUser.username}/addOUpdateLandmark" />
-			<form id="landmark-input" method="POST" action="${formAction}">
+			<form class="form-fields" id="landmark-input" method="POST" action="${formAction}">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
 				<div class="form-group">
@@ -57,7 +56,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="state">State: * (2 letter representation)</label> <input
+					<label for="state">State: * (2 letter State Code)</label> <input
 						type="text" value="${landmark.state}" id="state" name="state"
 						placeHolder="State" class="form-control" />
 				</div>
@@ -96,7 +95,7 @@
 		</div>
 		<!-- end of body of the page -->
 
-		<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-2 text-left"></div> 
 
 
 	</div>

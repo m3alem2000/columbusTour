@@ -38,10 +38,6 @@ $(document).ready(function () {
 	});
 });
 
-//$.validator.addMethod("vadidateMail", function (value, index) {
-//	return value.toLowerCase().endsWith(".gov"); 
-//}, "Please enter a .gov email");
-//
 
 $.validator.addMethod("passwordCharacters", function (password, index) {
 	if(password.length<129){return true};

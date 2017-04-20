@@ -7,18 +7,18 @@
 	<div class="row content">
 
 		<!-- links on the left of the homepage -->
-		<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-2 text-left"></div> 
 		<!-- end links on the left of the homepage -->
 
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
-			<h2>Manage Landmarks</h2>
+			<h2 class="admin-title">Manage Landmarks</h2>
 			<table class="landmarkList">
 				<tr>
-					<th>{Landmark Name}</th>
-					<th>{Landmark Id}</th>
-					<th>{Address}</th>
-					<th>{TopPick}</th>
+					<th>Landmark Name</th>
+					<th>Landmark Id</th>
+					<th>Address</th>
+					<th>TopPick</th>
 					<th>Details</th>
 					<th>Update</th>
 					<th>Delete</th>
@@ -31,7 +31,7 @@
 					<td>${listLandmark.topPick}</td>
 					<td>
 						<c:url var="landmarkDetailsHref" value="/landmarkDetail"/>
-						<form action="${landmarkDetailsHref}" method="GET">
+						<form  class="form-fields" action="${landmarkDetailsHref}" method="GET">
 							<input type="hidden" name="landmarkId" value="${listLandmark.landmarkId}"/>
 							<input type="submit" value="More Details" />
 						</form>

@@ -19,15 +19,17 @@ import com.techelevator.capstone.model.Itinerary;
 import com.techelevator.capstone.model.Landmark;
 
 @Controller
-@SessionAttributes({"currentUser","itinerary"})
+@SessionAttributes({"currentUser","itinerary","landmarks"})
 public class ItineraryController {
 
 	private ItineraryDAO itineraryDao;
+	@Autowired
 	private LandmarkDAO landmarkDao;
 
 	@Autowired
-	public ItineraryController(ItineraryDAO itineraryDao){
+	public ItineraryController(ItineraryDAO itineraryDao, LandmarkDAO landmarkDao){
 		this.itineraryDao = itineraryDao;
+		this.landmarkDao = landmarkDao;
 	}
 
 	//	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
@@ -46,7 +48,7 @@ public class ItineraryController {
 	//		}
 	//	}
 
-	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
+	@RequestMapping(path="/users/{userName}/itinerary", method=RequestMethod.GET)
 	public String displayItineraryList(@RequestParam (defaultValue = "0" ,required = false) int itineraryId, HttpServletRequest request, ModelMap model) {
 
 		if(model.isEmpty() || model.get("currentUser")==null){
@@ -83,22 +85,23 @@ public class ItineraryController {
 	//		}
 	//	}
 
-	@RequestMapping(path="/newItinerary", method=RequestMethod.GET)
-	public String newItineraryStartPoint(HttpServletRequest request, ModelMap model) {
-
-		if(model.isEmpty() || model.get("currentUser")==null){
-			return "redirect:/login";
-		}else{
-			List<Landmark> allLandmarks = landmarkDao.getAllLandmarks();
-			request.setAttribute("allLandmarks", allLandmarks);
-			return "newItinerary";
-		}
-	}
-
-
+	//	@RequestMapping(path="/newItinerary", method=RequestMethod.GET)
+	//	public String newItineraryStartPoint(HttpServletRequest request, ModelMap model) {
+	//
+	//		if(model.isEmpty() || model.get("currentUser")==null){
+	//			return "redirect:/login";
+	//		}else{
+	//			List<Landmark> allLandmarks = landmarkDao.getAllLandmarks();
+	//			request.setAttribute("allLandmarks", allLandmarks);
+	//			return "newItinerary";
+	//		}
+	//	}
+	
 	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.GET)
 	public String createItineraryStartPoint(ModelMap model) {
-
+		//start from landmarkSearchPage
+		List<Landmark> landmarks = landmarkDao.getAllLandmarks();
+		model.put("landmarks", landmarks);
 		if(model.isEmpty() || model.get("currentUser")==null){
 			return "redirect:/login";
 		}else{
@@ -107,7 +110,9 @@ public class ItineraryController {
 	}
 
 	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.POST)
-	public String createItinerary(Itinerary itinerary, ModelMap model) {
+	public String createItinerary(Itinerary itinerary, 
+			@RequestParam(required=false) int[] landmarkIds,
+			ModelMap model) {
 
 		if(model.isEmpty() || model.get("currentUser")==null){
 			return "redirect:/login";
@@ -116,12 +121,25 @@ public class ItineraryController {
 				return "redirect:/createItinerary";
 			} else {
 				Itinerary theItinerary =itineraryDao.getItineraryById(itineraryDao.createItinerary(itinerary));
-				model.put("itinerary", theItinerary);
+				if (landmarkIds != null && landmarkIds.length>0){
+					for (int landId : landmarkIds){
+						itineraryDao.addLandmark2Itin(theItinerary.getItineraryId(), landId);
+					}
+				}
+				//model.put("itinerary", theItinerary);
 				AppUser sessionUser = (AppUser)model.get("currentUser");
-				return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+				return "redirect:/users/"+sessionUser.getUsername()+"/itinerary";
 			}
 
 		}
 	}
+	//	@RequestMapping(path="/users/{userName}/addLandmark2Itinerary", method=RequestMethod.POST)
+	//	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
+	//		for (int landId : landmarkIds){
+	//			itinDAO.addLandmark2Itin(itineraryId, landId);
+	//		}
+	//		AppUser sessionUser = (AppUser)model.get("currentUser");
+	//		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+	//	}
 }
 

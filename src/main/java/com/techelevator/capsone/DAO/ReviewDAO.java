@@ -5,7 +5,7 @@ import java.util.List;
 import com.techelevator.capstone.model.Review;
 
 public interface ReviewDAO {
-	public boolean createReview(Review review);
+	public Review createReview(Review review);
 	// takes a model review and creates that in db
 	public Review getReviewById(long reviewId);
 	// retrieves a specific review by its ID from db

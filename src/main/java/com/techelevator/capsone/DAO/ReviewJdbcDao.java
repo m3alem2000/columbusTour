@@ -23,14 +23,14 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	@Override
-	public boolean createReview(Review review) {
+	public Review createReview(Review review) {
 		Long reviewId = getNextId();
 		String sqlCreateReview = "INSERT INTO review "
 				+ "(review_id, landmark_id, user_id, review, rating, date_created) VALUES "
 				+ "(?, ?, ?, ?, ?,?)";
 		int result = jdbcTemplate.update(sqlCreateReview, 
 				reviewId, review.getLandmarkId(), review.getUserId(), review.getReview(), review.getRating());
-		return result==1;
+		return review;
 	}
 
 	@Override

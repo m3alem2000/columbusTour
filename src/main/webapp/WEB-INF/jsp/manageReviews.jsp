@@ -2,21 +2,18 @@
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 
 
-<div class="container-fluid">
+<div class="container-fluid text-center">
 
 	<div class="row content">
 
 <!-- links on the left of the homepage -->
-		<div class="col-sm-2 sidenav">
-		
-		
-		</div>
+		<div class="col-sm-2 text-left"></div> 
 <!-- end links on the left of the homepage -->
 
 <!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 		<div id="manageReviews">
-			<h2>Reviews posted</h2>
+			<h2 class="admin-title">Reviews posted</h2>
 		</div>
 
 		<table id="reviewTable" class="reviewsList">

@@ -59,6 +59,11 @@ public class LandmarkController {
 	public String submitReview(HttpServletRequest request, 
 			@RequestParam Review review, 
 			ModelMap model) {
+		if(review ==null){
+			return "redirect:/";
+		}else{
+			Review newReview = reviewDao.createReview(review);
+		}
 		AppUser user = (AppUser) model.get("currentUser");
 		reviewDao.createReview(review);
 		List<Review> reviews = reviewDao.getAllLandmarkReviews(review.getLandmarkId());
