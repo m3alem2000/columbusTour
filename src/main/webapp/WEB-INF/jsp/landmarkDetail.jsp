@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
-
+<c:url value="/js" var="jsHref" />
+<script src="${jsHref}/blacklist.js"></script>
 
 <div class="container-fluid">
 
@@ -103,31 +104,32 @@
 				</div>
 
 
+
 			
 			<h4>How was your visit? Leave a review and rating here:</h4>
 			<c:url var="addReview" value="/landmarkDetail" />
 			<form class="form-fields" action="${addReview}" method="POST" id="landmark-input">
+
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 				<input type="hidden" name="userId" value="${currentUser.userId}"> 
 				<input type="hidden" name="landmarkId" value="${landmark.landmarkId}">
-				<%-- <input type="hidden" name="username" value="${currentUser.username}">  --%> 
 				<div class="form-group">
 					<label for="LandmarkName">Review: *</label> 
-					<input type="text" value="${review.review}" id="review"
-						name="review" placeHolder="Write a review/No Foul Language Please"
+					<input type="text" value="${review.review}" id="reviewInput"
+						name="reviewS" placeHolder="Write a review/No Foul Language Please"
 						class="form-control" />
 				</div>
 				<div class="form-group">
-				<label for="LandmarkName">Rating: *</label>
+				<label for="rating">Rating: *</label>
 					<select name="rating">
-					  <option value="${review.rating}">5</option>
-					  <option value="${review.rating}">4</option>
-					  <option value="${review.rating}">3</option>
-					  <option value="${review.rating}">2</option>
-					  <option value="${review.rating}">1</option>
+					  <option value="5">5</option>
+					  <option value="4">4</option>
+					  <option value="3">3</option>
+					  <option value="2">2</option>
+					  <option value="1">1</option>
 					</select>
 				</div>
-				<input type="submit" class="btn btn-default" value="Submit" />
+				<input id="submission" onclick="blackListWord()" type="submit" class="btn btn-default" value="Submit" />
 			</form>
 		
 

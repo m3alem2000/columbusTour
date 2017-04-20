@@ -29,7 +29,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 				+ "(review_id, landmark_id, user_id, review, rating, date_created) VALUES "
 				+ "(?, ?, ?, ?, ?,?)";
 		int result = jdbcTemplate.update(sqlCreateReview, 
-				reviewId, review.getLandmarkId(), review.getUserId(), review.getReview(), review.getRating());
+				reviewId, review.getLandmarkId(), review.getUserId(), review.getReview(), review.getRating(), review.getDateCreated());
 		return review;
 	}
 
@@ -95,7 +95,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 	}
 
 	private Long getNextId() {
-		String sqlSelectNextId = "SELECT NEXTVAL('seq_review_id')";
+		String sqlSelectNextId = "SELECT NEXTVAL('review_review_id_seq')";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		Long id = null;
 		if(results.next()) {
