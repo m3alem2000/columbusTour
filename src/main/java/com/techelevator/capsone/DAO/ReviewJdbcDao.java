@@ -51,7 +51,7 @@ public class ReviewJdbcDao implements ReviewDAO{
 		}
 		return reviews;
 	}
-
+	
 	public void deleteAllLandmarkReviewsByUserId(long userId) {
 
 	}
@@ -70,12 +70,12 @@ public class ReviewJdbcDao implements ReviewDAO{
 	@Override
 	public List<Review> getAllLandmarkReviews(long landmarkId) {
 		List<Review> reviews = new ArrayList<>();
-		String sqlReviews = "SELECT * FROM review "
-				+ "WHERE landmark_id =? "
-				+ "ORDER by review.date_created DESC";
+		String sqlReviews = "SELECT * FROM review "+
+							"join users on users.user_id = review.user_id "+
+							"WHERE review.landmark_id =?  ORDER by review.date_created DESC";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReviews, landmarkId);
 		while(results.next()) {
-			reviews.add(mapRowToReview(results));
+			reviews.add(mapRowToReviewWithUsername(results));
 		}
 		return reviews;
 	}
