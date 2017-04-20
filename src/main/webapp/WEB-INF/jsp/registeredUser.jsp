@@ -16,16 +16,41 @@
 
 			<p>Saved Itineraries</p>
 
-
-			<c:forEach var="itineraries" items="${itineraries}">
-				<c:url var="itineraryLink"
-					value="/users/${currentUser.username}/itinerary">
-					<c:param name="itineraryId" value="${itineraries.itineraryId}" />
-				</c:url>
-				<p>
+			<div class="dropdown">
+				<button onclick="myFunction()" class="dropbtn">${currentUser.username}
+					saved itineraries</button>
+				<c:forEach var="itineraries" items="${itineraries}">
+					<c:url var="itineraryLink"
+						value="/users/${currentUser.username}/itinerary">
+						<c:param name="itineraryId" value="${itineraries.itineraryId}" />
+					</c:url>
 					<a href="${itineraryLink}">${itineraries.itineraryName}</a>
-				</p>
-			</c:forEach>
+				</c:forEach>
+			</div>
+
+
+			<script>
+			/* When the user clicks on the button, 
+			toggle between hiding and showing the dropdown content */
+			function myFunction() {
+			    document.getElementById("myDropdown").classList.toggle("show");
+			}
+	
+			// Close the dropdown if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+			
+			    var dropdowns = document.getElementsByClassName("dropdown-content");
+			    var i;
+			    for (i = 0; i < dropdowns.length; i++) {
+			      var openDropdown = dropdowns[i];
+			      if (openDropdown.classList.contains('show')) {
+			        openDropdown.classList.remove('show');
+			      }
+			    }
+			  }
+			}
+			</script>
 
 
 			<p>Land Mark Search</p>
@@ -86,8 +111,10 @@
 					});
 				}
 			</script>
-				<input type="hidden" id="userStartLat" type="number" value="${itinerary.startingLatitude}" />
-				<input type="hidden" id="userStartLong" type="number" value="${itinerary.startingLongitude}" />
+			<input type="hidden" id="userStartLat" type="number"
+				value="${itinerary.startingLatitude}" /> <input type="hidden"
+				id="userStartLong" type="number"
+				value="${itinerary.startingLongitude}" />
 			<script>
 		var landmarks = [
 		<c:forEach var="landmark" items="${landmarks}">
