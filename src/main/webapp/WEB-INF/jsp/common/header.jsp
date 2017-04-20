@@ -73,7 +73,7 @@
 						<li><a href="${registeredUserProfileHref}"><span
 								class="glyphicon"></span>Profile</a></li>
 						<c:url var="registeredUserHref"
-							value="/users/${currentUser.username}/registeredUser" />
+							value="/users/${currentUser.username}/itinerary" />
 						<li><a href="${registeredUserHref}"><span
 								class="glyphicon"></span>${currentUser.username}</a></li>
 						<c:url var="logOutHref" value="/logout" />

@@ -9,26 +9,24 @@
 		<div class="col-sm-2 sidenav">
 			<c:url var="createItinerary"
 				value="/users/${currentUser.username}/createItinerary" />
-			<a href="${createItinerary}">
-				<button type="button" class="btn btn-primary">New Itinerary</button>
+			<a href="${createItinerary}"> <span class="label label-default">New
+					Itinerary</span>
 			</a> <br> <br>
-
-			<div>
-				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button"
-						data-toggle="dropdown">
-						${currentUser.username} saved itineraries<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<c:forEach var="itineraries" items="${itineraries}">
-							<c:url var="itineraryLink"
-								value="/users/${currentUser.username}/itinerary">
-								<c:param name="itineraryId" value="${itineraries.itineraryId}" />
-							</c:url>
-							<li><a href="${itineraryLink}">${itineraries.itineraryName}</a></li>
-						</c:forEach>
-					</ul>
-				</div>
+			<div class="dropdown">
+				<button class="btn btn-default dropdown-toggle" type="button"
+					id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true">
+					Select Itineraries <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<c:forEach var="itineraries" items="${itineraries}">
+						<c:url var="itineraryLink"
+							value="/users/${currentUser.username}/itinerary">
+							<c:param name="itineraryId" value="${itineraries.itineraryId}" />
+						</c:url>
+						<li><a href="${itineraryLink}">${itineraries.itineraryName}</a></li>
+					</c:forEach>
+				</ul>
 			</div>
 			<br> <br>
 
