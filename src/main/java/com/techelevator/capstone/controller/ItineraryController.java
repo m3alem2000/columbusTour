@@ -26,8 +26,9 @@ public class ItineraryController {
 	private LandmarkDAO landmarkDao;
 
 	@Autowired
-	public ItineraryController(ItineraryDAO itineraryDao){
+	public ItineraryController(ItineraryDAO itineraryDao, LandmarkDAO landmarkDao){
 		this.itineraryDao = itineraryDao;
+		this.landmarkDao = landmarkDao;
 	}
 
 	//	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
@@ -89,7 +90,9 @@ public class ItineraryController {
 		if(model.isEmpty() || model.get("currentUser")==null){
 			return "redirect:/login";
 		}else{
-			List<Landmark> allLandmarks = landmarkDao.getAllLandmarks();
+			List<Landmark> allLandmarks = new ArrayList<Landmark>();
+//
+			allLandmarks = landmarkDao.getAllLandmarks();
 			request.setAttribute("allLandmarks", allLandmarks);
 			return "newItinerary";
 		}
