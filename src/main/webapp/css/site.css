@@ -194,6 +194,11 @@ div#manageReviews {
 }
 
 /*******profile page********/
+
+
+ 
+ /* On small screens, set height to 'auto' for sidenav and grid */
+
 #profile-pic-div {
 	background-image: url("../img/grayColumbus.jpg");
 	background-size: cover;
@@ -208,6 +213,7 @@ div#manageReviews {
 /* .show {display:block;} */
 
 /* On small screens, set height to 'auto' for sidenav and grid */
+
 @media screen and (max-width: 767px) {
 	.sidenav {
 		height: auto;
