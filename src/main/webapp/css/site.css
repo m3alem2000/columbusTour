@@ -1,4 +1,10 @@
 /* Remove the navbar's default margin-bottom and rounded borders */
+#main-title {
+	font: 400 130px/0.8 'Cookie', Helvetica, sans-serif;
+	color: #000;
+	/* text-shadow: 4px 4px 3px rgba(0,0,0,0.1); */
+}
+
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
@@ -9,15 +15,17 @@
 }
 
 .jumbotron {
-	background-image: url("../img/columbus.jpg");
-	background-size: cover;
+	background-image: url("../img/skylineDay.jpg");
+	background-position-y: 59%;
+	width: 100%; background-size : cover;
 	color: black;
 	background-color: black;
 	margin-bottom: 0px;
+	background-size: cover
 }
 
-.jumbotron h1 {
-	text-shadow: 0px 0px 20px #FFF;
+.jumbotron span {
+	text-shadow: 0px 0px 25px #FFF;
 }
 
 .jumbotron p {
@@ -84,30 +92,51 @@ hr {
 }
 
 /* about page*/
-.about-pics{
-	width:900px;
-	height:250px;
-	vertical-align:bottom;
-}  
-.photo-image{
-	float: left;
-	padding-left:20px;
-	display:inline-block;
+.about-pics {
+	width: 900px;
+	height: 250px;
+	vertical-align: bottom;
 }
 
-.team-members{
+.photo-image {
+	float: left;
+	padding-left: 20px;
+	display: inline-block;
+}
+
+.team-members {
 	padding-top: 30px;
-	text-align:center;
+	text-align: center;
 	padding-bottom: 30px;
 }
-.teamwork{
-	text-align:center;
+
+.teamwork {
+	text-align: center;
 }
 
 /********login************/
-.techelevator-right {
-	padding-bottom: 50px;
+/* #login main-div{
+	height:100%;
+} */
+
+#login-picture-div {
+	background-image: url("../img/grayColumbus.jpg"); 
+	background-size: cover;
+	color: black;
+	background-color: black;
+	margin-bottom: 0px;
+	height: 100%;
+	text-shadow: 0px 0px 12px #FFF;
 }
+
+#login-left-side{
+
+}
+
+#right-side-add-div{
+
+}
+
 /******* landmarkDetail *****/
 .rating {
 	width: 60px;
@@ -153,7 +182,29 @@ div#manageReviews {
 	text-align: center;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
+/******sign-up page******/
+#signup-main {
+	background-image: url("../img/grayColumbus.jpg");
+	background-size: cover;
+	color: black;
+	background-color: black;
+	margin-bottom: 0px;
+	height: 100%; 
+	text-shadow: 0px 0px 12px #FFF;
+}
+
+/*******profile page********/
+#profile-pic-div {
+	background-image: url("../img/grayColumbus.jpg"); 
+	background-size: cover;
+	color: black;
+	background-color: black;
+	margin-bottom: 0px;
+	height: 100%;
+	text-shadow: 0px 0px 12px #FFF;
+}
+ 
+ /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
 	.sidenav {
 		height: auto;
