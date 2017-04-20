@@ -80,18 +80,18 @@ public class UserController {
 		return "registeredUser";
 	}
 
-	@RequestMapping(path="/users/{userName}/createNewItin", method=RequestMethod.GET)
-	public String createItin( ModelMap model) {
-		return "createItinerary";
-	}  
+	//	@RequestMapping(path="/users/{userName}/createItinerary", method=RequestMethod.GET)
+	//	public String createItin( ModelMap model) {
+	//		return "createItinerary";
+	//	}  
 
-	@RequestMapping(path="/users/{userName}/addLandmark2Itinerary", method=RequestMethod.POST)
-	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
-		for (int landId : landmarkIds){
-			itinDAO.addLandmark2Itin(itineraryId, landId);
-		}
-		AppUser sessionUser = (AppUser)model.get("currentUser");
-		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
-	}
+	//	@RequestMapping(path="/users/{userName}/addLandmark2Itinerary", method=RequestMethod.POST)
+	//	public String addLandmark2Itin(@RequestParam int itineraryId, @RequestParam(required=false) int[] landmarkIds, ModelMap model) {
+	//		for (int landId : landmarkIds){
+	//			itinDAO.addLandmark2Itin(itineraryId, landId);
+	//		}
+	//		AppUser sessionUser = (AppUser)model.get("currentUser");
+	//		return "redirect:/users/"+sessionUser.getUsername()+"/registeredUser";
+	//	}
 
 }

@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
+<c:url value="/js" var="jsHref" />
+<script src="${jsHref}/mapSearch.js"></script>
 
 <div class="container-fluid">
 
@@ -8,27 +10,79 @@
 		<div class="col-sm-2 sidenav">
 			<p>Enter Address or click on map</p>
 
-			<c:url var="createAStartPoint"
+			<%-- <c:url var="createAStartPoint"
+				value="/users/${currentUser.username}/createItinerary" /> --%>
+			<c:url var="updateItenUrl"
 				value="/users/${currentUser.username}/createItinerary" />
-			<form action="${createAStartPoint}" method="POST" id="createStartPointForm">
-				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> 
+			<form action="${createAStartPoint}" method="POST" id="createItinForm">
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 				<p>Name your itinerary</p>
 				<input type="text" name="itineraryName">
 				<!-- <input type="text" name="itineraryAddress" id="address" onFocus="geolocate()" > -->
 				<p>Insert address or click on map</p>
-				<input type="text" name="itineraryAddress" id="address"
-					onFocus="geolocate()"> 
-					<input type="hidden" name="userId" value="${currentUser.userId}"> 
-					<input type="hidden" name="startingLatitude" id="latitude"> 
-					<input type="hidden" name="startingLongitude" id="longitude"> 
-					<input type="submit" class="button" value="Create Itinerary">
+				<input type="text" name="itineraryAddress" id="address" onFocus="geolocate()"> 
+				<input type="hidden" name="userId" value="${currentUser.userId}"> 
+				<input type="hidden" name="startingLatitude" id="latitude"> 
+				<input type="hidden" name="startingLongitude" id="longitude"> 
+				<input type="submit" value="Save Itinerary" onclick="submitIds()">
+				<!-- <input type="submit" class="button" value="Create Itinerary"> -->
 			</form>
 
+			<p>Search By Miles</p>
+			<input id="user_miles" value="5" />
+			<button onclick="pullLandmarkCoordsFromLandmark()">Search
+				Map</button>
+			<%-- <c:url var="updateItenUrl"
+				value="/users/${currentUser.username}/addLandmark2Itinerary" /> --%>
+			<%-- <form id="idForm" action="${updateItenUrl}" method="POST">
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"> --%>
+			<%-- <input type="hidden" name="itineraryId"
+					value="${itinerary.itineraryId}"> --%>
+			<!-- <input type="submit"
+					value="Save Itinerary" onclick="submitIds()"> -->
+			<!-- </form> -->
+
 		</div>
+
+		<script>
+			var locations = [
+					[
+							<c:out value="${itinerariesDetail[0].startingLatitude}"/>,
+							<c:out value="${itinerariesDetail[0].startingLongitude}"/> ],
+					<c:forEach var="itin" items="${itinerariesDetail}" >[
+							<c:out value="${itin.destinationLatitude}"/>,
+							<c:out value="${itin.destinationLongitude}"/>],
+					</c:forEach> ];
+		</script>
+
+
+		<script>
+		var landmarks = [
+		<c:forEach var="landmark" items="${landmarks}">
+			{
+				id: ${landmark.landmarkId},
+				name: '${landmark.landmarkName}',
+				lat: ${landmark.latitude},
+				lng: ${landmark.longitude},
+				rating: ${landmark.landmarkRating},
+				pictureUrl: '${landmark.landmarkPicture}',
+				description: '${landmark.description}'
+			},
+		</c:forEach>
+		];
+		</script>
+
+
+
+
 		<script type="text/javascript">
-			$(document).ready(function () {
-			
-				$("#createStartPointForm").validate({
+			$(document).ready(function() {
+
+				$("#createItinForm").validate({
+					ignore: [],
+					groups: {
+				        locationGroup: "startingLatitude startingLongitude"
+				    },
 					rules : {
 						itineraryName : {
 							required : true
@@ -40,20 +94,23 @@
 							required : true,
 						},
 						startingLongitude : {
-							required : true,  
+							required : true,
 						}
 					},
-					messages : {			
+					messages : {
 						itineraryName : {
-							equalTo : "Give your itinerary a name"
+							required : "Give your itinerary a name"
 						},
 						startingLatitude : {
-							equalTo : "No starting point was chosen"
+							required : "No starting point was chosen"
+						},
+						startingLongitude : {
+							required : "Bananas"
 						}
 					},
 					errorClass : "error"
 				});
-				
+
 			});
 		</script>
 		<!-- end links on the left of the homepage -->
@@ -77,6 +134,7 @@
 </div>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&libraries=places&callback=initMapSearch">
+	
 </script>
 <c:url value="/js" var="jsHref" />
 <script src="${jsHref}/maps.js"></script>
@@ -108,19 +166,19 @@
 
 	function fillInAddress() {
 		// Get the place details from the autocomplete object.
-		var place = autocomplete.getPlace();		
-		
+		var place = autocomplete.getPlace();
+
 		// TODO: AJAX!
 		var address = place.formatted_address;
-		var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI(address) + '&key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg';
+		var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+				+ encodeURI(address)
+				+ '&key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg';
 		$.ajax({
-			url: url
-		})
-		.done(function(data) {
+			url : url
+		}).done(function(data) {
 			var location = data.results[0].geometry.location;
 			acceptLatLong(location.lat, location.lng);
-		})
-		.fail(function(xhr, status, error) {
+		}).fail(function(xhr, status, error) {
 			console.log(error);
 		});
 	}
@@ -132,13 +190,13 @@
 			acceptLatLong(event.latLng.lat(), event.latLng.lng());
 		});
 	}
-	
+
 	function acceptLatLong(lat, lng) {
 		$('#latitude').val(lat);
 		$('#longitude').val(lng);
-		
+
 		var latLng = new google.maps.LatLng(lat, lng);
-		
+
 		if (marker == null) {
 			marker = new google.maps.Marker({
 				position : latLng,
