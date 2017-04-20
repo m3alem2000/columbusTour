@@ -176,6 +176,10 @@ table#reviewTable {
 	text-align:left;
 }
 
+.background-color{
+	background-color: #f1f1f1;
+}
+
 /******sign-up page******/
 #signup-main {
 	background-image: url("../img/grayColumbus.jpg");
