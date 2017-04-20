@@ -19,7 +19,7 @@
 			<h2 class="admin-title">Add/Update Landmark information</h2>
 			<c:url var="formAction"
 				value="/users/${currentUser.username}/addOUpdateLandmark" />
-			<form id="landmark-input" method="POST" action="${formAction}">
+			<form class="form-fields" id="landmark-input" method="POST" action="${formAction}">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 
 				<div class="form-group">

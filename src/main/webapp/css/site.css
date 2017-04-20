@@ -193,11 +193,11 @@ table#reviewTable {
 	text-shadow: 0px 0px 12px #FFF;
 }
 
+.form-fields{
+	width:40%;
+}
+
 /*******profile page********/
-
-
- 
- /* On small screens, set height to 'auto' for sidenav and grid */
 
 #profile-pic-div {
 	background-image: url("../img/grayColumbus.jpg");
@@ -208,6 +208,10 @@ table#reviewTable {
 	height: 100%;
 	text-shadow: 0px 0px 12px #FFF;
 }
+ 
+ /* On small screens, set height to 'auto' for sidenav and grid */
+
+
 
 /* .show {display:block;} */
 

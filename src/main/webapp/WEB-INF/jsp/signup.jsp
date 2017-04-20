@@ -15,7 +15,7 @@
 			</c:if>
 
 			<c:url var="formAction" value="/signup" />
-			<form id="new-user" method="POST" action="${formAction}">
+			<form id="new-user" class="form-fields" method="POST" action="${formAction}">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 				<h3>Please register so you can create your itinerary:</h3>
 				<div class="form-group">
@@ -50,11 +50,9 @@
 		<!-- end of body of the homepage -->
 
 		<!-- Ads on the right of the homepage -->
-		<div class="col-sm-2 sidenav">
-			<c:import url="/WEB-INF/jsp/common/right.jsp" />
-		</div>
+		<c:import url="/WEB-INF/jsp/common/right.jsp" />
 		<!--end of Ads on the right of the homepage  -->
-
+		
 	</div>
 </div>
 

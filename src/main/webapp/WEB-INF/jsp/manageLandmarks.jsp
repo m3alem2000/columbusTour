@@ -31,7 +31,7 @@
 					<td>${listLandmark.topPick}</td>
 					<td>
 						<c:url var="landmarkDetailsHref" value="/landmarkDetail"/>
-						<form action="${landmarkDetailsHref}" method="GET">
+						<form  class="form-fields" action="${landmarkDetailsHref}" method="GET">
 							<input type="hidden" name="landmarkId" value="${listLandmark.landmarkId}"/>
 							<input type="submit" value="More Details" />
 						</form>

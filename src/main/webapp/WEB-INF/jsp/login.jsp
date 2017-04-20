@@ -13,7 +13,7 @@
 		<div id="login-picture-div" class="col-sm-8 text-left">
 			<br>
 			<c:url var="formAction" value="/login" />
-			<form id="new-user" method="POST" action="${formAction}">
+			<form class="form-fields" id="new-user" method="POST" action="${formAction}">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" /> <input
 					type="hidden" name="destination" value="${param.destination}" />
 					<h3>Login to your account:</h3>
