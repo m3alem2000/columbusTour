@@ -71,8 +71,8 @@ function pullLandmarkCoordsFromLandmark() {	//pass the lankdmark list length
 				'<h5>'+landmark.name+'</h5>'+
 				'<a href="#"><img style="width:200px" src=../../img/'+landmark.pictureUrl+'></a><br>'+
 				'<p><b>Description: </b>'+landmark.description+'</p>'+
-				'<span>Add to Itinerary  </span>' +
 				'<input class="landmarkCheckbox" type="checkbox" name="ids" value="'+landmark.id+'" onclick="clickMarker(this)"/>'+
+				'<b><span> Add to Itinerary</span><b>' +
 				'</div>';
 			var location = new google.maps.LatLng(landmark.lat, landmark.lng);
 			dropMarker(location, contentString, 0);

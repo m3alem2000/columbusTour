@@ -5,32 +5,23 @@
 
 <div class="container-fluid">
 
-	<div class="row content">
+	<div style="background-color: #f1f1f1; height: 100%" class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		<h2>Create Itinerary</h2>
-			<p>Enter Address or click on map</p>
+		<h3>Create Itinerary</h3><br>
 
-			<%-- <c:url var="createAStartPoint"
-				value="/users/${currentUser.username}/createItinerary" /> --%>
-			<c:url var="updateItenUrl"
-				value="/users/${currentUser.username}/createItinerary" />
+			<c:url var="updateItenUrl" value="/users/${currentUser.username}/createItinerary" />
 			<form action="${createAStartPoint}" method="POST" id="createItinForm">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
-				<p>Name your itinerary</p>
-				<input type="text" name="itineraryName">
-				<!-- <input type="text" name="itineraryAddress" id="address" onFocus="geolocate()" > -->
-				<p>Insert address or click on map</p>
-				<input type="text" name="itineraryAddress" id="address" onFocus="geolocate()"> 
+				<span>Name your itinerary</span><br>
+				<input type="text" name="itineraryName"><br><br>
+				<span>Starting address / click on map</span><br>
+				<input type="text" name="itineraryAddress" id="address" onFocus="geolocate()"> <br><br><br>
 				<input type="hidden" name="userId" value="${currentUser.userId}"> 
 				<input type="hidden" name="startingLatitude" id="latitude"> 
 				<input type="hidden" name="startingLongitude" id="longitude"> 
-				<input type="submit" value="Save Itinerary" onclick="submitIds()">
-				<!-- <input type="submit" class="button" value="Create Itinerary"> -->
+				<input type="submit" value="Create Itinerary" onclick="submitIds()">
 			</form>
-
-			
-
 		</div>
 
 		<script>
@@ -108,7 +99,7 @@
 		<!-- body of the homepage -->
 		<div class="col-sm-8 text-left">
 			
-			<p>Search By Miles</p>
+			Search Landmarks By Radius: 
 			<input id="user_miles" value="5" />
 			<button onclick="pullLandmarkCoordsFromLandmark()">Search
 				Map</button>

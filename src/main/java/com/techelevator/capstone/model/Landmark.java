@@ -48,8 +48,8 @@ public class Landmark {
 		this.landmarkSubName = landmarkSubName;
 	}
 	public String getLandmarkSubName() {
-		if(landmarkName.length()>30){
-			landmarkName = landmarkName.substring(0,26)+"...";
+		if(landmarkName.length()>29){
+			landmarkName = landmarkName.substring(0,27)+"..";
 		}
 		return landmarkName;
 	}

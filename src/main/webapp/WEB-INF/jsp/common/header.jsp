@@ -52,10 +52,13 @@
 					<li class="active"><a href="${homeHref}">Home</a></li>
 
 					<c:url var="aboutHref" value="/about" />
+					<c:url var="itineraryHref" value="/itinerary" />
 					<c:if test="${not empty currentUser}">
 						<c:url var="aboutHref" value="/users/${currentUser.username}/about" />
 					</c:if>
+					<li><a href="${itineraryHref}">Itinerary</a></li>
 					<li><a href="${aboutHref}">About</a></li>
+					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -64,21 +67,15 @@
 						<c:url var="signupHref" value="/signup" />
 						<li><a href="${signupHref}"><span class="glyphicon"></span>
 								Signup</a></li>
-						<li><a href="${loginHref}"><span
-								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a href="${loginHref}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 					</c:if>
 					<c:if test="${not empty currentUser}">
-						<c:url var="registeredUserProfileHref"
-							value="/users/${currentUser.username}/profile" />
-						<li><a href="${registeredUserProfileHref}"><span
-								class="glyphicon"></span>Profile</a></li>
-						<c:url var="registeredUserHref"
-							value="/users/${currentUser.username}/itinerary" />
-						<li><a href="${registeredUserHref}"><span
-								class="glyphicon"></span>${currentUser.username}</a></li>
+						<c:url var="registeredUserProfileHref" value="/users/${currentUser.username}/profile" />
+						<li><a href="${registeredUserProfileHref}"><span class="glyphicon"></span>Profile</a></li>
+						<c:url var="registeredUserHref" value="/users/${currentUser.username}/itinerary" />
+						<li><a href="${registeredUserHref}"><span class="glyphicon"></span>${currentUser.username}</a></li>
 						<c:url var="logOutHref" value="/logout" />
-						<li><a href="${logOutHref}"><span
-								class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+						<li><a href="${logOutHref}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
 					</c:if>
 				</ul>
 			</div>

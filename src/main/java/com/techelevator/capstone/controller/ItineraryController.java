@@ -48,7 +48,8 @@ public class ItineraryController {
 	//		}
 	//	}
 
-	@RequestMapping(path="/users/{userName}/itinerary", method=RequestMethod.GET)
+
+	@RequestMapping(path={"/users/{userName}/itinerary","/itinerary"}, method=RequestMethod.GET)
 	public String displayItineraryList(@RequestParam (defaultValue = "0" ,required = false) int itineraryId, HttpServletRequest request, ModelMap model) {
 
 		if(model.isEmpty() || model.get("currentUser")==null){

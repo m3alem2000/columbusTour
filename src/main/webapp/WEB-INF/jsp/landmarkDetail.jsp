@@ -142,12 +142,7 @@
 
 		<!-- Ads on the right of the homepage -->
 		<div class="col-sm-2 sidenav">
-			<div class="well">
-				<p>ADS</p>
-			</div>
-			<div class="well">
-				<p>ADS</p>
-			</div>
+			<c:import url="/WEB-INF/jsp/common/right.jsp" />
 		</div>
 		<!--end of Ads on the right of the homepage  -->
 	</div>

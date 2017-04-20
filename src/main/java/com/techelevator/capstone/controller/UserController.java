@@ -29,7 +29,6 @@ public class UserController {
 	@Autowired
 	private ItineraryDAO itinDAO;
 
-
 	@Autowired
 	public UserController(AppUserDAO appUserDao) {
 		this.appUserDao = appUserDao;

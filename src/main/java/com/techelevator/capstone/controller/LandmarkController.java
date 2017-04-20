@@ -44,7 +44,7 @@ public class LandmarkController {
 		return "manageReviews";
 	}
 
-	@RequestMapping(path="/landmarkDetail", method=RequestMethod.GET)
+	@RequestMapping(path={"/landmarkDetail","/users/{userName}/landmarkDetail"}, method=RequestMethod.GET)
 	public String viewLandmarkDetail(HttpServletRequest request, 
 			@RequestParam Long landmarkId, 
 			ModelMap model) {
