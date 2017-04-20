@@ -8,7 +8,7 @@
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
 			<c:url var="createItinerary"
-				value="/users/${currentUser.username}/createNewItin" />
+				value="/users/${currentUser.username}/createItinerary" />
 			<a href="${createItinerary}">
 				<button type="button" class="btn btn-primary">New Itinerary</button>
 			</a> <br> <br>
@@ -31,16 +31,8 @@
 				</div>
 			</div>
 			<br> <br>
-			<%-- 	<c:forEach var="itineraries" items="${itineraries}">
-				<c:url var="itineraryLink"
-					value="/itinerary">
-					<c:param name="itineraryId" value="${itineraries.itineraryId}" />
-				</c:url>
-				<p>
-					<a href="${itineraryLink}">${itineraries.itineraryName}</a>
-				</c:forEach>--%>
 
-			<p>Land Mark Search</p>
+			<%-- <p>Land Mark Search</p>
 			<p>Search By Miles</p>
 			<input id="user_miles" value="5" />
 			<button onclick="pullLandmarkCoordsFromLandmark()">Search
@@ -52,7 +44,7 @@
 				<input type="hidden" name="itineraryId"
 					value="${itinerary.itineraryId}"> <input type="submit"
 					value="Save Itinerary" onclick="submitIds()">
-			</form>
+			</form> --%>
 		</div>
 		<script>
 			var locations = [
