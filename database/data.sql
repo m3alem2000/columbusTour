@@ -12,16 +12,16 @@ INSERT INTO users (email_address, state, city, zip_code, phone_number, username,
 ('charlie@lola.com',  'OH', 'Columbus', '43210', '123', 'admin', 'Charlie',  'Lola', '123 street street', 'myRRyv7lSsgWA6r0gs9Rl/Ki0VlI5wl7b43nio0ADLN/U2wf+UOlWbTUrb1Oj/ETm/KT202nMyujBC/J0HP66ZXUglQQGWtlmHKR4xx2HDi9UhZLs6hFw4MN/JkuqeDlA7BrE0IvPMKYDrKy3jOm9gZMk03eOqO7FkAL94Ev88k=', '5ibzhLzIqTrBQv+Huzluiw==', true);
 -- admin password is Yom Huledet 120
 INSERT INTO users (email_address, state, city, zip_code, phone_number, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
-('devin@yahoo.com', 'OH', 'Columbus', '43064', '6141234567', 'traveler1', 'bob', 'jones', '123 street street', 'XCAGsmD/u9poOK9Kv2flcxY3CN71lpaP3k5kWqe5EIxgzm5OYpQOIewTppaPmveiQFn+ak5durD3mFSsrFBmVJ8h8p+uKAqRmZnouX8RvqvAdEJOP7IMAr0MGitzd5HFZCwpWoN4jG9rB+RFdeMLXbuq5eL5Ju6wRwZ31v1aVqk=', 'k53ZchPGscnwkRvIgGFC2g==', false);
+('devin@yahoo.com', 'OH', 'Columbus', '43064', '6141234567', 'walker', 'bob', 'jones', '123 street street', 'XCAGsmD/u9poOK9Kv2flcxY3CN71lpaP3k5kWqe5EIxgzm5OYpQOIewTppaPmveiQFn+ak5durD3mFSsrFBmVJ8h8p+uKAqRmZnouX8RvqvAdEJOP7IMAr0MGitzd5HFZCwpWoN4jG9rB+RFdeMLXbuq5eL5Ju6wRwZ31v1aVqk=', 'k53ZchPGscnwkRvIgGFC2g==', false);
 -- Password1!
 INSERT INTO users (email_address, state, city, zip_code, phone_number, username, first_name, last_name, home_address, salt, hash, is_admin) VALUES 
-('m@yahoo.com', 'OH', 'Columbus', '43064', '6141234567', 'traveler1', 'bob', 'jones', '123 street street', 'XCAGsmD/u9poOK9Kv2flcxY3CN71lpaP3k5kWqe5EIxgzm5OYpQOIewTppaPmveiQFn+ak5durD3mFSsrFBmVJ8h8p+uKAqRmZnouX8RvqvAdEJOP7IMAr0MGitzd5HFZCwpWoN4jG9rB+RFdeMLXbuq5eL5Ju6wRwZ31v1aVqk=', 'k53ZchPGscnwkRvIgGFC2g==', false);
+('m@yahoo.com', 'OH', 'Columbus', '43064', '6141234567', 'bigmac', 'bob', 'jones', '123 street street', 'XCAGsmD/u9poOK9Kv2flcxY3CN71lpaP3k5kWqe5EIxgzm5OYpQOIewTppaPmveiQFn+ak5durD3mFSsrFBmVJ8h8p+uKAqRmZnouX8RvqvAdEJOP7IMAr0MGitzd5HFZCwpWoN4jG9rB+RFdeMLXbuq5eL5Ju6wRwZ31v1aVqk=', 'k53ZchPGscnwkRvIgGFC2g==', false);
 -- traveler1@yahoo.com Password1!
 
 
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, history, website, top_pick) VALUES ('Franklin Park Conservatory and Botanical Gardens', 'FPC.jpg', 5, '39.965910', '-82.953862', 'OH', 'Columbus', '43206', '1777 E Broad St, Columbus, OH 43203', 'Franklin Park Conservatory and Botanical Gardens offers enriching and memorable experiences inspired by art, culture and the botanical world.','In 1852, the Franklin County Agriculture Society purchased 88 acres located two miles east of downtown Columbus as a site for the first Franklin County Fair. In 1874, that land was made the official grounds of the Ohio State Fair. Ohio Legislature passed a resolution declaring the site as Franklin Park and open for public use in 1884.
 
-Influenced by the success of Chicago’s World Fair and Columbian Exposition in 1893 and inspired by the City Beautiful movement, the city of Columbus built a grand Victorian-style glass greenhouse in the park. Known today as the Palm House, it opened to the public in 1895 as Franklin Park Conservatory. The park was a popular destination for the surrounding community who enjoyed its carriage paths, lake and boathouse.
+Influenced by the success of the Chicago World Fair and Columbian Exposition in 1893 and inspired by the City Beautiful movement, the city of Columbus built a grand Victorian-style glass greenhouse in the park. Known today as the Palm House, it opened to the public in 1895 as Franklin Park Conservatory. The park was a popular destination for the surrounding community who enjoyed its carriage paths, lake and boathouse.
 
 Columbus Recreation and Parks Department owned and operated the Conservatory until 1989. During that time, the facility developed a reputation for horticultural excellence with the display of rare and unusual plants. The Conservatory also became a popular location for family gatherings, weddings, and events.', 'http://www.fpconservatory.org/', true);
 INSERT INTO landmark (landmark_name, landmark_picture, landmark_rating, latitude, longitude, state, city, zip_code, address, description, top_pick) VALUES ('Columbus Museum of Art', 'museum.jpg', 3, '39.964207', '-82.987897', 'OH', 'Columbus', '43215', '480 E Broad St, Columbus, OH 43215', 'Recently renovated and expanded, the museums hosts permanent & traveling art collections plus an American cafe & a gift shop.', false);
@@ -68,39 +68,66 @@ INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (4,
 INSERT INTO itinerary (user_id, itinerary_name, start_lat, start_lon) VALUES (4, 'Day 8', 39.997339, -83.042371);
 
 
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'Beautiful park outside, outstanding indoor biomes. Need several hours to visit. Nice cafe and gift shop for unique gifts.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 1, 'Beautiful park outside, outstanding indoor biomes. Need several hours to visit. Nice cafe and gift shop.', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 2, 'What a nice park, several different gardens, a heaven for plant lovers!', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 3, 'Awesome, check out the butterfly exhibit with the kids. Lots of educational events', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (1, 4, 'We take all our out of town friends here when thy visit Columbus.', 5);
+
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 2, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 1, 'great place', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (2, 3, 'What a nice park', 5);
+
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 4, 'Great place to take kids along. Expect to spend all day.', 5);
 INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 1, 'COSI is mainly for school aged children, except for one Thursday a month, they keep the kids out and let the grown ups play! COSI After Dark is a ton of fun. Cash bar, snacks, and lots of science to try out. Everything is hands on and way more fun a bit tipsy.', 4);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 2, 'When we talked to people about what to do on our short trip, this was highly recommended. We were highly disappointed in the lack of exhibits and hands on activities and really thought that the museum would have more to offer. Wish we would have saved our $$$.', 3);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 4, 'awesome', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 2, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 4, 'awesome', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 2, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 3, 'awesome', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 2, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 4, 'awesome', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 2, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 3, 'awesome', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 2, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 3, 'awesome', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 2, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 4, 'awesome', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 1, 'great place', 5);
-INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 2, 'great place', 5);
-
-
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (3, 2, 'When we talked to people about what to do on our short trip, this was highly recommended. We were highly disappointed in the lack of exhibits and hands on activities and really thought that the museum would have more to offer.', 3);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 4, 'We loved the Moose, Bears and Manatees. We got to watch the Manatees eat their lettuce, it was a crack up. The Bears were amazing especially the Black and Brown Bears. Aquarium was a bit disappointing....', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 1, 'The attractions are great and in the summer months you have the water park that you can go to. You can pay for the water park and get into the zoo for free. The horse back ride the petting zoo and also the train ride are great for young kids age 5.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (4, 2, 'Wildlights at Columbus Zoo and Aquarium was a wonderful event. We went with a 2 year old. It was so fun watching the wonder and excitement on her little face. So much joy! The crowd was quite large but very respectful. This is a must see event.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 4, 'awesome', 3);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 1, 'Highly recommended.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (5, 2, 'Very nice visit', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 1, 'Great old fashionable market.', 3);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (6, 2, 'Wow, it was awsome to have so many vendors in one place.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 4, 'Highly recommended.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 1, 'Lots of shopping and restaurant options.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (7, 2, 'You can find any store you want here!', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 3, 'The city stops during a buckeye game, plan accordingly.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 1, 'Go Bucks!', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (8, 2, 'The famous buckeye stadium was pretty cool.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 3, 'Hard to find parking.', 3);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 1, 'Great neighborhood.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (9, 2, 'Stop by Schmmit''s for some german food', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 4, 'Go on a Saturday night, lots of fun.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 1, 'Trendy area of Columbus', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (10, 2, 'Great restaurants along North High St.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (11, 4, 'It was ok.', 3);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (11, 1, 'Fun with friends!', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (11, 2, 'Can''t wait to come again', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (12, 3, 'Wonderful trails right in the city.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (12, 1, 'Bird migration path, take your camera.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (12, 2, 'Went for a walk in the fall, beautiful meadow..', 3);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (13, 4, 'Beautiful church!', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (13, 3, 'The choir is awesome!', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (14, 2, 'Highly recommended.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (14, 4, 'Awesome concert. Will return.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (14, 1, 'great place', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (14, 3, 'Beautiful theater.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (15, 1, 'Great during the Arts Festival in June.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (15, 4, 'Take your time and enjoy the downtown walking by the riverfront.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (15, 3, 'great place for an evening walk', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (16, 2, 'Lots of fun for the family.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (16, 4, 'The fair is a summer tradition, and it did not disappoint!', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (17, 1, 'Make sure you stop by for a quick visit.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (17, 2, 'Hidden gem for art lovers', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (17, 4, 'Outstanding', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (18, 1, 'Had a great time there with friends.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (18, 2, 'will stop by again', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (18, 4, 'Awesome atmosphere, delicious coffee.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (19, 1, 'Great but expensive.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (19, 2, 'Must stop while in Columbus, delicious icecream.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (20, 4, 'Will visit again in the winter. Must be beautiful with snow.', 4);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (20, 1, 'Loved it.', 5);
+INSERT INTO review (landmark_id, user_id, review, rating) VALUES (20, 3, 'Perfect visit for gardeners and artists!', 5);
 
 INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (1, 1);
 INSERT INTO "public"."itinerary_landmark" ("landmark_id", "itinerary_id") VALUES (2, 1);

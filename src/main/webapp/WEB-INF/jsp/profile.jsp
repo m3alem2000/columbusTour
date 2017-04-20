@@ -2,7 +2,7 @@
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 
 <div class="container-fluid text-center">
-	<div class="row content">
+	<div class="row content" style="background-color: #f1f1f1; height: 100%">
 
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav"></div>
@@ -69,6 +69,5 @@
 
 	</div>
 </div>
-<br>
-<br>
+
 <c:import url="/WEB-INF/jsp/common/footer.jsp" />
