@@ -6,14 +6,16 @@
 	<div class="row content">
 		<!-- links on the left of the homepage -->
 		<div class="col-sm-2 sidenav">
-		<c:url var="createItinerary" value="/users/${currentUser.username}/createItinerary" />
-		<a href="${createItinerary}" >
-		<button type="button" class="btn btn-link">New Itinerary</button>
-		</a><br><br>
+			<c:url var="createItinerary"
+				value="/users/${currentUser.username}/createItinerary" />
+			<a href="${createItinerary}">
+				<button type="button" class="btn btn-link">New Itinerary</button>
+			</a><br>
+			<br>
 			<p>Saved Itineraries</p>
 			<c:forEach var="itineraries" items="${itineraries}">
-				<c:url var="itineraryLink" value="/itinerary" >
-				<c:param name="itineraryId" value="${itineraries.itineraryId}" />
+				<c:url var="itineraryLink" value="/itinerary">
+					<c:param name="itineraryId" value="${itineraries.itineraryId}" />
 				</c:url>
 				<p>
 					<a href="${itineraryLink}">${itineraries.itineraryName}</a>
@@ -21,16 +23,18 @@
 			</c:forEach>
 			<h2>Land Mark Search</h2>
 			<p>Search By Miles</p>
-			<input id="user_miles" value="5"/>
-			<button onclick="pullLandmarkCoordsFromLandmark()">Search Map</button>
-	<c:url var="updateItenUrl" value="/users/${currentUser.username}/registeredUser"/>
+			<input id="user_miles" value="5" />
+			<button onclick="pullLandmarkCoordsFromLandmark()">Search
+				Map</button>
+			<c:url var="updateItenUrl"
+				value="/users/${currentUser.username}/registeredUser" />
 			<form id="idForm" action="${updateItenUrl}" method="POST">
-			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
-			<input type="hidden" name="itineraryId" value="${itinerary.itineraryId}">
-			<input type="submit" value="Save Itinerary" onclick="submitIds()">
-			</form>	
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+				<input type="hidden" name="itineraryId" value="${itinerary.itineraryId}"> 
+					<input type="submit" value="Save Itinerary" onclick="submitIds()">
+			</form>
 		</div>
-			<script>
+		<script>
 			var locations = [
 				[
 					 <c:out value="${itinerariesDetail[0].startingLatitude}"/>,
@@ -44,7 +48,7 @@
 			</c:forEach>
 			];
 			</script>
-			<script>
+		<script>
 			var itinDetail = [
 			<c:forEach var="itin" items="${itinerariesDetail}" >
 				[
@@ -73,32 +77,28 @@
 				}
 			</script>
 			<c:forEach var="itinerary" items="${itineraries}">
-				<input type="hidden" id="userStartLat" type="number" value="${itinerary.startingLatitude}"/>
-				<input type="hidden" id="userStartLong" type="number" value="${itinerary.startingLongitude}"/>
-		</c:forEach><!--  -->
+				<input type="hidden" id="userStartLat" type="number"
+					value="${itinerary.startingLatitude}" />
+				<input type="hidden" id="userStartLong" type="number"
+					value="${itinerary.startingLongitude}" />
+			</c:forEach>
+			<!--  -->
 			<script>
 		var landmarks = [
 		<c:forEach var="landmark" items="${landmarks}">
 			{
 				id: ${landmark.landmarkId},
 				name: '${landmark.landmarkName}',
-				lat: ${landmark.latitude},
+				lat: ${landmark.latitude} ,
 				lng: ${landmark.longitude},
 				rating: ${landmark.landmarkRating},
 				pictureUrl: '${landmark.landmarkPicture}',
 				description: '${landmark.description}'
 			},
-				<%-- <input type="hidden" name="${landmark.landmarkId}" value="${landmark.landmarkId}"/>
-				<input type="hidden" name="name${landmark.landmarkId}" value="${landmark.landmarkName}"/>
-				<input type="hidden" name="latitude${landmark.landmarkId}" value="${landmark.latitude}"/>
-				<input type="hidden" name="longitude${landmark.landmarkId}" value="${landmark.longitude}"/>
-				<input type="hidden" name="landmarkRating${landmark.landmarkId}" value="${landmark.landmarkRating}"/>
-				<input type="hidden" name="landmarkPicture${landmark.landmarkId}" value="${landmark.landmarkPicture}"/>
-				<input type="hidden" name="description${landmark.landmarkId}" value="${landmark.description}"/> --%>
 		</c:forEach>
 		];
 		</script>
-		<c:url value="/js" var="jsHref" />
+			<c:url value="/js" var="jsHref" />
 			<script src="${jsHref}/maps.js"></script>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp3v8bo_hTpRITrBYWJD5bzzKO3QEZWkg&v=3&callback=initMap">

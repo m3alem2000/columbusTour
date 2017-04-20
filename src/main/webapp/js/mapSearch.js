@@ -22,7 +22,6 @@ var idToAdd = [];
 
 function clickMarker(marker) {
 	var id = $(marker).val();
-	
 	if($(marker).is(':checked')) {
 		// Add to list
 		idToAdd.push(id);
@@ -34,10 +33,10 @@ function clickMarker(marker) {
 			}
 		}
 	}
-	
 	console.log(idToAdd);
 }
 
+//DONE
 function submitIds() {
 	var form = $('#idForm');
 	form.children('.idItem').remove();
@@ -66,7 +65,7 @@ function pullLandmarkCoordsFromLandmark() {	//pass the lankdmark list length
 			var contentString = 
 			'<div style="width:300px" id="siteNotice">'+
 				'<h5>'+landmark.name+'</h5>'+
-				'<a href="#"><img style="width:200px" src=img/'+landmark.imageUrl+'></a><br>'+
+				'<a href="#"><img style="width:200px" src=../../img/'+landmark.pictureUrl+'></a><br>'+
 				'<p><b>Description: </b>'+landmark.description+'</p>'+
 				'<span>Add to Itinerary  </span>' +
 				'<input class="landmarkCheckbox" type="checkbox" name="ids" value="'+landmark.id+'" onclick="clickMarker(this)"/>'+
@@ -77,7 +76,7 @@ function pullLandmarkCoordsFromLandmark() {	//pass the lankdmark list length
 	}
 }	
 
-
+//DONE
 function clearOverlays() {
 	for (var i = 0; i < markers.length; i++ ) {
 		markers[i].setMap(null);
@@ -89,7 +88,6 @@ function clearOverlays() {
 	locationCircles.length = 0;
 }
 
-
 //DONE
 function initMap() {
 	// Constructor creates a new map - only center and zoom are required.
@@ -99,7 +97,6 @@ function initMap() {
 	});
 	pullLandmarkCoordsFromLandmark();
 };
-
 
 //DONE
 function dropMarker(coords, contentString, miles) {
@@ -131,14 +128,6 @@ function dropMarker(coords, contentString, miles) {
 	});
 	locationCircles.push(circle);
 };	    	  
-
-
-
-
-
-
-
-
 
 //DONE
 function dropPin() {
