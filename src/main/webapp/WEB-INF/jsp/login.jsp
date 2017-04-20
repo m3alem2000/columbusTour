@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
 
-<div id="login main-div class="container-fluid text-center">
+<div id="login main-div" class="container-fluid text-center">
 	<div class="row content">
 
 		<!-- links on the left of the homepage -->
