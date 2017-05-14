@@ -5,6 +5,7 @@ public class AppUser {
 	private long userId;
 	private String email;
 	private String username;
+	private String password;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -101,6 +102,14 @@ public class AppUser {
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

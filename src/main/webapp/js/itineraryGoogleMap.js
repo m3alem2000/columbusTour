@@ -72,9 +72,9 @@ function initialize() {
 				  legs[i].start_address = 
 						'<div width="350" id="siteNotice">'+
 						'<h5>'+itinDetail[i-1][0]+'</h5>'+
-						'<img style="width:200px" src=./img/'+itinDetail[i-1][2]+'><br>'+
+						'<img style="width:200px" src=../../img/'+itinDetail[i-1][2]+'><br>'+
 						'<p><b>Description: </b>'+itinDetail[i-1][1]+'</p>'+
-						'<a href="landmarkDetail?landmarkId='+itinDetail[i-1][4]+'">See details</a>'+
+						'<a href="../../landmarkDetail?landmarkId='+itinDetail[i-1][4]+'">See details</a>'+
 						'</div>';
 			  }
 			  else {
@@ -82,16 +82,16 @@ function initialize() {
 				  legs[i].end_address = 
 					  '<div width="350" id="siteNotice">'+
 						'<h5>'+itinDetail[i][0]+'</h5>'+
-						'<img style="width:200px" src=./img/'+itinDetail[i][2]+'><br>'+
+						'<img style="width:200px" src=../../img/'+itinDetail[i][2]+'><br>'+
 						'<p><b>Description: </b>'+itinDetail[i][1]+'</p>'+
-						'<a href="landmarkDetail?landmarkId='+itinDetail[i][4]+'">See details</a>'+
+						'<a href="../../landmarkDetail?landmarkId='+itinDetail[i][4]+'">See details</a>'+
 						'</div>';
 				  legs[i].start_address = 
 					  '<div width="350" id="siteNotice">'+
 						'<h5>'+itinDetail[i-1][0]+'</h5>'+
-						'<img style="width:200px" src=img/'+itinDetail[i-1][2]+'><br>'+
+						'<img style="width:200px" src=../../img/'+itinDetail[i-1][2]+'><br>'+
 						'<p><b>Description: </b>'+itinDetail[i-1][1]+'</p>'+
-						'<a href="landmarkDetail?landmarkId='+itinDetail[i-1][4]+'">See details</a>'+
+						'<a href="../../landmarkDetail?landmarkId='+itinDetail[i-1][4]+'">See details</a>'+
 						'</div>';
 			  }
 		  }

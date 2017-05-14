@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,14 +34,25 @@ public class AuthenticationController {
 		return "signup";
 	}
 
+//	@RequestMapping(path="/signup", method=RequestMethod.POST)
+//	public String createUser(HttpServletRequest request,
+//							 @RequestParam String userName, 
+//							 @RequestParam String email, 
+//							 @RequestParam String password, 
+//							 ModelMap model ) {
+//	if (appUserDao.readUserByEmail(email) == null) {
+//		AppUser user = appUserDao.createAppUser(userName, email, password);
+//		model.put("currentUser", user);
+//		return "redirect:/users/"+user.getUsername()+"/profile";
+//	} else {
+//		request.setAttribute("messageLog", "Email exist, please login or signup with a different email!");
+//		return "signup";
+//	}
+//}
 	@RequestMapping(path="/signup", method=RequestMethod.POST)
-	public String createUser(HttpServletRequest request,
-							 @RequestParam String userName, 
-							 @RequestParam String email, 
-							 @RequestParam String password, 
-							 ModelMap model ) {
-		if (appUserDao.readUserByEmail(email) == null) {
-			AppUser user = appUserDao.createAppUser(userName, email, password);
+	public String createUser(HttpServletRequest request, @ModelAttribute AppUser appUser, ModelMap model) {
+		if (appUserDao.readUserByEmail(appUser.getEmail()) == null) {
+			AppUser user = appUserDao.createAppUser(appUser.getUsername(), appUser.getEmail(), appUser.getPassword());
 			model.put("currentUser", user);
 			return "redirect:/users/"+user.getUsername()+"/profile";
 		} else {

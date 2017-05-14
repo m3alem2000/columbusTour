@@ -19,8 +19,8 @@
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 				<h3>Please register so you can create your itinerary:</h3>
 				<div class="form-group">
-					<label for="userName">User Name: </label> <input type="text"
-						id="userName" name="userName" placeHolder="User Name"
+					<label for="username">User Name: </label> <input type="text"
+						id="userName" name="username" placeHolder="User Name"
 						class="form-control" />
 				</div>
 
